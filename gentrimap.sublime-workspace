@@ -1,0 +1,603 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"brand",
+				"brand-wrap"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"f",
+				"font-family"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"ne",
+				"nextLine"
+			],
+			[
+				"prod",
+				"products"
+			],
+			[
+				"P",
+				"Products"
+			],
+			[
+				"S",
+				"System"
+			],
+			[
+				"product",
+				"productfound"
+			],
+			[
+				"Product",
+				"ProductCode"
+			],
+			[
+				"play",
+				"playDecision"
+			],
+			[
+				"use",
+				"userAnswer"
+			],
+			[
+				"ch",
+				"character"
+			],
+			[
+				"content",
+				"content-box"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"m",
+				"margin-bottom"
+			],
+			[
+				"p",
+				"padding-left"
+			],
+			[
+				"border-col",
+				"border-color"
+			],
+			[
+				"bezier",
+				"bezier_help"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"b",
+				"border"
+			],
+			[
+				"bo",
+				"box-shadow"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"sa",
+				"sans-serif"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"s",
+				"support"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"wh",
+				"what-we-do"
+			],
+			[
+				"in",
+				"intro"
+			],
+			[
+				"tem",
+				"template_url"
+			],
+			[
+				"blog",
+				"bloginfo"
+			],
+			[
+				"wp",
+				"wp_query"
+			],
+			[
+				"glo",
+				"global"
+			],
+			[
+				"gallery",
+				"gallery-preview-box"
+			],
+			[
+				"mari",
+				"margin-bottom"
+			],
+			[
+				"max-",
+				"max-height"
+			],
+			[
+				"o",
+				"overflow"
+			],
+			[
+				"str_",
+				"str_replace"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"page",
+				"page-template-agency"
+			],
+			[
+				"menu",
+				"menu-agency"
+			],
+			[
+				"lis",
+				"list-style-type"
+			],
+			[
+				"a",
+				"default"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"me",
+				"menu-primary"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"you",
+				"youtube"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"h",
+				"head	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/screen.scss",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/js/main.js",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/edge/intro.html",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/hybrid.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/hybrid.php",
+		"/C/xampp/htdocs/miffy/index.html",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/functions.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/style.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/bootstrap/_mixins.scss",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/css/bootstrap.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/css/bootstrap/bootstrap.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/bootstrap-responsive.scss",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/bootstrap.scss",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/bootstrap/_layouts.scss",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/js/vendor/bootstrap.js",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/css/bootstrap-responsive.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/css/screen.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/css/main.css",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/functions/context.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/functions/core.php",
+		"/C/xampp/htdocs/lwg/css/bootstrap.css",
+		"/C/xampp/htdocs/lwg/css/main.css",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/FormattingOutput.java",
+		"/C/Users/melmo/Documents/Work/OneTouch/iFash/WeBid/active_auctions.php",
+		"/C/Users/melmo/Documents/Work/OneTouch/iFash/WeBid/buy_now.php",
+		"/C/Users/melmo/Documents/Work/OneTouch/iFash/WeBid/themes/default/buy_now.tpl",
+		"/C/xampp/htdocs/lwg/index.html",
+		"/C/xampp/htdocs/lwg/index.php.html",
+		"/C/xampp/htdocs/lwg/index.php",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/LoopsWithinLoopsTwo.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/GuessingGame.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/SimpleComparisonOne.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/SimpleComparisonTwo.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/SimpleComparisonThree.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/ShoppingCartTwo.class",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/LoopsWithinLoopsThree.java",
+		"/C/Users/melmo/AppData/Local/Temp/Rar$DIa0.755/DancingSudoku.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/LoopsWithinLoopsOne.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/ShoppingCartOne.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/ShoppingCartTwo.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/SimpleComparisonThree.class",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/SimpleComparisonTwo.class",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/BetterDollarstoPounds.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/ASimpleExampleProgram.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/x.txt",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/LoopsWithinLoopsOne",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Assignment 1/QuestionOne.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Test/hello.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/BetterDollarstoPounds.class",
+		"/C/Users/melmo/Documents/Work/Caroline Inge/Cellex-C/BigCommerce/default-template/product.html",
+		"/C/Users/melmo/Documents/Work/Caroline Inge/Cellex-C/BigCommerce/default-template/Styles/styles.css",
+		"/C/Users/melmo/Documents/Work/Caroline Inge/Cellex-C/BigCommerce/default-template/default.html",
+		"/C/Users/melmo/Documents/Work/Caroline Inge/Cellex-C/BigCommerce/default-template/Panels/HTMLHead.html",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/lwg.sublime-workspace",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/css/reset.css",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/style.css",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/js/functions.js",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/footer.php",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/header.php",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/css/style.css",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/notes.txt",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/reset.css",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/sass/screen.scss",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/sass/print.scss",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/css/screen.css",
+		"/C/xampp/htdocs/entermagazin/wp-content/themes/enter/_/sass/ie.scss",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/BitsinaGigabyte.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/SnailFood.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/TenTimesTable.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/OperatorPrecedence.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/PencetoDollars.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/div4.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/Precedence.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter3/CentigradetoFahrenheit.java",
+		"/C/Users/melmo/Documents/Study/Java/Programming/Chapter2/Name1000.java",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/index.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/js/functions.js",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/js/jquery.path.js",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/js/jquery.easing.js",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/functions/facebook-open-graph.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/_/functions/sidebars.php",
+		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/page-template-home.php",
+		"/C/Sites/first_app/README.md",
+		"/C/Sites/Gemfile",
+		"/C/xampp/htdocs/onyx/wordpress6/wp-content/themes/onyx/page-template-home.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/functions/facebook-open-graph.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/style.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/functions.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/header.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/post.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/footer.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/index.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/nggallery/gallery-derail.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/js/functions.js",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page-template-agency.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-config.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/comments.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/comment.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/functions/context.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/nggallery/gallery-artist.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/style-old.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/style-old-2.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox-thumbs.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox-buttons.css",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/js/jquery.masonry.min.js",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/nggallery/artist-view",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/gallery/artist-view",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page-template-contact.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page-template-artists.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/functions/sidebars.php",
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/js/jquery-1.8.2.min.js",
+		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/functions.php",
+		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-config.php",
+		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/header.php",
+		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/footer.php",
+		"/C/xampp/htdocs/melmo.me/index.html",
+		"/C/xampp/htdocs/melmo.me/style.css",
+		"/C/Sites/railsinstaller_demo/config/routes.rb",
+		"/C/Sites/railsinstaller_demo/app/controllers/welcome_controller.rb",
+		"/C/Sites/railsinstaller_demo/app/views/welcome/index.html.erb",
+		"/C/Sites/railsinstaller_demo/app/models/post.rb",
+		"/C/Sites/railsinstaller_demo/app/controllers/posts_controller.rb",
+		"/C/Sites/railsinstaller_demo/app/views/layouts/application.html.erb",
+		"/C/Sites/railsinstaller_demo/app/views/posts/_form.html.erb",
+		"/C/Sites/railsinstaller_demo/app/models/comment.rb",
+		"/C/Sites/railsinstaller_demo/db/seeds.rb"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"foote",
+			"footer-icons",
+			"user",
+			"foot",
+			"active",
+			"top",
+			"span2",
+			"span",
+			"grid",
+			"span2",
+			"text-right",
+			"hover",
+			"btn",
+			"btn-pr",
+			"btn",
+			"site",
+			"hover",
+			"parseInt",
+			"current",
+			"anyorder",
+			"userorder",
+			";\n",
+			"wholeNum",
+			"main",
+			"wrap",
+			"main",
+			"logo",
+			"home",
+			"1200px",
+			"50",
+			"960",
+			"bold",
+			"dark",
+			"text-s",
+			"#gallery",
+			"ul",
+			"ie7",
+			"100%",
+			"margin-top",
+			"padding",
+			"open-fancybox",
+			"open-fan",
+			"text-decoration",
+			"sprites",
+			"document_title",
+			"nolink",
+			"sidete",
+			"form",
+			"min-w",
+			"nolin",
+			"maintext",
+			"text-dec",
+			"main",
+			"aside.",
+			"content",
+			"img",
+			"h1",
+			"aside.sih1",
+			"h1, h2",
+			"light",
+			"252525",
+			"max-width",
+			"content p",
+			".sidebar",
+			".wrapper",
+			"aside",
+			"menu-",
+			"p {",
+			"content p",
+			"margin",
+			"html",
+			"social-wr",
+			"span",
+			"nav .so"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true
+}

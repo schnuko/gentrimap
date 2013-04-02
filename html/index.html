@@ -1,42 +1,130 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<title>GentriMap - Alpha</title>
-		<script src="assets/js/jquery-1.8.2.js"></script>
-		<script src="assets/js/jquery-ui-1.9.1.custom.min.js"></script>
-		<script src="assets/data/data.js"></script>
-		<script src="assets/js/code.js"></script>
-		<link rel="stylesheet" type="text/css" href="assets/css/smoothness/jquery-ui-1.9.1.custom.min.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen">
-	</head>
-	<body>
-		<table>
-			<tr>
-				<td valign="top">
-					<div id="datasets"></div>
-				</td>
-				<td>
-					<canvas id="canvas"></canvas>
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td id="slider-area">
-					<div id="slider-selection"></div>
-					<div id="slider-element"></div>
-				</td>
-			</tr>
-		</table>
-		<!--  style="display:none" -->
-		<div id="log"></div>
-		<div id="readme" style="margin-top: 500px;width:500px; padding:20px">
-			<h1>kleines Handbuch</h1>
-			<p>Leider konnte ich aus Ermangelung einer Internetverbindung keinen Jahres-Schieberegler einbauen.
-				Deswegen sind die Jahreszahlen normale Schaltflächen.
-				Bei gedrückter Maustaste kann man aber trotzdem durch die Jahre "schieben".</p>
-			<p>Legende fehlt noch.</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="_/css/smoothness/jquery-ui-1.9.1.custom.min.css">
+        <link rel="stylesheet" href="_/css/jquery.minicolors.css">
+        <link rel="stylesheet" href="_/css/screen.css">
+
+        <script src="_/js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="navbar clearfix">
+            <a href="#" class="brand">
+                GentriMap
+            </a>
+            <nav id="main-nav">
+                <a href="#" class="active">
+                    Karte
+                </a>
+                <a href="#">
+                    Vergleichsmatrix
+                </a>
+            </nav>
+        </div>
+
+        <div id="toolbox">
+            <form id="datasets">
+                <fieldset>
+                    <legend>Karte 1</legend>
+                    <label>
+                        Dataset
+                    </label>
+                    <select>
+                    </select>
+                    <label>
+                        Farbe
+                    </label>                    
+                    <input class="minicolors" type="text" value="#3b98bd">
+                    <label>
+                        Zoom
+                    </label>
+                    <div class="zoom-slider">
+                    </div>
+                    <label class="checkbox">
+                        <input name="street-map-1" type="checkbox" class="street-map-toggle"> Street Map zeigen
+                    </label>
+
+                </fieldset>
+                <fieldset class="disabled">
+                    <legend>
+                        <input name="karte-2" type="checkbox" class="legend-checkbox"> Karte 2
+                    </legend>
+                    <label class="checkbox">
+                        <input name="overlay" type="checkbox" disabled> Über Karte 1 zeigen
+                    </label>
+                    <label>
+                        Dataset
+                    </label>
+                    <select disabled>
+                    </select>
+                    <label>
+                        Farbe
+                    </label>                    
+                    <input class="minicolors" type="text" value="#3b98bd" disabled>
+                    <label>
+                        Zoom
+                    </label>
+                    <label class="checkbox">
+                        <input name="zoom-link" type="checkbox" disabled> Link mit Karte 1
+                    </label>
+                    <div class="zoom-slider">
+                    </div>
+                    <label class="checkbox">
+                        <input name="street-map-2" type="checkbox" class="street-map-toggle" disabled> Street Map zeigen
+                    </label>
+                </fieldset>
+                
+            </form>
+        </div>
+
+        <div id="main">
+            
+        </div>
+
+
+
+        <script id="optionCityDataSet" type="text/template">
+            <%= name %>
+        </script>
+
+        <script id="CityDataSetMapView" type="text/template">
+            <h1><%= name %></h1>
+            <canvas id="canvas"></canvas>
+            <div id="year-slider"></div>
+        </script>
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="_/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+        <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+        <script src="_/js/vendor/bootstrap.min.js"></script>
+        <script src="_/js/vendor/jquery-ui-1.9.1.custom.min.js"></script>
+        <script src="_/js/vendor/jquery.minicolors.js"></script>
+        <script src="_/data/data.js"></script>
+        <script src="_/js/main.js"></script>
+
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
 </html>
