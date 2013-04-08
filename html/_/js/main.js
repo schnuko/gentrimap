@@ -1,30 +1,40 @@
-// Toolbox display helpers
+var GentriMap = new Backbone.Marionette.Application();
 
-$(document).ready(function() {
-	$('#toolbox .street-map-toggle').tooltip({
-		placement : 'bottom',
-		title: 'Kann langsam sein'
+GentriMap.addInitializer(function(initData) {
+	GentriMap.dataSetsPrimary = new DataSets(initData.data, {comparator : 'name'});
+	GentriMap.dataSetsPrimary.setDefaults({
+		title : "Karte 1",
+		enabled : true,
+		primary : true
 	});
-
-	$('#toolbox .zoom-slider').slider({
-		max: 10,
-		min: 1,
-		step:1
+	var dataSetsToolboxViewPrimary = new DataSetsToolboxView({
+		collection: GentriMap.dataSetsPrimary
 	});
-
-	$('#toolbox .disabled .zoom-slider').slider('disable');
-
-	$('#toolbox .minicolors').minicolors({
-		control: 'hue',
-		theme: 'bootstrap'
+	GentriMap.toolbox1.show(dataSetsToolboxViewPrimary);
+	
+	GentriMap.dataSetsSecondary = new DataSets(initData.data, {comparator : 'name'});
+	GentriMap.dataSetsSecondary.setDefaults({
+		title : "Karte 2",
+		enabled : false,
+		primary : false
 	});
+	var dataSetsToolboxViewSecondary = new DataSetsToolboxView({
+		collection: GentriMap.dataSetsSecondary
+	});
+	GentriMap.toolbox2.show(dataSetsToolboxViewSecondary);
 });
 
-//Backbone init
+GentriMap.on('start', function() {
+	Backbone.history.start();
+});
 
-var GentriMap = GentriMap || {};
+GentriMap.addRegions({
+	toolbox1 : '#karte-1-controls',
+	toolbox2 : '#karte-2-controls',
+	main : "#main"
+});
 
-GentriMap.CityDataSet = Backbone.Model.extend({
+DataSet = Backbone.Model.extend({
 	defaults: {
 		minYear:  1e10,
 		maxYear: -1e10,
@@ -36,133 +46,131 @@ GentriMap.CityDataSet = Backbone.Model.extend({
 	}
 });
 
-GentriMap.CityData = Backbone.Collection.extend({
-    model: GentriMap.CityDataSet,
-    minYear:  1e10,
-	maxYear: -1e10,
-	activeYear: "",
-	setYear : function(activeYear) {
-		this.activeYear = activeYear;
-		return this;
-	},
-	getYear : function() {
-		return this.activeYear;
+DataSets = Backbone.Collection.extend({
+	model : DataSet,
+	setDefaults : function(options) {
+		this.title = options.title;
+		this.enabled = options.enabled;
+		this.primary = options.primary;
 	}
 });
 
-
-GentriMap.CityDataSetOptionView = Backbone.View.extend({
-    tagName: 'option',
-    template: $( '#optionCityDataSet' ).html(),
-
-    render: function() {    	
-        //tmpl is a function that takes a JSON object and returns html
-        var tmpl = _.template( this.template );
-
-        //this.el is what we defined in tagName. use $el to get access to jQuery html() function
-        this.$el.html( tmpl( this.model.toJSON() ) );
-
-        return this;
-    }
+DataSetOptionView = Backbone.Marionette.ItemView.extend({
+	template: "#dataSetOptionView",
+	tagName: 'option',
+	initialize: function(){
+		this.$el.prop("value", this.model.get("id"));
+	}
 });
 
-GentriMap.CityDataSelectView = Backbone.View.extend({
-    el: $( '#datasets select' ),
+DataSetsToolboxView = Backbone.Marionette.CompositeView.extend({
+	initialize : function() {
+		var titlefun = this.collection.title;
+		this.templateHelpers.title = function() {
+			return titlefun;
+		}
+	},
+	tagName: "fieldset",
+	className: "disabled",
+	template: "#dataSetsToolboxView",
+	templateHelpers: {
+		title : function () {
+			return "";
+		}
+	},
+	itemView: DataSetOptionView,
+	itemViewContainer : "select",
+	events: {
+		'change select': 'selectDataSet',
+		'change input.minicolors': 'selectColor',
+		'change .street-map-toggle' : 'streetMapToggle',
+		'change .zoom-slider' : 'selectZoom',
+		'change .toggle-control' : 'toggleEnable',
+		'change .zoom-link' : 'toggleZoomLink'
+	},
+	selectColor: function(e){
+		console.log(e.target.value);
+		console.log($(e.delegateTarget).parent().attr('id'));
+	},
+	selectDataSet : function(e) {
+		console.log("dataset = " + e.currentTarget.value);
+	},
+	streetMapToggle : function(e) {
+		console.log("show map = " + e.currentTarget.checked);
+	},
+	selectZoom : function(e) {
+		console.log("show zoom: " + $(e.target).attr("data-zoom"));
+	},
+	toggleEnable : function(e) {
+		if (e.currentTarget.checked) {
+			this.enable();
+		}
+		else {
+			this.disable();
+		}
+	},
+	toggleZoomLink : function(e) {
+		console.log("zoom link: " + e.currentTarget.checked);
+	},
+	onShow : function() {
+		this.$el.find('.street-map-toggle').tooltip({
+			placement : 'bottom',
+			title: 'Kann langsam sein'
+		});
 
-    initialize: function( AllCityData ) {
-        this.collection = AllCityData;
-        this.render();
-    },
-
-    // render library by rendering each book in its collection
-    render: function() {
-        this.collection.each(function( item ) {
-            this.renderDataSetOption( item );
-        }, this );
-    },
-
-    // render a book by creating a BookView and appending the
-    // element it renders to the library's element
-    renderDataSetOption: function( item ) {
-        var CityDataSetOptionView = new GentriMap.CityDataSetOptionView({
-            model: item,
-            attributes : {
-            	value : item.get('id')
-            }
-        });
-        this.$el.append( CityDataSetOptionView.render().el );
-    }
-});
-
-
-GentriMap.CityDataSetMapView = Backbone.View.extend({
-	el: $( '#main' ),
-	tagName: 'div',
-	template: $( '#CityDataSetMapView' ).html(),
-	initialize: function( CityDataSet ) {
-		this.model = CityDataSet;
-       	this.render();
-    },
-	render: function() {
-        var tmpl = _.template( this.template );
-        this.$el.html( tmpl( this.model.toJSON() ) );
-
-        $("#year-slider").slider({
-        	min : this.model.get("minYear"),
-        	max : this.model.get("maxYear"),
-        	value : this.model.collection.getYear(),
-        	slide: function( event, ui ) {
-				//console.log(ui.value);
-				// trigger update year
-			},
-			change: function( event, ui ) {
-				//console.log(ui.value);
+		this.$el.find('.zoom-slider').slider({
+			max: 10,
+			min: 1,
+			step:1,
+			slide: function( event, ui ) {
+				$(this).attr("data-zoom", ui.value).change();
 			},
 			create: function(event, ui) {
-				//console.log($(this).slider('value'));
+				$(this).attr("data-zoom", $(this).slider('value'));
 			}
-        });
+		});
+
+		this.$el.find('.zoom-slider').slider('disable');
+
+		this.$el.find('.minicolors').minicolors({
+			control: 'hue',
+			theme: 'bootstrap',
+			change: function(hex) {
+				$(this).attr("value",hex).change();
+
+		    }
+		});
+		if (this.collection.enabled) {
+			this.enable();
+		}
+		if (this.collection.primary) {
+			this.setPrimary();
+		}
+		
+	},
+	enable : function() {
+		this.$el.removeClass("disabled");
+		this.$el.find("[disabled]").removeAttr("disabled");
+		this.$el.find('.zoom-slider').slider('enable');
+	},
+	setPrimary : function() {
+		this.$el.find(".secondary").remove();
+	},
+	disable : function() {
+		this.$el.addClass("disabled");
+		this.$el.find(".toggle").attr("disabled", "disabled");
+		this.$el.find('.zoom-slider').slider('disable');
 	}
-
-});
-
-
-// Start the application
-$(function() {
-	//it would be better to get the data from the server with consistent IDs for models, need array of objects
-	var data = initialiseDataSets();
-
-	AllCityData = new GentriMap.CityData(data, {comparator : 'name'});
-	// Initialise the drop down select boxes
-	new GentriMap.CityDataSelectView(AllCityData);
-
-	// Start our history
-	Backbone.history.start();
-
-	// this should only happen once on entry at the home page of application (or just route to default map?)
-	// can probably store year info in router instead of collection
-	activeSet = AllCityData.get($('#datasets select option:selected').attr("value"));
-	AllCityData.setYear(activeSet.get("minYear"));
-
-	// draw the map!
-	new GentriMap.CityDataSetMapView(activeSet);
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+$(document).ready(function() {
+	var initData = initialiseDataSets();
+	GentriMap.start({
+		data : initData
+	});
+});
 
 
 

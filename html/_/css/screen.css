@@ -8365,12 +8365,12 @@ html, body {
   background: #1d3c42;
   position: absolute;
   top: 0px;
-  padding: 0px 20px;
-}
-/* line 82, ../sass/screen.scss */
-#toolbox #datasets {
-  margin-top: 100px;
+  padding: 0px 20px 0px;
   color: #67bfad;
+}
+/* line 83, ../sass/screen.scss */
+#toolbox #karte-1-controls {
+  margin-top: 100px;
 }
 /* line 86, ../sass/screen.scss */
 #toolbox select {
@@ -8433,4 +8433,12 @@ html, body {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   background: #1d3c42;
   border-color: #67bfad;
+}
+
+/* line 143, ../sass/screen.scss */
+h3.year-display {
+  text-align: center;
+  font-size: 30px;
+  line-height: 45px;
+  font-weight: normal;
 }

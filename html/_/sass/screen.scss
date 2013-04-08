@@ -78,10 +78,10 @@ html, body {
 	background: $dblue;
 	position: absolute;
 	top: 0px;
-	padding: 0px 20px;
-	#datasets {
+	padding: 0px 20px 0px;
+	color: #67bfad;
+	#karte-1-controls {
 		margin-top: 100px;
-		color: $blue;
 	}
 	select {
 		width: 100%;
@@ -138,4 +138,11 @@ html, body {
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: $dblue;
 	border-color: $blue;
+}
+
+h3.year-display {
+	text-align: center;
+	font-size: 30px;
+	line-height: 45px;
+	font-weight: normal;
 }

@@ -4,48 +4,100 @@
 		"selected_items":
 		[
 			[
-				"min",
-				"min-width"
+				"disa",
+				"disable"
 			],
 			[
-				"margin",
-				"margin-top"
-			],
-			[
-				"padd",
-				"padding-top"
-			],
-			[
-				"pad",
-				"padding-left"
-			],
-			[
-				"paddi",
-				"padding-left"
-			],
-			[
-				"bord",
-				"border"
-			],
-			[
-				"ba",
-				"background"
-			],
-			[
-				"mar",
-				"margin-bottom"
+				"Dta",
+				"DataSet"
 			],
 			[
 				"fon",
 				"font-size"
 			],
 			[
-				"bor",
-				"border-radius"
+				"tex",
+				"text-align"
+			],
+			[
+				"active",
+				"activeYear"
+			],
+			[
+				"ac",
+				"activeYear"
+			],
+			[
+				"update",
+				"updateYear"
+			],
+			[
+				"bord",
+				"border-bottom"
+			],
+			[
+				"CityDa",
+				"CityDataSet"
+			],
+			[
+				"a",
+				"attributes"
+			],
+			[
+				"table",
+				"tableList"
+			],
+			[
+				"red",
+				"redraw"
+			],
+			[
+				"too",
+				"toolbox"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"margin",
+				"margin-bottom"
 			],
 			[
 				"ma",
-				"margin"
+				"max-width"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"bor",
+				"border-radius"
 			],
 			[
 				"brand",
@@ -58,10 +110,6 @@
 			[
 				"f",
 				"font-family"
-			],
-			[
-				"font",
-				"font-size"
 			],
 			[
 				"border",
@@ -117,10 +165,6 @@
 			],
 			[
 				"text",
-				"text-align"
-			],
-			[
-				"tex",
 				"text-align"
 			],
 			[
@@ -240,10 +284,6 @@
 				"list-style-type"
 			],
 			[
-				"a",
-				"default"
-			],
-			[
 				"co",
 				"color"
 			],
@@ -271,6 +311,46 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "html/index.html",
+			"settings":
+			{
+				"buffer_size": 4404,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/_/js/main.js",
+			"settings":
+			{
+				"buffer_size": 6359,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "html/_/js/main-old-mel.js",
+			"settings":
+			{
+				"buffer_size": 6776,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/_/js/main-old.js",
+			"settings":
+			{
+				"buffer_size": 9464,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "html/_/sass/screen.scss",
+			"settings":
+			{
+				"buffer_size": 2488,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -296,6 +376,20 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/gentrimap/html/_/js/vendor/backbone.marionette.min.js",
+		"/C/xampp/htdocs/gentrimap/old-html/html/assets/js/code.js",
+		"/C/xampp/htdocs/gentrimap/old-html/html/index.html",
+		"/C/xampp/htdocs/gentrimap/html/_/css/jquery.minicolors.css",
+		"/C/xampp/htdocs/gentrimap/html/.htaccess",
+		"/C/xampp/htdocs/gentrimap/html/_/sass/screen.scss",
+		"/C/xampp/htdocs/gentrimap/html/_/js/vendor/modernizr-2.6.2.min.js",
+		"/C/xampp/htdocs/gentrimap/html/_/css/screen.css",
+		"/C/xampp/htdocs/gentrimap/html/_/sass/normalise.scss",
+		"/C/xampp/htdocs/gentrimap/html/_/sass/_boilerplate.scss",
+		"/C/xampp/htdocs/gentrimap/html/index.html",
+		"/C/xampp/htdocs/gentrimap/html/karte.html",
+		"/C/xampp/htdocs/gentrimap/html/assets/js/code.js",
+		"/C/xampp/htdocs/gentrimap/html/assets/js/jquery-ui-1.9.1.custom.min.js",
 		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/sass/screen.scss",
 		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/js/main.js",
 		"/C/xampp/htdocs/littlewebgiants/wp-content/themes/littlewebgiants/edge/intro.html",
@@ -409,21 +503,7 @@
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page.php",
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/functions/sidebars.php",
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/js/jquery-1.8.2.min.js",
-		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/functions.php",
-		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-config.php",
-		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/header.php",
-		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/footer.php",
-		"/C/xampp/htdocs/melmo.me/index.html",
-		"/C/xampp/htdocs/melmo.me/style.css",
-		"/C/Sites/railsinstaller_demo/config/routes.rb",
-		"/C/Sites/railsinstaller_demo/app/controllers/welcome_controller.rb",
-		"/C/Sites/railsinstaller_demo/app/views/welcome/index.html.erb",
-		"/C/Sites/railsinstaller_demo/app/models/post.rb",
-		"/C/Sites/railsinstaller_demo/app/controllers/posts_controller.rb",
-		"/C/Sites/railsinstaller_demo/app/views/layouts/application.html.erb",
-		"/C/Sites/railsinstaller_demo/app/views/posts/_form.html.erb",
-		"/C/Sites/railsinstaller_demo/app/models/comment.rb",
-		"/C/Sites/railsinstaller_demo/db/seeds.rb"
+		"/C/xampp/htdocs/derail/wordpress/wordpress/wp-content/themes/derail/functions.php"
 	],
 	"find":
 	{
@@ -442,6 +522,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"consol",
+			"tableName",
+			"abort",
+			"rewrite",
 			"foote",
 			"footer-icons",
 			"user",
@@ -533,8 +617,145 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "html/index.html",
+					"settings":
+					{
+						"buffer_size": 4404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2167,
+								2167
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 950.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "html/_/js/main.js",
+					"settings":
+					{
+						"buffer_size": 6359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								445,
+								445
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "html/_/js/main-old-mel.js",
+					"settings":
+					{
+						"buffer_size": 6776,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3835,
+								3835
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "html/_/js/main-old.js",
+					"settings":
+					{
+						"buffer_size": 9464,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5308,
+								5308
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "html/_/sass/screen.scss",
+					"settings":
+					{
+						"buffer_size": 2488,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1614,
+								1614
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1917.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
