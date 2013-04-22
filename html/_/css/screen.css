@@ -1401,7 +1401,7 @@ textarea::-webkit-input-placeholder {
 }
 
 /* line 262, ../sass/bootstrap/_forms.scss */
-.input-small, .minicolors-theme-bootstrap .minicolors-input {
+.input-small {
   width: 90px;
 }
 
@@ -8289,156 +8289,156 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
     overflow: visible !important;
   }
 }
-/* line 18, ../sass/screen.scss */
-h1 {
-  color: #1d3c42;
-  font-size: 2em;
-  border-bottom: 1px solid #f25050;
-  font-weight: normal;
-  font-style: italic;
-}
-
-/* line 26, ../sass/screen.scss */
-html, body {
-  height: 100%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  background: #67bfad;
-  min-width: 410px;
-  font-family: 'Noto Sans', sans-serif;
-  color: #1d3c42;
-}
-
-/* line 37, ../sass/screen.scss */
-.navbar {
-  background: #1d3c42;
+/* line 11, ../sass/screen.scss */
+.container {
   position: relative;
-  z-index: 999;
-}
-/* line 41, ../sass/screen.scss */
-.navbar .brand {
-  color: #f25050;
-  font-size: 30px;
-  margin-left: 20px;
-  text-shadow: none;
-  font-weight: bold;
-  padding-top: 23px;
-}
-/* line 49, ../sass/screen.scss */
-.navbar nav {
-  margin-left: 30px;
-  float: left;
-}
-/* line 52, ../sass/screen.scss */
-.navbar nav a {
-  margin-top: 10px;
-  height: 52px;
-  display: block;
-  font-size: 24px;
-  line-height: 45px;
-  padding: 0px 30px;
-  -webkit-border-radius: 2px 2px 0px 0px;
-  -moz-border-radius: 2px 2px 0px 0px;
-  -ms-border-radius: 2px 2px 0px 0px;
-  -o-border-radius: 2px 2px 0px 0px;
-  border-radius: 2px 2px 0px 0px;
-  background: #1d3c42;
-  color: #67bfad;
-  float: left;
-}
-/* line 64, ../sass/screen.scss */
-.navbar nav a.active {
-  color: #1d3c42;
-  background: #67bfad;
-}
-/* line 68, ../sass/screen.scss */
-.navbar nav a:hover {
-  text-decoration: none;
-  line-height: 44px;
+  padding-bottom: 100px;
 }
 
-/* line 75, ../sass/screen.scss */
-#toolbox {
-  min-height: 100%;
-  width: 211px;
-  background: #1d3c42;
-  position: absolute;
-  top: 0px;
-  padding: 0px 20px 0px;
-  color: #67bfad;
-}
-/* line 83, ../sass/screen.scss */
-#toolbox #karte-1-controls {
+/* line 16, ../sass/screen.scss */
+h1 {
   margin-top: 100px;
+  font-size: 4em;
 }
-/* line 86, ../sass/screen.scss */
-#toolbox select {
+
+/* line 21, ../sass/screen.scss */
+.intro {
+  font-size: 2em;
+  line-height: 1.5em;
+  margin-bottom: 2em;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* line 32, ../sass/screen.scss */
+#map {
+  height: 700px;
+}
+
+/* line 36, ../sass/screen.scss */
+path {
+  fill-opacity: .7;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+/* line 42, ../sass/screen.scss */
+path.emphasis {
+  fill-opacity: .9;
+}
+
+/* line 46, ../sass/screen.scss */
+path.deemphsis {
+  fill-opacity: .4;
+}
+
+/* line 51, ../sass/screen.scss */
+#legend {
+  float: right;
+  margin-left: 30px;
+}
+/* line 54, ../sass/screen.scss */
+#legend #colours {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  float: left;
+}
+/* line 58, ../sass/screen.scss */
+#legend #colours div {
   width: 100%;
+  clear: both;
 }
-/* line 89, ../sass/screen.scss */
-#toolbox label {
-  margin-top: 10px;
-  font-size: 18px;
-}
-/* line 93, ../sass/screen.scss */
-#toolbox legend {
-  border-color: #f25050;
-  color: #f25050;
-}
-/* line 97, ../sass/screen.scss */
-#toolbox fieldset {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-}
-/* line 101, ../sass/screen.scss */
-#toolbox option {
-  padding: 5px;
+/* line 65, ../sass/screen.scss */
+#legend a {
+  opacity: .7;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
   display: block;
+  float: left;
 }
-/* line 105, ../sass/screen.scss */
-#toolbox .legend-checkbox {
-  margin-top: -2px;
+
+/* line 77, ../sass/screen.scss */
+#matrix {
+  width: 80%;
+  float: left;
 }
-/* line 109, ../sass/screen.scss */
-#toolbox .disabled label, #toolbox .disabled input, #toolbox .disabled select {
-  opacity: .5;
+
+/* line 82, ../sass/screen.scss */
+#matrix-info {
+  width: 15%;
+  float: right;
+  height: 150px;
 }
-/* line 112, ../sass/screen.scss */
-#toolbox .disabled input[type=checkbox] {
-  opacity: 1;
+
+/* line 88, ../sass/screen.scss */
+circle {
+  fill: #000;
 }
-/* line 117, ../sass/screen.scss */
-#toolbox .zoom-slider {
-  margin: 10px 0px 20px;
+
+/* line 94, ../sass/screen.scss */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/* line 100, ../sass/screen.scss */
+.dot {
+  stroke: #000;
+}
+
+/* line 119, ../sass/screen.scss */
+.downsd.downwohn {
+  background-color: #9dcaf6;
+  fill: #9dcaf6;
 }
 
 /* line 123, ../sass/screen.scss */
-.minicolors-focus {
-  z-index: 3;
+.downsd.midwohn {
+  background-color: #fde3b9;
+  fill: #fde3b9;
 }
 
 /* line 127, ../sass/screen.scss */
-.minicolors-theme-bootstrap .minicolors-input {
-  margin-bottom: 10px;
+.downsd.upwohn {
+  background-color: #fa99a4;
+  fill: #fa99a4;
 }
 
-/* line 132, ../sass/screen.scss */
-#main {
-  margin-left: 251px;
-  padding: 8px 30px;
+/* line 131, ../sass/screen.scss */
+.midsd.downwohn {
+  background-color: #5884d1;
+  fill: #5884d1;
 }
 
-/* line 138, ../sass/screen.scss */
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-  background: #1d3c42;
-  border-color: #67bfad;
+/* line 135, ../sass/screen.scss */
+.midsd.midwohn {
+  background-color: #e0a882;
+  fill: #e0a882;
+}
+
+/* line 139, ../sass/screen.scss */
+.midsd.upwohn {
+  background-color: #cc565f;
+  fill: #cc565f;
 }
 
 /* line 143, ../sass/screen.scss */
-h3.year-display {
-  text-align: center;
-  font-size: 30px;
-  line-height: 45px;
-  font-weight: normal;
+.upsd.downwohn {
+  background-color: #143ead;
+  fill: #143ead;
+}
+
+/* line 147, ../sass/screen.scss */
+.upsd.midwohn {
+  background-color: #c36d4b;
+  fill: #c36d4b;
+}
+
+/* line 151, ../sass/screen.scss */
+.upsd.upwohn {
+  background-color: #9e131a;
+  fill: #9e131a;
 }

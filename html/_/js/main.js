@@ -1,233 +1,301 @@
-var GentriMap = new Backbone.Marionette.Application();
-
-GentriMap.addInitializer(function(initData) {
-	GentriMap.dataSetsPrimary = new DataSets(initData.data, {comparator : 'name'});
-	GentriMap.dataSetsPrimary.setDefaults({
-		title : "Karte 1",
-		enabled : true,
-		primary : true
-	});
-	var dataSetsToolboxViewPrimary = new DataSetsToolboxView({
-		collection: GentriMap.dataSetsPrimary
-	});
-	GentriMap.toolbox1.show(dataSetsToolboxViewPrimary);
-	
-	GentriMap.dataSetsSecondary = new DataSets(initData.data, {comparator : 'name'});
-	GentriMap.dataSetsSecondary.setDefaults({
-		title : "Karte 2",
-		enabled : false,
-		primary : false
-	});
-	var dataSetsToolboxViewSecondary = new DataSetsToolboxView({
-		collection: GentriMap.dataSetsSecondary
-	});
-	GentriMap.toolbox2.show(dataSetsToolboxViewSecondary);
-});
-
-GentriMap.on('start', function() {
-	Backbone.history.start();
-});
-
-GentriMap.addRegions({
-	toolbox1 : '#karte-1-controls',
-	toolbox2 : '#karte-2-controls',
-	main : "#main"
-});
-
-DataSet = Backbone.Model.extend({
-	defaults: {
-		minYear:  1e10,
-		maxYear: -1e10,
-		minValue: 1e10,
-		maxValue: -1e10,
-		name : "",
-		years : [],
-		id : ""
-	}
-});
-
-DataSets = Backbone.Collection.extend({
-	model : DataSet,
-	setDefaults : function(options) {
-		this.title = options.title;
-		this.enabled = options.enabled;
-		this.primary = options.primary;
-	}
-});
-
-DataSetOptionView = Backbone.Marionette.ItemView.extend({
-	template: "#dataSetOptionView",
-	tagName: 'option',
-	initialize: function(){
-		this.$el.prop("value", this.model.get("id"));
-	}
-});
-
-DataSetsToolboxView = Backbone.Marionette.CompositeView.extend({
-	initialize : function() {
-		var titlefun = this.collection.title;
-		this.templateHelpers.title = function() {
-			return titlefun;
-		}
-	},
-	tagName: "fieldset",
-	className: "disabled",
-	template: "#dataSetsToolboxView",
-	templateHelpers: {
-		title : function () {
-			return "";
-		}
-	},
-	itemView: DataSetOptionView,
-	itemViewContainer : "select",
-	events: {
-		'change select': 'selectDataSet',
-		'change input.minicolors': 'selectColor',
-		'change .street-map-toggle' : 'streetMapToggle',
-		'change .zoom-slider' : 'selectZoom',
-		'change .toggle-control' : 'toggleEnable',
-		'change .zoom-link' : 'toggleZoomLink'
-	},
-	selectColor: function(e){
-		console.log(e.target.value);
-		console.log($(e.delegateTarget).parent().attr('id'));
-	},
-	selectDataSet : function(e) {
-		console.log("dataset = " + e.currentTarget.value);
-	},
-	streetMapToggle : function(e) {
-		console.log("show map = " + e.currentTarget.checked);
-	},
-	selectZoom : function(e) {
-		console.log("show zoom: " + $(e.target).attr("data-zoom"));
-	},
-	toggleEnable : function(e) {
-		if (e.currentTarget.checked) {
-			this.enable();
-		}
-		else {
-			this.disable();
-		}
-	},
-	toggleZoomLink : function(e) {
-		console.log("zoom link: " + e.currentTarget.checked);
-	},
-	onShow : function() {
-		this.$el.find('.street-map-toggle').tooltip({
-			placement : 'bottom',
-			title: 'Kann langsam sein'
-		});
-
-		this.$el.find('.zoom-slider').slider({
-			max: 10,
-			min: 1,
-			step:1,
-			slide: function( event, ui ) {
-				$(this).attr("data-zoom", ui.value).change();
-			},
-			create: function(event, ui) {
-				$(this).attr("data-zoom", $(this).slider('value'));
-			}
-		});
-
-		this.$el.find('.zoom-slider').slider('disable');
-
-		this.$el.find('.minicolors').minicolors({
-			control: 'hue',
-			theme: 'bootstrap',
-			change: function(hex) {
-				$(this).attr("value",hex).change();
-
-		    }
-		});
-		if (this.collection.enabled) {
-			this.enable();
-		}
-		if (this.collection.primary) {
-			this.setPrimary();
-		}
-		
-	},
-	enable : function() {
-		this.$el.removeClass("disabled");
-		this.$el.find("[disabled]").removeAttr("disabled");
-		this.$el.find('.zoom-slider').slider('enable');
-	},
-	setPrimary : function() {
-		this.$el.find(".secondary").remove();
-	},
-	disable : function() {
-		this.$el.addClass("disabled");
-		this.$el.find(".toggle").attr("disabled", "disabled");
-		this.$el.find('.zoom-slider').slider('disable');
-	}
-});
-
-
-
 $(document).ready(function() {
-	var initData = initialiseDataSets();
-	GentriMap.start({
-		data : initData
-	});
+	map = drawMap();
+	d3.json("http://localhost/gentrimap/html/_/js/ninetrends-latlng.geojson", function(collection) {
+		
+		addMapOverlay(map,collection);
+		addMatrix(collection);
+
+  	});
+
 });
 
 
+function addMatrix(collection) {
+	
+	var width = $("#matrix").width(), height = width/2;
 
+	var x = d3.scale.linear()
+    .range([0, width]).domain([-4, 4]);
+    var y = d3.scale.linear()
+    .range([0, height]).domain([4, -4]);
 
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
+	var yAxis = d3.svg.axis()
+	    .scale(y)
+	    .orient("left");
 
+	var svg = d3.select("#matrix").append("svg")
+	    .attr("class", "matrix")
+	    .attr("width", "100%")
+	    .attr("height", height).append("g");
 
-function initialiseDataSets() {
-	// Initialisiere Datensätze
-	tableList = [];
-	var obj = {};
+	svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height/2 + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Wohnen Index");
 
-	// this value stores how many data sets we have, e.g. fertility, arbeitslos
-	var tableListIndex = -1;
+  svg.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + width/2 + ",0)")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "translate(-20,0)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Sozio-Demographisches Index")
 
-	// loop through all our data
-	for (var i = 0; i < data.data.length; i++) {
+circlecount = 1;
+linescount = 1;
 
-		//get the name of the data set this chunk relates to (e.g. fertility)
-		var name = data.data[i].options.tableName;
-		// what year are we dealing with?
-		var year = data.data[i].options.year;
-		// If we haven't seen this name before
-		if (obj[name] === undefined) {
-			//increment the number of datasets
-			tableListIndex++;
-			// add the relevant details to the table list ( ann array of objects, each stores name, min and max value, min and max year and map of year to data chunks. The data chunk contain the values for each region. Each region has an id which is crossreferenced to the geodata)
-			tableList[tableListIndex] = {
-				name: name,
-				years: [],
-				// set very high and low numbers so we can refine these with our actual data
-				minYear:  1e10,
-				maxYear: -1e10,
-				minValue: 1e10,
-				maxValue: -1e10, 
-				id : tableListIndex
-			}
-			// add a defnition for the name so we won't repeat when we find the next year for this dataset
-			// set it to be the index of the data set we are working with
-			obj[name] = tableListIndex;
-		}
-		var tl = tableList[obj[name]]; //obj[name] is index of dataset (e.g. fertility)
-		tl.years[year] = i; // e.g. fertility.1992 = 234 (the index of the data chunk we are looking at now) this let's us look up the relevant data chunk later when we change the year
-		// adjust min and or max years as appropriate
-		if (tl.minYear > year) tl.minYear = year;
-		if (tl.maxYear < year) tl.maxYear = year;
+	
+
+    var origins = svg.selectAll("circle")
+    	.data(collection.features)
+    	.enter().append("circle")
+    				.attr("cx", function(d) { return x(d.properties.Wohnen_Ind)})
+    				.attr("cy", function(d) { return y(d.properties.Sozio_Demo)})
+    				.attr("r", 4)
+    				.attr("data-stadtteil", function(d) { console.log(circlecount); circlecount++;  return d.properties.Stadtteil})
+                    .attr("data-bezirk", function(d) { return d.properties.Bezirk});
+
+    var trends = svg.selectAll("line")
+	  	.data(collection.features)
+		.enter().append("line")
+					.attr("x1", function(d) { return x(d.properties.Wohnen_Ind)})                 
+					.attr("y1", function(d) { return y(d.properties.Sozio_Demo)})                    
+					.attr("x2", function(d) { return x(d.properties.Wohnen_I_1)})
+                    .attr("y2", function(d) { return y(d.properties.Sozio_De_1)})
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "grey")
+                    .attr("data-stadtteil", function(d) { console.log(linescount); linescount++;   return d.properties.Stadtteil})
+                    .attr("data-bezirk", function(d) { return d.properties.Bezirk});
+
+	console.log(collection.features);
+
+	$("circle").on("mouseenter", function() {
+		var stadtteil = $(this).attr("data-stadtteil");
+		$("#matrix-info").append("<h3>" + stadtteil + "</h3>");
+		$("#matrix-info").append($(this).attr("data-bezirk"));
+		$('line[data-stadtteil="'+stadtteil+'"]').attr("stroke-width", 5).attr("stroke", "#000");
 		
-		var d = data.data[i].data; // this represent one data set in one year
-		for (var j = 0; j < d.length; j++) { // loop through all the regions
-			var v = d[j].value;
-			if (tl.minValue > v) tl.minValue = v; // update min and max values
-			if (tl.maxValue < v) tl.maxValue = v;
-		}
+
+	}).on("mouseleave", function() {
+		var stadtteil = $(this).attr("data-stadtteil");
+		$("#matrix-info").empty();
+		$('line[data-stadtteil="'+stadtteil+'"]').attr("stroke-width", 2).attr("stroke", "grey");
+	})
+}
+
+
+function drawMap() {
+	var lat = 52.517057;
+	var lng = 13.406067;
+	var zoom = 11;
+
+	var xtile = lng2tile(lng,zoom);
+	var ytile = lat2tile(lat,zoom);
+
+
+
+	var map = new L.map('map').setView([lat,lng], zoom);
+
+	L.tileLayer('http://{s}.tile.cloudmade.com/8d3aebdf38f74388bdad35df7e604d4e/22677/256/{z}/{x}/{y}.png', {
+	    key: "8d3aebdf38f74388bdad35df7e604d4e",
+	    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; CloudMade",
+	    styleId: 22677
+	}).addTo(map);
+	return map;
+}
+
+
+function addMapOverlay(map,collection) {
+	var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom-hide");
 		
-		// What's happening here?
-		if (data.data[i].options.minValue !== undefined) tl.minValue = data.data[i].options.minValue;
-		if (data.data[i].options.maxValue !== undefined) tl.maxValue = data.data[i].options.maxValue; 
+	var bounds = d3.geo.bounds(collection),
+	  	path = d3.geo.path().projection(project);
+
+	var feature = g.selectAll("path")
+	  	.data(collection.features)
+		.enter().append("path");
+
+	//feature.style("fill",colortrends).attr("class",setnineclass);
+	feature.attr("class",setnineclass);
+
+	map.on("viewreset", reset);
+
+	
+
+	reset();
+
+	setLegendColours();
+
+	// Reposition the SVG to cover the features.
+	function reset() {
+		var bottomLeft = project(bounds[0]),
+		    topRight = project(bounds[1]);
+
+		svg .attr("width", topRight[0] - bottomLeft[0])
+		    .attr("height", bottomLeft[1] - topRight[1])
+		    .style("margin-left", bottomLeft[0] + "px")
+		    .style("margin-top", topRight[1] + "px");
+
+		g   .attr("transform", "translate(" + -bottomLeft[0] + "," + -topRight[1] + ")");
+
+		feature.attr("d", path);
+		
 	}
-	return tableList;
+}
+
+
+/* Helper Functions */
+
+function lng2tile(lng,zoom) { return (Math.floor((lng+180)/360*Math.pow(2,zoom))); }
+
+function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
+
+function project(x) {
+  var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));  
+  return [point.x, point.y];
+}
+
+function setLegendColours() {
+	$('#colours-wrap a').each(function() {
+		var $colblock = $(this);
+		var classSelect = ".";
+		classSelect += $colblock.parent("div").attr("class");
+		classSelect += ".";
+		classSelect += $colblock.attr("class");
+
+		var $relatedPaths = $("path" + classSelect);
+		var $nonrelatedPaths = $("path").not($relatedPaths);
+		var theCol = $relatedPaths.css("fill");
+
+		$colblock.css({"background" : theCol});
+		$colblock.on("mouseenter", function() {
+			$relatedPaths.stop(true,true).animate({"opacity":1, "stroke-width": "3px"}, "fast");
+			$nonrelatedPaths.stop(true,true).animate({"opacity":.4}, "fast");
+		}).on("mouseleave", function() {
+			$("path").stop(true,true).animate({"opacity":.7, "stroke-width": "1.5px"}, "fast");
+		});
+	});
+}
+
+
+function setnineclass(d, i) {
+	var nineclass, classSelect;
+	if (d.properties.Wohnen_I_2 < 0.1) {
+		nineclass = "downwohn";	
+	}
+	else if (d.properties.Wohnen_I_2 > 1.17) {
+		nineclass = "upwohn";	
+	}
+	else {
+		nineclass = "midwohn";
+	}
+	
+	if (d.properties.Sozio_De_2 < 0) {
+		nineclass += " downsd";	
+	}
+	else if (d.properties.Sozio_De_2 > 0.18) {
+		nineclass += " upsd";
+	}
+	else {
+		nineclass += " midsd";
+	}
+	return nineclass;
+}
+
+
+function colortrends(d, i) {
+	/*
+	red = rgba(178, 24, 43, 1);
+	orange = rgba(239, 138, 98, 1);
+	white = rgba(247, 247, 247,1);
+	lightblue = rgba(146, 197, 222,1);
+	darkblue = rgba(33, 102, 172);
+	*/
+
+	/* -.-.-.- Mel's original colours commented out -.-.-.-
+	var h = 37, s = .86, l = .6;
+	if (d.properties.Wohnen_I_2 < 0.1) {
+		// cheap houses = red
+		h = 353;
+		s = .76;
+		l = .4;
+	}
+
+	if (d.properties.Wohnen_I_2 > 1.17) {
+		// expensive houses = blue
+		h = 210;
+		s = .68;
+		l = .4;
+	}
+
+	if (d.properties.Sozio_De_2 < 0) {
+		// poverty index
+		l = l/2;
+		s = s/2;
+	}
+
+	if (d.properties.Sozio_De_2 > 0.18) {
+		l = l + ((1 - l)/2);
+		s = s + ((1 - l)/2);	
+	}
+
+	return d3.hsl(h, s, l);
+	   -.-.-.- Mel's original colours comment end -.-.-.- */
+
+
+
+	// -.-.-.- Paul's colours -.-.-.-
+	/*
+	darkblue = #143ead;
+	midblue = #5884d1;
+	lightblue = #9dcaf6;
+	darkorange = #c36d4b;
+	midorange = #e0a882;
+	lightorange = #fde3b9;
+	darkred = #9e131a;
+	midred = #cc565f;
+	lightred = #fa99a4;
+	*/
+	var h = 37, s = .86, l = .6;
+	if (d.properties.Wohnen_I_2 < 0.1) {
+		// cheap houses = red
+		h = 353;
+		s = .76;
+		l = .4;
+	}
+
+	if (d.properties.Wohnen_I_2 > 1.17) {
+		// expensive houses = blue
+		h = 210;
+		s = .68;
+		l = .4;
+	}
+
+	if (d.properties.Sozio_De_2 < 0) {
+		// poverty index
+		l = l/2;
+		s = s/2;
+	}
+
+	if (d.properties.Sozio_De_2 > 0.18) {
+		l = l + ((1 - l)/2);
+		s = s + ((1 - l)/2);	
+	}
+
+	return d3.hsl(h, s, l);
 }

@@ -6,143 +6,149 @@
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 @import "compass/css3";
-// @import "normalise";
-// @import "boilerplate";
 
-$dblue: rgba(29, 60, 66, 1);
-$blue: rgba(103, 191, 173, 1);
-$yellow: rgba(242, 236, 153, 1);
-$peach: rgba(242, 196, 141, 1);
-$red: rgba(242, 80, 80, 1);
+
+.container {
+	position: relative;
+	padding-bottom: 100px;
+}
 
 h1 {
-	color: $dblue;
+	margin-top: 100px;
+	font-size: 4em;
+}
+
+.intro {
 	font-size: 2em;
-	border-bottom: 1px solid $red;
-	font-weight: normal;
+	line-height: 1.5em;
+	margin-bottom: 2em;
 	font-style: italic;
+	font-family: Georgia, "Times New Roman", serif;
 }
 
-html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0px;
-	margin: 0px;
-	background: $blue;
-	min-width: 410px;
-	font-family: 'Noto Sans', sans-serif;
-	color: $dblue;
+// MAP
+
+
+#map {
+	height: 700px;
 }
 
-.navbar {
-	background: $dblue;
-	position: relative;
-	z-index: 999;
-	.brand {
-		color: $red;
-		font-size: 30px;
-		margin-left: 20px;
-		text-shadow:none;
-		font-weight: bold;
-		padding-top: 23px;
-	}
-	nav {
-		margin-left: 30px;
+path {
+	fill-opacity: .7;
+	stroke: #fff;
+	stroke-width: 1.5px;
+}
+
+path.emphasis {
+	fill-opacity: .9;
+}
+
+path.deemphsis {
+	fill-opacity: .4;
+}
+
+
+#legend {
+	float: right;
+	margin-left: 30px;
+	#colours {
+		border-top: 1px solid black;
+		border-left: 1px solid black;
 		float: left;
-		a {
-			margin-top: 10px;
-			height: 52px;
-			display: block;
-			font-size: 24px;
-			line-height: 45px;
-			padding: 0px 30px;
-			@include border-radius(2px 2px 0px 0px);
-			background: $dblue;
-			color: $blue;
-			float: left;
-		}
-		a.active {
-			color: $dblue;
-			background: $blue;
-		}
-		a:hover {
-			text-decoration: none;
-			line-height: 44px;
+		div {
+			width: 100%;
+			clear: both;
 		}
 	}
+	
+
+	a {
+		opacity: .7;
+		width: 30px;
+		height: 30px;
+		margin:10px;
+		display: block;	
+		float: left;
+	}
 }
 
-#toolbox {
-	min-height: 100%;
-	width: 211px;
-	background: $dblue;
-	position: absolute;
-	top: 0px;
-	padding: 0px 20px 0px;
-	color: #67bfad;
-	#karte-1-controls {
-		margin-top: 100px;
-	}
-	select {
-		width: 100%;
-	}
-	label {
-		margin-top: 10px;
-		font-size: 18px;
-	}
-	legend {
-		border-color: $red;
-		color: $red;
-	}
-	fieldset {
-		margin-bottom: 20px;
-		padding-bottom: 10px;
-	}
-	option {
-		padding: 5px;
-		display: block;
-	}
-	.legend-checkbox {
-		margin-top: -2px;
-	}
-	.disabled {
-		label, input, select {
-			opacity: .5;
-		}
-		input[type=checkbox] {
-			opacity: 1;
-		}
-	}
+// MATRIX
 
-	.zoom-slider {
-		margin: 10px 0px 20px; 
-	}
-
+#matrix {
+	width: 80%;
+	float: left;
 }
 
-.minicolors-focus {
-	z-index: 3;
+#matrix-info {
+	width: 15%;
+	float: right;
+	height: 150px;
 }
 
-.minicolors-theme-bootstrap .minicolors-input {
-	@extend .input-small;
-	margin-bottom: 10px;
+circle {
+	fill : #000;
 }
 
-#main {
-	margin-left: 251px;
-	padding: 8px 30px;
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
-//Slider
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-	background: $dblue;
-	border-color: $blue;
+.dot {
+  stroke: #000;
 }
 
-h3.year-display {
-	text-align: center;
-	font-size: 30px;
-	line-height: 45px;
-	font-weight: normal;
+
+
+// MAP COLOURS
+// -.-.-.- Paul's colours -.-.-.-
+
+$darkblue : #143ead;
+$midblue : #5884d1;
+$lightblue : #9dcaf6;
+$darkorange : #c36d4b;
+$midorange : #e0a882;
+$lightorange : #fde3b9;
+$darkred : #9e131a;
+$midred : #cc565f;
+$lightred : #fa99a4;
+
+.downsd.downwohn {
+	background-color: $lightblue ;
+	fill: $lightblue ;
+}
+.downsd.midwohn {
+	background-color: $lightorange ;
+	fill: $lightorange ;	
+}
+.downsd.upwohn {
+	background-color: $lightred ;
+	fill: $lightred ;
+}
+.midsd.downwohn {
+	background-color: $midblue ;
+	fill: $midblue ;
+}
+.midsd.midwohn {
+	background-color: $midorange ;
+	fill: $midorange ;
+}
+.midsd.upwohn {
+	background-color: $midred ;
+	fill: $midred ;
+}
+.upsd.downwohn {
+	background-color: $darkblue ;
+	fill: $darkblue ;
+}
+.upsd.midwohn {
+	background-color: $darkorange ;
+	fill: $darkorange ;
+}
+.upsd.upwohn {
+	background-color: $darkred ;
+	fill: $darkred ;
 }
