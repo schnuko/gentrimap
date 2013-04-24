@@ -48,10 +48,11 @@ path.deemphsis {
 }
 
 
-#legend {
+.legend {
 	float: right;
-	margin-left: 30px;
-	#colours {
+	margin-left: 80px;
+	position: relative;
+	.colours {
 		border-top: 1px solid black;
 		border-left: 1px solid black;
 		float: left;
@@ -70,18 +71,51 @@ path.deemphsis {
 		display: block;	
 		float: left;
 	}
+	a.active {
+		border: 2px solid black;
+		height: 26px;
+		width: 26px;
+	}
+}
+
+.y-axis {
+	span {
+		display: block;
+		float: left;
+		padding: 0px 22px 5px;
+	}
+}
+
+.small {
+	padding-left: 20px;
+}
+
+.x-axis {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg); /* IE 9 */
+	-webkit-transform: rotate(-90deg); /* Safari and Chrome */
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	position: absolute;
+	left: -110px;
+	top: 163px;
+	span {
+		display: block;
+		float: left;
+		padding: 0px 22px 5px;
+	}
 }
 
 // MATRIX
 
 #matrix {
-	width: 80%;
+	height: 700px;
+	width: 700px;
 	float: left;
 }
 
 #matrix-info {
-	width: 15%;
-	float: right;
+	margin-left: 30px;
 	height: 150px;
 }
 
@@ -99,6 +133,14 @@ circle {
 
 .dot {
   stroke: #000;
+}
+
+.trend.positive {
+	color: green;
+}
+
+.trend.negative {
+	color: red;
 }
 
 

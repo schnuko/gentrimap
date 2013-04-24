@@ -29,23 +29,35 @@
                 <p class="intro span8">Gentrifizierung visualisieren</p>
             </div>
             <h2>Karte</h2>
-            <div id="legend">
+            <div id="map-legend" class="legend">
                 <h3>Legend</h3>
-                <div id="colours">
+                <div class="y-axis">
+                    <p class="small">Sozio-Demo Index</p>
+                    <span>+</span>
+                    <span>o</span>
+                    <span>-</span>
+                </div>
+                <div class="x-axis">
+                    <p class="small">Wohnen Index</p>
+                    <span>-</span>
+                    <span>o</span>
+                    <span>+</span>
+                </div>
+                <div class="colours">
                     <div>
-                        <a href="#" class="downsd upwohn"></a>
+                        <a href="#" class="upwohn upsd"></a>
                         <a href="#" class="midsd upwohn"></a>
-                        <a href="#" class="upsd upwohn"></a>
+                        <a href="#" class="downsd upwohn"></a>
                     </div>
                     <div>
-                        <a href="#" class="downsd midwohn"></a>
-                        <a href="#" class="midsd midwohn"></a>
                         <a href="#" class="upsd midwohn"></a>
+                        <a href="#" class="midsd midwohn"></a>
+                        <a href="#" class="downsd midwohn"></a>
                     </div>
                     <div>
-                        <a href="#" class="downsd downwohn"></a>
-                        <a href="#" class="midsd downwohn"></a>
                         <a href="#" class="upsd downwohn"></a>
+                        <a href="#" class="midsd downwohn"></a>
+                        <a href="#" class="downsd downwohn"></a>
                     </div>
                 </div>
             </div>
@@ -55,7 +67,40 @@
         <div class="container">
             <h2>Matrix</h2>
             <div id='matrix'></div>
+            <div id="trend-filter" class="legend">
+                <h3>Filter</h3>
+                <div class="y-axis">
+                    <p class="small">Sozio-Demo Index</p>
+                    <span>+</span>
+                    <span>o</span>
+                    <span>-</span>
+                </div>
+                <div class="x-axis">
+                    <p class="small">Wohnen Index</p>
+                    <span>-</span>
+                    <span>o</span>
+                    <span>+</span>
+                </div>
+                <div class="colours">
+                    <div>
+                        <a href="#" class="upwohn upsd"></a>
+                        <a href="#" class="midsd upwohn"></a>
+                        <a href="#" class="downsd upwohn"></a>
+                    </div>
+                    <div>
+                        <a href="#" class="upsd midwohn"></a>
+                        <a href="#" class="midsd midwohn"></a>
+                        <a href="#" class="downsd midwohn"></a>
+                    </div>
+                    <div>
+                        <a href="#" class="upsd downwohn"></a>
+                        <a href="#" class="midsd downwohn"></a>
+                        <a href="#" class="downsd downwohn"></a>
+                    </div>
+                </div>
+             </div>
             <div id="matrix-info"></div>
+
         </div>
 
 
@@ -70,14 +115,15 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="_/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-        <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+       <!-- <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
         <script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
-        <script src="_/js/vendor/backbone.marionette.min.js"></script>
+        <script src="_/js/vendor/backbone.marionette.min.js"></script>-->
         <script src="_/js/vendor/bootstrap.min.js"></script>
         <script src="_/js/vendor/jquery-ui-1.9.1.custom.min.js"></script>
 
         <script src='http://api.tiles.mapbox.com/mapbox.js/v1.0.0/mapbox.js'></script>
-        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <!-- <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+        <script src="_/js/vendor/d3.v3.min.js" charset="utf-8"></script>
         
 
         <script src="_/js/main.js"></script>

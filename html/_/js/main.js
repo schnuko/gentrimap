@@ -1,9 +1,11 @@
 $(document).ready(function() {
 	map = drawMap();
-	d3.json("http://localhost/gentrimap/html/_/js/ninetrends-latlng.geojson", function(collection) {
+	d3.json("_/js/ninetrends-latlng.geojson", function(collection) {
+	//	d3.json("http://littlewebgiants.com/gentrimap/_/js/ninetrends-latlng.geojson", function(collection) {
 		
-		addMapOverlay(map,collection);
+		
 		addMatrix(collection);
+		addMapOverlay(map,collection);
 
   	});
 
@@ -12,7 +14,9 @@ $(document).ready(function() {
 
 function addMatrix(collection) {
 	
-	var width = $("#matrix").width(), height = width/2;
+	var svgWidth = $("#matrix").height(), svgHeight = svgWidth;
+	var margin = {left : 30, top : 30};
+	var width = svgWidth - margin.left*2, height = svgHeight - margin.top*2;
 
 	var x = d3.scale.linear()
     .range([0, width]).domain([-4, 4]);
@@ -28,11 +32,49 @@ function addMatrix(collection) {
 	    .orient("left");
 
 	var svg = d3.select("#matrix").append("svg")
-	    .attr("class", "matrix")
-	    .attr("width", "100%")
-	    .attr("height", height).append("g");
+		    .attr("class", "matrix")
+		    .attr("width", svgWidth)
+		    .attr("height", svgHeight)
+	    .append("g")
+	    	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	svg.append("g")
+
+
+circlecount = 1;
+linescount = 1;
+console.log("collection.features")
+console.log(collection.features)
+
+	var trends = svg.selectAll("line")
+	  	.data(collection.features)
+		.enter().append("line")
+					.attr("x1", function(d) { return x(d.properties.Wohnen_Ind)})                 
+					.attr("y1", function(d) { return y(d.properties.Sozio_Demo)})                    
+					.attr("x2", function(d) { return x(d.properties.Wohnen_I_1)})
+                    .attr("y2", function(d) { return y(d.properties.Sozio_De_1)})
+                    .attr("stroke-width", 3)
+                    .attr("stroke", "grey")
+                    .attr("data-stadtteil", function(d) { console.log(linescount); linescount++;   return d.properties.Stadtteil})
+                    .attr("data-bezirk", function(d) { return d.properties.Bezirk})
+                    .attr("data-wohntrend", function(d) { return d.properties.Wohnen_I_2})
+                    .attr("data-sodemtrend", function(d) { return d.properties.Sozio_De_2})
+                    .attr("class", setnineclass);
+
+    var origins = svg.selectAll("circle")
+    	.data(collection.features)
+    	.enter().append("circle")
+    				.attr("cx", function(d) { return x(d.properties.Wohnen_Ind)})
+    				.attr("cy", function(d) { return y(d.properties.Sozio_Demo)})
+    				.attr("r", 4)
+    				.style("fill", "grey")
+    				.attr("data-stadtteil", function(d) { console.log(circlecount); circlecount++;  return d.properties.Stadtteil})
+                    .attr("data-bezirk", function(d) { return d.properties.Bezirk})
+                    .attr("data-wohntrend", function(d) { return d.properties.Wohnen_I_2})
+                    .attr("data-sodemtrend", function(d) { return d.properties.Sozio_De_2})
+                    .attr("class", setnineclass);
+
+
+    svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height/2 + ")")
       .call(xAxis)
@@ -55,46 +97,71 @@ function addMatrix(collection) {
       .style("text-anchor", "end")
       .text("Sozio-Demographisches Index")
 
-circlecount = 1;
-linescount = 1;
+    
 
-	
 
-    var origins = svg.selectAll("circle")
-    	.data(collection.features)
-    	.enter().append("circle")
-    				.attr("cx", function(d) { return x(d.properties.Wohnen_Ind)})
-    				.attr("cy", function(d) { return y(d.properties.Sozio_Demo)})
-    				.attr("r", 4)
-    				.attr("data-stadtteil", function(d) { console.log(circlecount); circlecount++;  return d.properties.Stadtteil})
-                    .attr("data-bezirk", function(d) { return d.properties.Bezirk});
-
-    var trends = svg.selectAll("line")
-	  	.data(collection.features)
-		.enter().append("line")
-					.attr("x1", function(d) { return x(d.properties.Wohnen_Ind)})                 
-					.attr("y1", function(d) { return y(d.properties.Sozio_Demo)})                    
-					.attr("x2", function(d) { return x(d.properties.Wohnen_I_1)})
-                    .attr("y2", function(d) { return y(d.properties.Sozio_De_1)})
-                    .attr("stroke-width", 2)
-                    .attr("stroke", "grey")
-                    .attr("data-stadtteil", function(d) { console.log(linescount); linescount++;   return d.properties.Stadtteil})
-                    .attr("data-bezirk", function(d) { return d.properties.Bezirk});
-
-	console.log(collection.features);
-
-	$("circle").on("mouseenter", function() {
+	$("circle, line").on("mouseenter", function() {
 		var stadtteil = $(this).attr("data-stadtteil");
-		$("#matrix-info").append("<h3>" + stadtteil + "</h3>");
-		$("#matrix-info").append($(this).attr("data-bezirk"));
+		var wohntrend = $(this).attr("data-wohntrend");
+		var sodemtrend = $(this).attr("data-sodemtrend");
+		
+		$("#matrix-info").append("<h2>" + stadtteil + "</h2>");
+		$("#matrix-info").append("<h3>" + $(this).attr("data-bezirk") + "</h3>");
+		$("#matrix-info").append("<p>Wohnen Index</p><h4 class='trend wohntrend'>" + wohntrend +"</h4>");
+		$("#matrix-info").append("<p>Sozio-Demographisches Index</p><h4 class='trend sodemtrend'>" + sodemtrend +"</h4>");
+		if (sodemtrend > 0) {
+			$('.sodemtrend').addClass("positive");
+		}
+		else {
+			$('.sodemtrend').addClass("negative");
+		}
+		if (wohntrend > 0) {
+			$('.wohntrend').addClass("positive");
+		}
+		else {
+			$('.wohntrend').addClass("negative");
+		}
+		
 		$('line[data-stadtteil="'+stadtteil+'"]').attr("stroke-width", 5).attr("stroke", "#000");
+		$('circle[data-stadtteil="'+stadtteil+'"]').attr("r", 6).css("fill", "black");
 		
 
 	}).on("mouseleave", function() {
 		var stadtteil = $(this).attr("data-stadtteil");
 		$("#matrix-info").empty();
-		$('line[data-stadtteil="'+stadtteil+'"]').attr("stroke-width", 2).attr("stroke", "grey");
-	})
+		$('line[data-stadtteil="'+stadtteil+'"]').attr("stroke-width", 3).attr("stroke", "grey");
+		$('circle[data-stadtteil="'+stadtteil+'"]').attr("r", 4).css("fill", "grey");
+	});
+
+	$('#trend-filter .colours a').each(function() {
+		$(this).on("click", function(e) {
+			e.preventDefault();
+
+			var $colblock = $(this);
+			var classes = $colblock.attr("class").split(" ");
+			var $relatedTrends = $("line." + classes[0] + "." + classes[1]);
+			var $relatedOrigins = $("circle." + classes[0] + "." + classes[1]);
+			var $nonrelatedTrends = $("line").not($relatedTrends);
+			var $nonrelatedOrigins = $("circle").not($relatedOrigins);
+
+			if($colblock.hasClass("active")) {
+				$colblock.removeClass("active");
+				$nonrelatedTrends.css({"opacity" : 1});
+				$nonrelatedOrigins.css({"opacity" : 1});
+				//$relatedTrends.attr("stroke", "grey");
+				//$relatedOrigins.css("fill","grey");
+			}
+			else {		
+				$colblock.addClass("active");
+				$nonrelatedTrends.css({"opacity" : 0.1})
+				$nonrelatedOrigins.css({"opacity" : 0.1});
+				//$relatedTrends.attr("stroke", $colblock.css("background-color"));
+				//$relatedOrigins.css("fill", $colblock.css("background-color"));
+			}
+
+		})
+
+	});
 }
 
 
@@ -131,7 +198,7 @@ function addMapOverlay(map,collection) {
 		.enter().append("path");
 
 	//feature.style("fill",colortrends).attr("class",setnineclass);
-	feature.attr("class",setnineclass);
+	feature.attr("class",setnineclass).order();
 
 	map.on("viewreset", reset);
 
@@ -139,7 +206,7 @@ function addMapOverlay(map,collection) {
 
 	reset();
 
-	setLegendColours();
+	setLegendListeners();
 
 	// Reposition the SVG to cover the features.
 	function reset() {
@@ -170,25 +237,25 @@ function project(x) {
   return [point.x, point.y];
 }
 
-function setLegendColours() {
-	$('#colours-wrap a').each(function() {
+function setLegendListeners() {
+	$('#map-legend .colours a').each(function() {
 		var $colblock = $(this);
-		var classSelect = ".";
-		classSelect += $colblock.parent("div").attr("class");
-		classSelect += ".";
-		classSelect += $colblock.attr("class");
-
-		var $relatedPaths = $("path" + classSelect);
+		var classes = $colblock.attr("class").split(" ");
+		var $relatedPaths = $("path." + classes[0] + "." + classes[1]);
 		var $nonrelatedPaths = $("path").not($relatedPaths);
-		var theCol = $relatedPaths.css("fill");
 
-		$colblock.css({"background" : theCol});
 		$colblock.on("mouseenter", function() {
-			$relatedPaths.stop(true,true).animate({"opacity":1, "stroke-width": "3px"}, "fast");
-			$nonrelatedPaths.stop(true,true).animate({"opacity":.4}, "fast");
+			$relatedPaths.stop(true,true).animate({"fill-opacity":.9, "stroke-width" : "3px"}, 200, function() {
+				//d3.select(this).style({"stroke" : "#000000", "z-index" : 9999 }); 
+			});
+			$nonrelatedPaths.stop(true,true).animate({"fill-opacity":.4}, 200);
 		}).on("mouseleave", function() {
-			$("path").stop(true,true).animate({"opacity":.7, "stroke-width": "1.5px"}, "fast");
+			$relatedPaths.stop(true,true).animate({"fill-opacity":.7, "stroke" : "#fff", "stroke-width" : "1.5px"}, 100, function() {
+				//d3.select(this).style({"stroke" : "#fff", "z-index" : 1 });
+			});
+			$nonrelatedPaths.stop(true,true).animate({"fill-opacity":.7}, 100);
 		});
+
 	});
 }
 

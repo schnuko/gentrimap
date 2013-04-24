@@ -8333,23 +8333,24 @@ path.deemphsis {
 }
 
 /* line 51, ../sass/screen.scss */
-#legend {
+.legend {
   float: right;
-  margin-left: 30px;
+  margin-left: 80px;
+  position: relative;
 }
-/* line 54, ../sass/screen.scss */
-#legend #colours {
+/* line 55, ../sass/screen.scss */
+.legend .colours {
   border-top: 1px solid black;
   border-left: 1px solid black;
   float: left;
 }
-/* line 58, ../sass/screen.scss */
-#legend #colours div {
+/* line 59, ../sass/screen.scss */
+.legend .colours div {
   width: 100%;
   clear: both;
 }
-/* line 65, ../sass/screen.scss */
-#legend a {
+/* line 66, ../sass/screen.scss */
+.legend a {
   opacity: .7;
   width: 30px;
   height: 30px;
@@ -8357,26 +8358,64 @@ path.deemphsis {
   display: block;
   float: left;
 }
-
-/* line 77, ../sass/screen.scss */
-#matrix {
-  width: 80%;
-  float: left;
+/* line 74, ../sass/screen.scss */
+.legend a.active {
+  border: 2px solid black;
+  height: 26px;
+  width: 26px;
 }
 
 /* line 82, ../sass/screen.scss */
+.y-axis span {
+  display: block;
+  float: left;
+  padding: 0px 22px 5px;
+}
+
+/* line 89, ../sass/screen.scss */
+.small {
+  padding-left: 20px;
+}
+
+/* line 93, ../sass/screen.scss */
+.x-axis {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-90deg);
+  /* Safari and Chrome */
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  position: absolute;
+  left: -110px;
+  top: 163px;
+}
+/* line 102, ../sass/screen.scss */
+.x-axis span {
+  display: block;
+  float: left;
+  padding: 0px 22px 5px;
+}
+
+/* line 111, ../sass/screen.scss */
+#matrix {
+  height: 700px;
+  width: 700px;
+  float: left;
+}
+
+/* line 117, ../sass/screen.scss */
 #matrix-info {
-  width: 15%;
-  float: right;
+  margin-left: 30px;
   height: 150px;
 }
 
-/* line 88, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
 circle {
   fill: #000;
 }
 
-/* line 94, ../sass/screen.scss */
+/* line 128, ../sass/screen.scss */
 .axis path,
 .axis line {
   fill: none;
@@ -8384,60 +8423,70 @@ circle {
   shape-rendering: crispEdges;
 }
 
-/* line 100, ../sass/screen.scss */
+/* line 134, ../sass/screen.scss */
 .dot {
   stroke: #000;
 }
 
-/* line 119, ../sass/screen.scss */
+/* line 138, ../sass/screen.scss */
+.trend.positive {
+  color: green;
+}
+
+/* line 142, ../sass/screen.scss */
+.trend.negative {
+  color: red;
+}
+
+/* line 161, ../sass/screen.scss */
 .downsd.downwohn {
   background-color: #9dcaf6;
   fill: #9dcaf6;
 }
 
-/* line 123, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 .downsd.midwohn {
   background-color: #fde3b9;
   fill: #fde3b9;
 }
 
-/* line 127, ../sass/screen.scss */
+/* line 169, ../sass/screen.scss */
 .downsd.upwohn {
   background-color: #fa99a4;
   fill: #fa99a4;
 }
 
-/* line 131, ../sass/screen.scss */
+/* line 173, ../sass/screen.scss */
 .midsd.downwohn {
   background-color: #5884d1;
   fill: #5884d1;
 }
 
-/* line 135, ../sass/screen.scss */
+/* line 177, ../sass/screen.scss */
 .midsd.midwohn {
   background-color: #e0a882;
   fill: #e0a882;
 }
 
-/* line 139, ../sass/screen.scss */
+/* line 181, ../sass/screen.scss */
 .midsd.upwohn {
   background-color: #cc565f;
   fill: #cc565f;
 }
 
-/* line 143, ../sass/screen.scss */
+/* line 185, ../sass/screen.scss */
 .upsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
 }
 
-/* line 147, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 .upsd.midwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
 }
 
-/* line 151, ../sass/screen.scss */
+/* line 193, ../sass/screen.scss */
 .upsd.upwohn {
   background-color: #9e131a;
   fill: #9e131a;
