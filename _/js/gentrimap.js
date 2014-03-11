@@ -454,7 +454,7 @@ jQuery(document).ready( function($) {
 				    select.selectAll("option.stadtteil")
 				    	.data(collection)
 				    	.enter().append("option")
-				    		.attr("value", function(d) { console.log(d) ;return d.Stadtteil} ).text(function(d) {return d.Stadtteil} );
+				    		.attr("value", function(d) { return d.Stadtteil} ).text(function(d) {return d.Stadtteil} );
 
 
 				    setLineInfo();
@@ -468,7 +468,7 @@ jQuery(document).ready( function($) {
 
 			// remove the matrix and all event listeners
 			destroy : function() {
-				console.log("matrix destroy");
+				
 				d3.select("#matrix svg").remove();
 				$matrixbox.addClass("invisible");
 				d3.selectAll('line').on('mouseenter',null).on('mouseleave',null);
@@ -657,8 +657,7 @@ jQuery(document).ready( function($) {
 		totalBerlin;
 		return {
 			init : function() {
-				console.log("wanderung init");
-
+				
 				GentriMap.active = 'wanderung';
 				$wanderbox.removeClass("invisible");
 				$wander.height($(window).height()-250 > 500 ? $(window).height()-250 : 500);
@@ -760,7 +759,7 @@ jQuery(document).ready( function($) {
 				
 			},
 			destroy : function() {
-				console.log("wanderung destroy");
+				
 				if (initComplete) {
 					map.off("viewreset", reset);
 					map.remove();
@@ -958,10 +957,6 @@ jQuery(document).ready( function($) {
 
 					var allPoints = [];
 
-					console.log(thisBezirk);
-
-					console.log(d);
-
 					var infoHead = "<h2>{{properties.Bezirk}}</h2>";
 
 					infoHead += "<h4>Binnenwanderung</h4>" + numberWithCommas(thisBezirk.sources[0].anzahl) + "";
@@ -1080,8 +1075,6 @@ jQuery(document).ready( function($) {
 
 					var thisBezirk = bezirkDataSaldo[d.id];
 
-					console.log(thisBezirk);
-
 					var thisBezirkDetails = bezirkDataIn[d.id];
 
 					var centrePoint = path.centroid(d);
@@ -1185,7 +1178,6 @@ jQuery(document).ready( function($) {
 	function drawMap(mapdiv) {
 		var lat = 52.517057;
 		var lng = 13.406067;
-		console.log(Math.floor($(window).height()/100));
 		var zoom =11;
 		if($(window).height() < 850) zoom = 10;
 
