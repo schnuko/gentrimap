@@ -1,0 +1,304 @@
+#matrix, #trendmap,#wanderung, #map-anim {
+	height: 1000px;
+}
+
+#wanderungmap {
+	height: 100%;
+}
+
+.wander-buttons {
+	margin-bottom: 1em;
+}
+
+.invisible {
+	display: none;
+}
+
+.map {
+	width: 100%;
+	height: auto;
+}
+
+#trend-karte, #trend-matrix {
+	position: relative;
+}
+
+.home .full-width-wrap .container {
+	min-width:960px !important;
+}
+
+.vis-navigation {
+	margin-bottom: 20px;
+}
+
+.btn a {
+	color: $text-color;
+	&:hover {
+		color: $text-color;
+		text-decoration: none;
+	}
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+#trend-karte path {
+	fill-opacity: .7;
+	stroke: #fff;
+	stroke-width: 1.5px;
+}
+
+#trend-karte  .map path.emphasis {
+	fill-opacity: .9;
+	stroke-width: 3px;
+}
+
+#trend-karte .map path.deemphasis {
+	fill-opacity: .4;
+}
+
+#matrix .legend {
+	right: 124px;
+	top: 70px;
+}
+
+.legend {
+	background: white;
+	right: 32px;
+	top: 32px;
+	width: 154px;
+	height: 153px;
+	position: absolute;
+	z-index:999;
+	.colours {
+		float: left;
+		position: relative;
+		left: 36px;
+		top: 5px;
+		div {
+			width: 100%;
+			clear: both;
+		}
+	}
+	
+
+	a {
+		opacity: .7;
+		width: 28px;
+		height: 28px;
+		margin:5px;
+		display: block;	
+		float: left;
+	}
+	a.active {
+		border: 2px solid #333;
+
+	}
+}
+
+#matrix-info {
+	background: white;
+	right: 32px;
+	top: 250px;
+	width: 240px;
+	height: 153px;
+	position: absolute;
+}
+
+.x-axis {
+	text-align: center;
+	width: 112px;
+	left: 37px;
+	top: 5px;
+	position: relative;
+	span {
+		display: block;
+		float: left;
+		padding:0px 14px 0 15px;
+
+	}
+}
+
+
+.y-axis {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg); /* IE 9 */
+	-webkit-transform: rotate(-90deg); /* Safari and Chrome */
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	position: absolute;
+	left: -35px;
+	top: 77px;
+	text-align: center;
+	span {
+		display: block;
+		float: left;
+		padding: 0px 15px;
+	}
+}
+
+.small {
+	margin-bottom: 0;
+	font-size: .75em;
+}
+
+
+
+.index-trend {
+	font-size: 3em;
+	line-height: 1.2em;
+}
+
+.index-trend.positive {
+	color:#05c26a;
+}
+
+.index-trend.negative {
+	color:#ec4432;
+}
+
+path.arrow {
+	fill-opacity: 1;
+	stroke: #fff;
+	stroke-width: 0;
+}
+
+#matrix line.emphasis {
+	stroke:black;
+}
+
+#matrix line.deemphasis {
+	stroke:lightgrey;
+	stroke:rgba(0,0,0,.1);
+}
+
+#matrix line.superemphasis {
+	stroke:black;
+	stroke-width:4px;
+}
+
+
+// MAP COLOURS
+// -.-.-.- Paul's colours -.-.-.-
+
+$darkblue : #143ead;
+$midblue : #5884d1;
+$lightblue : #9dcaf6;
+$darkorange : #c36d4b;
+$midorange : #e0a882;
+$lightorange : #fde3b9;
+$darkred : #9e131a;
+$midred : #cc565f;
+$lightred : #fa99a4;
+
+.downsd.downwohn {
+	background-color: $lightblue ;
+	fill: $lightblue ;
+}
+.downsd.midwohn {
+	background-color: $lightorange ;
+	fill: $lightorange ;	
+}
+.downsd.upwohn {
+	background-color: $lightred ;
+	fill: $lightred ;
+}
+.midsd.downwohn {
+	background-color: $midblue ;
+	fill: $midblue ;
+}
+.midsd.midwohn {
+	background-color: $midorange ;
+	fill: $midorange ;
+}
+.midsd.upwohn {
+	background-color: $midred ;
+	fill: $midred ;
+}
+.upsd.downwohn {
+	background-color: $darkblue ;
+	fill: $darkblue ;
+}
+.upsd.midwohn {
+	background-color: $darkorange ;
+	fill: $darkorange ;
+}
+.upsd.upwohn {
+	background-color: $darkred ;
+	fill: $darkred ;
+}
+
+#trend-karte .typ-description div {
+	background: white;
+	fill:white;
+}
+
+.null {
+	background-color: transparent ;
+	fill: white ;
+}
+
+#map-wrap {
+	position: relative;
+}
+
+#info {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: 999;
+	background: white;
+	height: 435px;
+	width: 220px;
+	border:1px solid #ddd;
+	padding: 10px;
+	h3 {
+		font-size:18px;
+		line-height: 1.5em;
+		margin-top: 0;
+	}
+	ul {
+		padding-left: 1.2em;
+	}
+}
+
+circle {
+	pointer-events: none;
+}
+
+.wander-buttons .btn {
+	background: #ebebeb;
+}
+
+.btn {
+	padding:0;
+	a {
+		display: block;
+		padding: 6px 12px;
+	}
+}
+
+.popover {
+	z-index:9999 !important;
+}
+
+.wanderung-table {
+	width: 100%;
+}
+
+#wanderung #info h2 {
+	margin-top: 0;
+	word-break: break-all;
+	font-size: 22px;
+}
+
+.right {
+	text-align: right;
+}
+
+select.matrix-filter {
+	position: absolute;
+	top: 200px;
+	width: 200px;
+	right: 0px;
+}

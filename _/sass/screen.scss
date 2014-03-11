@@ -1,0 +1,329 @@
+/*
+*
+* Bootstrap 3.0
+* 
+*
+*/
+
+// Core variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// Reset
+@import "bootstrap/normalize";
+@import "bootstrap/print";
+
+
+/*
+*
+* Change variables like $font-family-base here
+* See _variables.scss for possibilities
+* See also http://www.awwwards.com/bootstrap-customization-themes-ui-patterns-and-tools.html
+* and http://bootswatch.com/
+* and http://www.bootstrapthemeroller.com/twitter-bootstrap-themeroller.html
+*
+*/
+$linkColor : #0044ee;
+$linkColorHover : #0044ff;
+
+
+/*
+*
+* Turn off what you don't need!
+*
+*
+*/ 
+
+// Core CSS
+@import "bootstrap/scaffolding";
+@import "bootstrap/type";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+
+// Components
+@import "bootstrap/component-animations";
+@import "bootstrap/glyphicons";
+@import "bootstrap/dropdowns";
+@import "bootstrap/button-groups";
+@import "bootstrap/input-groups";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
+@import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
+@import "bootstrap/pager";
+@import "bootstrap/labels";
+@import "bootstrap/badges";
+@import "bootstrap/jumbotron";
+@import "bootstrap/thumbnails";
+@import "bootstrap/alerts";
+@import "bootstrap/progress-bars";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/panels";
+@import "bootstrap/wells";
+@import "bootstrap/close";
+
+// Components w/ JavaScript
+@import "bootstrap/modals";
+@import "bootstrap/tooltip";
+@import "bootstrap/popovers";
+@import "bootstrap/carousel";
+
+// Utility classes
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";
+
+
+@import "compass/css3";
+
+@import "leaflet";
+
+@import "leaflet.ie";
+
+
+/*=========================================
+
+	Basic Styles
+
+===========================================*/
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+
+/*=========================================
+
+	Links & Typography
+
+===========================================*/
+
+h1 a , h2 a , h3 a, h4 a, h5 a, h6 a {
+	color: $text-color;
+	&:hover {
+		color: $text-color;
+		text-decoration: none;
+	}
+}
+
+
+.home h1 {
+	margin-top: 46px;
+	font-size: 48px;
+	line-height: .5;
+	float: left;
+	margin-bottom: 30px;
+	margin-right: 10px;
+}
+
+.home h2 {
+	margin-top: 46px;
+	color: grey;
+}
+h2.description {
+	font-family: Georgia;
+	font-style: italic;
+}
+
+
+
+
+/*=========================================
+
+	Menus - integrate bootstrap styles
+	with wordpress menu, drop downs
+
+===========================================*/
+
+.sub-menu {
+	@extend .dropdown-menu;
+}
+
+.nav > .dropdown > a {
+	&:after {
+		content : '';
+		@extend .caret;
+		margin-left: .5em;
+		border-top-color:$navbar-default-link-color;
+		border-bottom-color:$navbar-default-link-color; 
+	}
+}
+
+.nav > .dropdown > a:hover, .nav > .open > a {
+	&:after {
+		border-top-color:$navbar-default-link-hover-color;
+		border-bottom-color:$navbar-default-link-hover-color; 
+	}
+}
+
+.dropdown:hover .dropdown-menu {
+// Uncomment for drop down menus that work on hover
+//	display: block;
+}
+
+
+/*=========================================
+
+	Sticky Footer
+	http://css-tricks.com/snippets/css/sticky-footer/
+
+===========================================*/
+
+html, body, #outer-wrap { height: 100%; }
+
+body > #outer-wrap {height: auto; min-height: 100%;}
+
+#inner-wrap { padding-bottom: 200px; padding-top: 25px; }  /* must be same height as the footer plus extra for space*/
+
+.home #inner-wrap { padding-bottom: 150px; }
+
+footer { 
+    position: relative;
+	margin-top: -150px; /* negative value of footer height */
+	height: 150px;
+	clear:both;
+	background: $gray-darker;
+	color: white;
+	padding: 20px 20px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	.copyright, .credits {
+		text-align: center;
+	}
+} 
+
+
+/*=========================================
+
+	Forms
+
+===========================================*/
+
+input[type=submit] {
+	@extend .btn;
+}
+
+input[type=text], input[type=email], input[type=password], input[type=url], textarea, select {
+	@extend .form-control;
+}
+
+.required {
+	color: $brand-warning;
+}
+
+
+/*=========================================
+
+	Comments
+
+===========================================*/
+
+.comment-list {
+	list-style-type: none;
+	padding-left: 0;
+	ol {
+		padding-left: 2em;
+		list-style-type: none;
+	}
+	li {
+		padding: 1em;
+	}
+	li.odd {
+		background: $gray-lighter;
+	}
+	li.even {
+		background: white;
+	}
+	.comment-image {
+		float: left;
+		margin: 0 1em 1em 0;
+	}
+	.comment-meta {
+		padding-top: 1em;
+	}
+	.comment-text {
+		clear: both;
+		padding-bottom: 1em;
+	}
+}
+
+/*=========================================
+
+	Gentrimap
+
+===========================================*/
+
+.popover, .popover-title {
+	@include border-radius(0);
+	line-height:1.5em;
+}
+
+.popover-title {
+	margin-bottom:1em;
+}
+
+.popover-inner {
+	line-height:1.6em !important;
+}
+
+/*=========================================
+
+	Header
+	http://farewellburt.wordpress.com/stokers-corner/visiting-berlin/
+
+
+===========================================*/
+
+
+
+.header-img-spacer {
+	margin-top: 20%;
+	width: 100%;
+	position: static;
+	
+}
+img.header-img {
+	position: fixed;
+	top:2.4em;
+}
+.full-width-wrap {
+	background: white;
+	position: relative;
+	z-index: 99;
+	min-width: 980px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 50px;
+}
+
+.home footer {
+	min-width: 980px;
+}
+
+
+
+/*=========================================
+
+	Home Page
+
+
+===========================================*/
+
+
+@import 'trendkarte';
+
+/*=========================================
+
+	Blog Posts etc
+
+
+===========================================*/
+
+.byline {
+	margin-bottom: 1em;
+}

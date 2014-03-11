@@ -4,16 +4,76 @@
 		"selected_items":
 		[
 			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"rel",
+				"relatedTrends"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"svg",
+				"svgHeight"
+			],
+			[
+				"sv",
+				"svgWidth"
+			],
+			[
+				"stroke",
+				"stroke-width"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"color",
+				"background-color"
+			],
+			[
+				"data",
+				"data-stadtteil"
+			],
+			[
+				"class",
+				"classSelect"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"ma",
+				"margin-bottom"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"margi",
+				"margin-bottom"
+			],
+			[
+				"borde",
+				"border-top"
+			],
+			[
 				"disa",
 				"disable"
 			],
 			[
 				"Dta",
 				"DataSet"
-			],
-			[
-				"fon",
-				"font-size"
 			],
 			[
 				"tex",
@@ -56,28 +116,8 @@
 				"toolbox"
 			],
 			[
-				"padd",
-				"padding-top"
-			],
-			[
-				"margin",
-				"margin-bottom"
-			],
-			[
-				"ma",
-				"max-width"
-			],
-			[
-				"mar",
-				"margin-top"
-			],
-			[
 				"font",
 				"font-weight"
-			],
-			[
-				"margi",
-				"margin-right"
 			],
 			[
 				"pad",
@@ -200,10 +240,6 @@
 				"box-shadow"
 			],
 			[
-				"pa",
-				"padding"
-			],
-			[
 				"sa",
 				"sans-serif"
 			],
@@ -264,10 +300,6 @@
 				"str_replace"
 			],
 			[
-				"marg",
-				"margin-top"
-			],
-			[
 				"di",
 				"display"
 			],
@@ -312,29 +344,42 @@
 	"buffers":
 	[
 		{
-			"contents": "var GentriMap = new Backbone.Marionette.Application();\n\nGentriMap.addInitializer(function(initData) {\n	GentriMap.dataSetsPrimary = new DataSets(initData.data, {comparator : 'name'});\n	GentriMap.dataSetsPrimary.setDefaults({\n		title : \"Karte 1\",\n		enabled : true,\n		primary : true\n	});\n	var dataSetsToolboxViewPrimary = new DataSetsToolboxView({\n		collection: GentriMap.dataSetsPrimary\n	});\n	GentriMap.toolbox1.show(dataSetsToolboxViewPrimary);\n	\n	GentriMap.dataSetsSecondary = new DataSets(initData.data, {comparator : 'name'});\n	GentriMap.dataSetsSecondary.setDefaults({\n		title : \"Karte 2\",\n		enabled : false,\n		primary : false\n	});\n	var dataSetsToolboxViewSecondary = new DataSetsToolboxView({\n		collection: GentriMap.dataSetsSecondary\n	});\n	GentriMap.toolbox2.show(dataSetsToolboxViewSecondary);\n});\n\nGentriMap.on('start', function() {\n	Backbone.history.start();\n});\n\nGentriMap.addRegions({\n	toolbox1 : '#karte-1-controls',\n	toolbox2 : '#karte-2-controls',\n	main : \"#main\"\n});\n\nDataSet = Backbone.Model.extend({\n	defaults: {\n		minYear:  1e10,\n		maxYear: -1e10,\n		minValue: 1e10,\n		maxValue: -1e10,\n		name : \"\",\n		years : [],\n		id : \"\"\n	}\n});\n\nDataSets = Backbone.Collection.extend({\n	model : DataSet,\n	setDefaults : function(options) {\n		this.title = options.title;\n		this.enabled = options.enabled;\n		this.primary = options.primary;\n	}\n});\n\nDataSetOptionView = Backbone.Marionette.ItemView.extend({\n	template: \"#dataSetOptionView\",\n	tagName: 'option',\n	initialize: function(){\n		this.$el.prop(\"value\", this.model.get(\"id\"));\n	}\n});\n\nDataSetsToolboxView = Backbone.Marionette.CompositeView.extend({\n	initialize : function() {\n		var titlefun = this.collection.title;\n		this.templateHelpers.title = function() {\n			return titlefun;\n		}\n	},\n	tagName: \"fieldset\",\n	className: \"disabled\",\n	template: \"#dataSetsToolboxView\",\n	templateHelpers: {\n		title : function () {\n			return \"\";\n		}\n	},\n	itemView: DataSetOptionView,\n	itemViewContainer : \"select\",\n	events: {\n		'change select': 'selectDataSet',\n		'change input.minicolors': 'selectColor',\n		'change .street-map-toggle' : 'streetMapToggle',\n		'change .zoom-slider' : 'selectZoom',\n		'change .toggle-control' : 'toggleEnable',\n		'change .zoom-link' : 'toggleZoomLink'\n	},\n	selectColor: function(e){\n		console.log(e.target.value);\n		console.log($(e.delegateTarget).parent().attr('id'));\n	},\n	selectDataSet : function(e) {\n		console.log(\"dataset = \" + e.currentTarget.value);\n	},\n	streetMapToggle : function(e) {\n		console.log(\"show map = \" + e.currentTarget.checked);\n	},\n	selectZoom : function(e) {\n		console.log(\"show zoom: \" + $(e.target).attr(\"data-zoom\"));\n	},\n	toggleEnable : function(e) {\n		if (e.currentTarget.checked) {\n			this.enable();\n		}\n		else {\n			this.disable();\n		}\n	},\n	toggleZoomLink : function(e) {\n		console.log(\"zoom link: \" + e.currentTarget.checked);\n	},\n	onShow : function() {\n		this.$el.find('.street-map-toggle').tooltip({\n			placement : 'bottom',\n			title: 'Kann langsam sein'\n		});\n\n		this.$el.find('.zoom-slider').slider({\n			max: 10,\n			min: 1,\n			step:1,\n			slide: function( event, ui ) {\n				$(this).attr(\"data-zoom\", ui.value).change();\n			},\n			create: function(event, ui) {\n				$(this).attr(\"data-zoom\", $(this).slider('value'));\n			}\n		});\n\n		this.$el.find('.zoom-slider').slider('disable');\n\n		this.$el.find('.minicolors').minicolors({\n			control: 'hue',\n			theme: 'bootstrap',\n			change: function(hex) {\n				$(this).attr(\"value\",hex).change();\n\n		    }\n		});\n		if (this.collection.enabled) {\n			this.enable();\n		}\n		if (this.collection.primary) {\n			this.setPrimary();\n		}\n		\n	},\n	enable : function() {\n		this.$el.removeClass(\"disabled\");\n		this.$el.find(\"[disabled]\").removeAttr(\"disabled\");\n		this.$el.find('.zoom-slider').slider('enable');\n	},\n	setPrimary : function() {\n		this.$el.find(\".secondary\").remove();\n	},\n	disable : function() {\n		this.$el.addClass(\"disabled\");\n		this.$el.find(\".toggle\").attr(\"disabled\", \"disabled\");\n		this.$el.find('.zoom-slider').slider('disable');\n	}\n});\n\n\n\n$(document).ready(function() {\n	var initData = initialiseDataSets();\n	GentriMap.start({\n		data : initData\n	});\n	\n});\n\n\n\n\n\n\n\nfunction initialiseDataSets() {\n	// Initialisiere Datensätze\n	tableList = [];\n	var obj = {};\n\n	// this value stores how many data sets we have, e.g. fertility, arbeitslos\n	var tableListIndex = -1;\n\n	// loop through all our data\n	for (var i = 0; i < data.data.length; i++) {\n\n		//get the name of the data set this chunk relates to (e.g. fertility)\n		var name = data.data[i].options.tableName;\n		// what year are we dealing with?\n		var year = data.data[i].options.year;\n		// If we haven't seen this name before\n		if (obj[name] === undefined) {\n			//increment the number of datasets\n			tableListIndex++;\n			// add the relevant details to the table list ( ann array of objects, each stores name, min and max value, min and max year and map of year to data chunks. The data chunk contain the values for each region. Each region has an id which is crossreferenced to the geodata)\n			tableList[tableListIndex] = {\n				name: name,\n				years: [],\n				// set very high and low numbers so we can refine these with our actual data\n				minYear:  1e10,\n				maxYear: -1e10,\n				minValue: 1e10,\n				maxValue: -1e10, \n				id : tableListIndex\n			}\n			// add a defnition for the name so we won't repeat when we find the next year for this dataset\n			// set it to be the index of the data set we are working with\n			obj[name] = tableListIndex;\n		}\n		var tl = tableList[obj[name]]; //obj[name] is index of dataset (e.g. fertility)\n		tl.years[year] = i; // e.g. fertility.1992 = 234 (the index of the data chunk we are looking at now) this let's us look up the relevant data chunk later when we change the year\n		// adjust min and or max years as appropriate\n		if (tl.minYear > year) tl.minYear = year;\n		if (tl.maxYear < year) tl.maxYear = year;\n		\n		var d = data.data[i].data; // this represent one data set in one year\n		for (var j = 0; j < d.length; j++) { // loop through all the regions\n			var v = d[j].value;\n			if (tl.minValue > v) tl.minValue = v; // update min and max values\n			if (tl.maxValue < v) tl.maxValue = v;\n		}\n		\n		// What's happening here?\n		if (data.data[i].options.minValue !== undefined) tl.minValue = data.data[i].options.minValue;\n		if (data.data[i].options.maxValue !== undefined) tl.maxValue = data.data[i].options.maxValue; \n	}\n	return tableList;\n}",
-			"file": "html/_/js/main.js",
-			"file_size": 6592,
-			"file_write_time": 130097803692849079,
+			"file": "html/index.html",
 			"settings":
 			{
-				"buffer_size": 6361,
-				"line_ending": "Windows"
+				"buffer_size": 5781,
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "html/_/sass/screen.scss",
 			"settings":
 			{
-				"buffer_size": 2488,
+				"buffer_size": 3019,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "html/index.html",
+			"file": "html/_/js/main.js",
 			"settings":
 			{
-				"buffer_size": 4404,
+				"buffer_size": 10363,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "old-html/html/index.html",
+			"settings":
+			{
+				"buffer_size": 1377,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "html/_/js/ninetrends-latlng.geojson",
+			"settings":
+			{
+				"buffer_size": 1339447,
 				"line_ending": "Unix"
 			}
 		}
@@ -363,15 +408,22 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/gentrimap/html/_/js/main.js",
+		"/C/xampp/htdocs/gentrimap/html/_/js/verdraengung.js",
+		"/C/xampp/htdocs/gentrimap/html/_/js/ninetrends-latlng.geojson",
+		"/C/xampp/htdocs/gentrimap/html/verdraengung.html",
+		"/C/xampp/htdocs/gentrimap/html/_/js/vendor/d3.v3.min.js",
+		"/C/xampp/htdocs/gentrimap/html/_/js/Berlin_9er_Trends.json",
+		"/C/xampp/htdocs/gentrimap/html/_/js/Berlin_9er_Trends.js",
+		"/C/xampp/htdocs/gentrimap/html/_/sass/screen.scss",
+		"/C/xampp/htdocs/gentrimap/html/index.html",
 		"/C/xampp/htdocs/gentrimap/old-html/html/assets/js/code.js",
 		"/C/xampp/htdocs/gentrimap/old-html/html/index.html",
 		"/C/xampp/htdocs/gentrimap/html/_/js/main-old.js",
 		"/C/xampp/htdocs/gentrimap/html/_/js/main-old-mel.js",
-		"/C/xampp/htdocs/gentrimap/html/index.html",
 		"/C/xampp/htdocs/gentrimap/html/_/js/vendor/backbone.marionette.min.js",
 		"/C/xampp/htdocs/gentrimap/html/_/css/jquery.minicolors.css",
 		"/C/xampp/htdocs/gentrimap/html/.htaccess",
-		"/C/xampp/htdocs/gentrimap/html/_/sass/screen.scss",
 		"/C/xampp/htdocs/gentrimap/html/_/js/vendor/modernizr-2.6.2.min.js",
 		"/C/xampp/htdocs/gentrimap/html/_/css/screen.css",
 		"/C/xampp/htdocs/gentrimap/html/_/sass/normalise.scss",
@@ -483,14 +535,7 @@
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/style-old-2.css",
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox.css",
 		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox-thumbs.css",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox-buttons.css",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/js/jquery.masonry.min.js",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/nggallery/artist-view",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/gallery/artist-view",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page-template-contact.php",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page-template-artists.php",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/page.php",
-		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/functions/sidebars.php"
+		"/C/xampp/htdocs/derail/wordpress/wp-content/themes/derail/_/css/jquery.fancybox-buttons.css"
 	],
 	"find":
 	{
@@ -509,6 +554,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chord",
+			"#colours",
+			"#legend",
+			"conso",
+			"Wohnen_Ind",
+			"Wannsee",
+			"Wannsee\nWannsee",
+			"Wohnen I_1",
+			"Sozio-De_1",
+			"Sozio-Demo",
+			"console",
+			"Sozio-De_2",
+			"Wohnen I_2",
+			"Wohnen Ind",
+			"lon",
 			"selectedYear",
 			"consol",
 			"tableName",
@@ -605,77 +665,22 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "html/_/js/main.js",
-					"settings":
-					{
-						"buffer_size": 6361,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4093,
-								4093
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3771.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "html/_/sass/screen.scss",
-					"settings":
-					{
-						"buffer_size": 2488,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1614,
-								1614
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1917.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "html/index.html",
 					"settings":
 					{
-						"buffer_size": 4404,
+						"buffer_size": 5781,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2529,
-								2529
+								2904,
+								2924
 							]
 						],
 						"settings":
@@ -685,7 +690,114 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 987.0,
+						"translation.y": 290.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "html/_/sass/screen.scss",
+					"settings":
+					{
+						"buffer_size": 3019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3019,
+								3019
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3543.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "html/_/js/main.js",
+					"settings":
+					{
+						"buffer_size": 10363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6596,
+								6659
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3980.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "old-html/html/index.html",
+					"settings":
+					{
+						"buffer_size": 1377,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "html/_/js/ninetrends-latlng.geojson",
+					"settings":
+					{
+						"buffer_size": 1339447,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								688,
+								699
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 515.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -753,6 +865,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 215.0,
+	"side_bar_width": 343.0,
 	"status_bar_visible": true
 }
