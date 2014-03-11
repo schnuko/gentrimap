@@ -1,7 +1,7 @@
 gentrimap
 =========
 
-This GentriMap comes preloaded with Berlin data for 2007 to 2011.
+This GentriMap comes preloaded with Berlin data for 2007 to 2011. See in context at <a href="http://gentrimap.net">gentrimap.net</a>.
 
 Customise it to include your own data by adding your own topojson and csv files to the _/data folder.
 
