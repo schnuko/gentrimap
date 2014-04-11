@@ -134,28 +134,28 @@ jQuery(document).ready( function($) {
 
 		function setnineclass(d, i) {
 
-			if (trends[d.id] == undefined) {
+		if (trends[d.id] == undefined) {
 				return "null";
 			}
 			else {
 				var nineclass = "";
-				if(trends[d.id].Wohn_Change < 0) {
+				if(trends[d.id].Wohn_Change < 0 && trends[d.id].Wohn_Change > parseFloat(trends[d.id].Wohn_Boarder)) {
 					nineclass = "downwohn";	
 				}
-				else if (trends[d.id].Wohn_Change < 0.92) {
+				else if (trends[d.id].Wohn_Change < 1 && trends[d.id].Wohn_Change > parseFloat(trends[d.id].Wohn_Boarder)) {
 					nineclass = "midwohn";
 				}
-				else if (trends[d.id].Wohn_Change >= 0.92) {
+				else if (trends[d.id].Wohn_Change >= 1) {
 					nineclass = "upwohn";
 				}
-				if (trends[d.id].SozD_Change < -1) {
-					nineclass += " upsd";	
+				if (trends[d.id].SozD_Change < 0 && trends[d.id].SozD_Change > parseFloat(trends[d.id].Soz_Boarder)) {
+					nineclass += " downsd";	
 				}
-				else if (trends[d.id].SozD_Change < 1) {
+				else if (trends[d.id].SozD_Change < 1 && trends[d.id].SozD_Change > parseFloat(trends[d.id].Soz_Boarder)) {
 					nineclass += " midsd";	
 				}
 				else if (trends[d.id].SozD_Change >= 1) {
-					nineclass += " downsd";	
+					nineclass += " upsd";	
 				}
 
 				return nineclass + " trend-area";
@@ -608,23 +608,23 @@ jQuery(document).ready( function($) {
 		function setnineclass(d, i) {
 			
 			var nineclass = "";
-			if(d.Wohn_Change < 0) {
+			if(d.Wohn_Change < -0 && d.Wohn_Change > parseFloat(d.Wohn_Boarder)) {
 				nineclass = "downwohn";	
 			}
-			else if (d.Wohn_Change < 0.92) {
+			else if (d.Wohn_Change < 1 && d.Wohn_Change > parseFloat(d.Wohn_Boarder)) {
 				nineclass = "midwohn";
 			}
-			else if (d.Wohn_Change >= 0.92) {
+			else if (d.Wohn_Change >= 1) {
 				nineclass = "upwohn";
 			}
-			if (d.SozD_Change < -1) {
-				nineclass += " upsd";	
+			if (d.SozD_Change < -0 && d.SozD_Change > parseFloat(d.Soz_Boarder)) {
+				nineclass += " downsd";	
 			}
-			else if (d.SozD_Change < 1) {
+			else if (d.SozD_Change < 1 && d.SozD_Change > parseFloat(d.Soz_Boarder)) {
 				nineclass += " midsd";	
 			}
 			else if (d.SozD_Change >= 1) {
-				nineclass += " downsd";	
+				nineclass += " upsd";	
 			}
 
 			return nineclass + " trend-arrow";
@@ -1176,8 +1176,8 @@ jQuery(document).ready( function($) {
 	function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
 
 	function drawMap(mapdiv) {
-		var lat = 52.517057;
-		var lng = 13.406067;
+		var lat = 48.133032416231991;
+		var lng = 11.649270930839434;
 		var zoom =11;
 		if($(window).height() < 850) zoom = 10;
 
