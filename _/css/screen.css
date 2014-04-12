@@ -8577,7 +8577,14 @@ img.header-img {
 .x-axis span {
   display: block;
   float: left;
-  padding: 0px 14px 0 15px;
+//	padding: 0px 14px 0 15px;
+	padding: 0px 15px
+}
+
+.x-axis span.two {
+  display: block;
+  float: left;
+	padding: 0px 10px 0 12px;
 }
 
 /* line 123, ../sass/_trendkarte.scss */
@@ -8599,6 +8606,12 @@ img.header-img {
   display: block;
   float: left;
   padding: 0px 15px;
+}
+
+.y-axis span.two {
+  display: block;
+  float: left;
+  padding: 0px 10px 0px 10px;
 }
 
 /* line 140, ../sass/_trendkarte.scss */

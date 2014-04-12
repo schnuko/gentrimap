@@ -351,7 +351,7 @@ jQuery(document).ready( function($) {
 
 					svg.append("g")
 						  .attr("class", "y axis")
-						  .attr("transform", "translate(" + y(0) + ",0)")
+						  .attr("transform", "translate(" + (width * 1/2) + ",0)")
 						  .call(yAxis)
 						  	.append("text")
 							    .attr("class", "label")
@@ -366,48 +366,48 @@ jQuery(document).ready( function($) {
 							.attr("x1", x(1))
 							.attr("y1", y(4))
 							.attr("x2", x(1))
-							.attr("y2", y(1))
-							.attr("stroke-width", 2)
+							.attr("y2", y(1)-1.5)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#9e131a")
 							
 					svg.append("line")
 							.attr("x1", x(4))
 							.attr("y1", y(1))
-							.attr("x2", x(1))
+							.attr("x2", x(1)-1.5)
 							.attr("y2", y(1))
-							.attr("stroke-width", 2)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#9e131a")
 							
 					svg.append("line")
 							.attr("x1", x(0))
 							.attr("y1", y(4))
 							.attr("x2", x(0))
-							.attr("y2", y(0))
-							.attr("stroke-width", 2)
+							.attr("y2", y(0)-1.5)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#c36d4b")
 							
 					svg.append("line")
 							.attr("x1", x(4))
 							.attr("y1", y(0))
-							.attr("x2", x(0))
+							.attr("x2", x(0)-1.5)
 							.attr("y2", y(0))
-							.attr("stroke-width", 2)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#c36d4b")							
 							
 					svg.append("line")
 							.attr("x1", x(collection[1].Soz_Boarder))
 							.attr("y1", y(4))
 							.attr("x2", x(collection[1].Soz_Boarder))
-							.attr("y2", y(collection[1].Wohn_Boarder))
-							.attr("stroke-width", 2)
+							.attr("y2", y(collection[1].Wohn_Boarder)-1.5)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#143ead")
 							
 					svg.append("line")
 							.attr("x1", x(4))
 							.attr("y1", y(collection[1].Wohn_Boarder))
-							.attr("x2", x(collection[1].Soz_Boarder))
+							.attr("x2", x(collection[1].Soz_Boarder)-1.5)
 							.attr("y2", y(collection[1].Wohn_Boarder))
-							.attr("stroke-width", 2)
+							.attr("stroke-width", 3)
 							.attr("stroke", "#143ead")
 
 							
@@ -1606,10 +1606,10 @@ jQuery(document).ready( function($) {
 	function lat2tile(lat,zoom)  { return (Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom))); }
 
 	function drawMap(mapdiv) {
-		var lat = 48.133032416231991;
-		var lng = 11.649270930839434;
+		var lat = 48.143642; //48.133032416231991;
+		var lng = 11.570118; //11.649270930839434;
 		var zoom =11;
-		if($(window).height() < 850) zoom = 10;
+		if($(window).height() < 850) zoom = 11;
 
 		var xtile = lng2tile(lng,zoom);
 		var ytile = lat2tile(lat,zoom);

@@ -57,9 +57,9 @@
 
                   <!-- Add additional buttons here to navigation to different visualisations. The id is used in gentrimap.js to initialise the code for the relevant vis. The href should be the id of the div that contains your new vis. -->
                   <div class="btn-group vis-navigation">
-                    <span type="button" class="btn btn-default active"><a id="trendMapLink" href="#trend-karte">Trendanalyse - Karte</a></span>
-                    <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Trendanalyse - Matrix</a></span>
-                    <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Wanderung</a></span>
+                    <span type="button" class="btn btn-default active"><a id="trendMapLink" href="#trend-karte">Karte</a></span>
+                    <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Typologie</a></span>
+                    <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Ausgangsstatus</a></span>
                   </div>
                   
                   <!-- BEGIN FIRST VISUALISATION -->
@@ -75,12 +75,12 @@
                       <div id='trendmap' class="map"></div>
                       <!-- The colour key/legend for the 9 trends. -->
                       <div class="legend">
-                        <div id="map-legend" >
+                        <div id="matrix-legend">
                           <div class="x-axis">
                               <p class="small">Sozio-Demo Index</p>
-                              <span>+</span>
-                              <span>o</span>
                               <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
                           </div>
                           <div class="y-axis">
                               <p class="small">Wohnen Index</p>
@@ -90,19 +90,19 @@
                           </div>
                           <div class="colours">
                             <div>
-                                <a href="#" class="upwohn upsd"></a>
+                                <a href="#" class="upwohn downsd"></a>
                                 <a href="#" class="midsd upwohn"></a>
-                                <a href="#" class="downsd upwohn"></a>
+                                <a href="#" class="upsd upwohn"></a>
                             </div>
                             <div>
-                                <a href="#" class="upsd midwohn"></a>
-                                <a href="#" class="midsd midwohn"></a>
                                 <a href="#" class="downsd midwohn"></a>
+                                <a href="#" class="midsd midwohn"></a>
+                                <a href="#" class="upsd midwohn"></a>
                             </div>
                             <div>
-                                <a href="#" class="upsd downwohn"></a>
-                                <a href="#" class="midsd downwohn"></a>
                                 <a href="#" class="downsd downwohn"></a>
+                                <a href="#" class="midsd downwohn"></a>
+                                <a href="#" class="upsd downwohn"></a>
                             </div>
                           </div>
                         </div>
@@ -195,9 +195,9 @@
                         <div id="matrix-legend">
                           <div class="x-axis">
                               <p class="small">Sozio-Demo Index</p>
-                              <span>+</span>
-                              <span>o</span>
                               <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
                           </div>
                           <div class="y-axis">
                               <p class="small">Wohnen Index</p>
@@ -207,19 +207,19 @@
                           </div>
                           <div class="colours">
                             <div>
-                                <a href="#" class="upwohn upsd"></a>
+                                <a href="#" class="upwohn downsd"></a>
                                 <a href="#" class="midsd upwohn"></a>
-                                <a href="#" class="downsd upwohn"></a>
+                                <a href="#" class="upsd upwohn"></a>
                             </div>
                             <div>
-                                <a href="#" class="upsd midwohn"></a>
-                                <a href="#" class="midsd midwohn"></a>
                                 <a href="#" class="downsd midwohn"></a>
+                                <a href="#" class="midsd midwohn"></a>
+                                <a href="#" class="upsd midwohn"></a>
                             </div>
                             <div>
-                                <a href="#" class="upsd downwohn"></a>
-                                <a href="#" class="midsd downwohn"></a>
                                 <a href="#" class="downsd downwohn"></a>
+                                <a href="#" class="midsd downwohn"></a>
+                                <a href="#" class="upsd downwohn"></a>
                             </div>
                           </div>
                         </div>
