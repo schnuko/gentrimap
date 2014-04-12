@@ -336,31 +336,57 @@ jQuery(document).ready( function($) {
 			   		// map data to variable trends
 			   		trends = collection;
 
-			   		// add x and y axes and their labels
-			   		svg.append("g")
-					      .attr("class", "x axis")
-					      .attr("transform", "translate(0," + (width * 1/2) + ")")
-					      .call(xAxis)
-					    .append("text")
-					      .attr("class", "label")
-					      .attr("x", width)
-					      .attr("y", -6)
-					      .style("text-anchor", "end")
-					      .text("Wohnen Index");
+		   		// add x and y axes and their labels
+		   		svg.append("g")
+				      .attr("class", "x axis")
+				      .attr("transform", "translate(0," + (width * 1/2) + ")")
+				      .call(xAxis)
+				 				.append("text")
+					  			.attr("class", "label")
+					  			.attr("x", width)
+				      		.attr("y", -6)
+									.style("text-anchor", "end")
+									.text("Sozio-Demographisches Index");
+
 
 					svg.append("g")
 						  .attr("class", "y axis")
 						  .attr("transform", "translate(" + (width * 1/2) + ",0)")
 						  .call(yAxis)
-						.append("text")
-						  .attr("class", "label")
-						  .attr("transform", "translate(-20,0)")
-						  .attr("y", 6)
-						  .attr("dy", ".71em")
-						  .style("text-anchor", "end")
-						  .text("Sozio-Demographisches Index");
+						  	.append("text")
+							    .attr("class", "label")
+							    .attr("transform", "translate(-20,0)")
+							    .attr("y", 6)
+							    .attr("dy", ".71em")
+							    .style("text-anchor", "end")
+							    .text("Wohnen Index");
+
 						  
-					
+					svg.append("line")
+							.attr("x1", x(1))
+							.attr("y1", y(-4))
+							.attr("x2", x(1))
+							.attr("y2", y(4))
+							.attr("stroke-width", 2)
+							.attr("stroke", "grey")
+							
+					svg.append("line")
+							.attr("x1", x(4))
+							.attr("y1", y(1))
+							.attr("x2", x(-4))
+							.attr("y2", y(1))
+							.attr("stroke-width", 2)
+							.attr("stroke", "grey")
+							
+					svg.append("line")
+							.attr("x1", x(1))
+							.attr("y1", y(-4))
+							.attr("x2", x(1))
+							.attr("y2", y(4))
+							.attr("stroke-width", 1)
+							.attr("stroke", "grey")
+
+							
 
 					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
 
@@ -450,8 +476,8 @@ jQuery(document).ready( function($) {
 				    var trends = svg.selectAll("circle.trend-arrow")
 					  	.data(collection)
 						.enter().append("circle")
-									.attr("cx", function(d) { return x(d.Wohn_Change)})                 
-									.attr("cy", function(d) { return y(d.SozD_Change)})                    
+									.attr("cx", function(d) { return x(d.SozD_Change)})                 
+									.attr("cy", function(d) { return y(d.Wohn_Change)})                    
 									.attr("r", "5")
 				                    .attr("stroke-width", 1)
 				                    .attr("stroke", "grey")
@@ -705,29 +731,30 @@ jQuery(document).ready( function($) {
 			   		// map data to variable trends
 			   		trends = collection;
 
-			   		// add x and y axes and their labels
-			   		svg.append("g")
-					      .attr("class", "x axis")
-					      .attr("transform", "translate(0," + (width * 1/2) + ")")
-					      .call(xAxis)
-					    .append("text")
-					      .attr("class", "label")
-					      .attr("x", width)
-					      .attr("y", -6)
-					      .style("text-anchor", "end")
-					      .text("Wohnen Index");
+		   		// add x and y axes and their labels
+		   		svg.append("g")
+				      .attr("class", "x axis")
+				      .attr("transform", "translate(0," + (width * 1/2) + ")")
+				      .call(xAxis)
+				 				.append("text")
+					  			.attr("class", "label")
+					  			.attr("x", width)
+				      		.attr("y", -6)
+									.style("text-anchor", "end")
+									.text("Sozio-Demographisches Index");
+
 
 					svg.append("g")
 						  .attr("class", "y axis")
 						  .attr("transform", "translate(" + (width * 1/2) + ",0)")
 						  .call(yAxis)
-						.append("text")
-						  .attr("class", "label")
-						  .attr("transform", "translate(-20,0)")
-						  .attr("y", 6)
-						  .attr("dy", ".71em")
-						  .style("text-anchor", "end")
-						  .text("Sozio-Demographisches Index");
+						  	.append("text")
+							    .attr("class", "label")
+							    .attr("transform", "translate(-20,0)")
+							    .attr("y", 6)
+							    .attr("dy", ".71em")
+							    .style("text-anchor", "end")
+							    .text("Wohnen Index");
 
 					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
 
@@ -817,8 +844,8 @@ jQuery(document).ready( function($) {
 				    var trends = svg.selectAll("circle.trend-arrow")
 					  	.data(collection)
 						.enter().append("circle")
-									.attr("cx", function(d) { return x(d.Wohn_07)})                 
-									.attr("cy", function(d) { return y(d.SozD_07)})                    
+									.attr("cx", function(d) { return x(d.SozD_07)})                 
+									.attr("cy", function(d) { return y(d.Wohn_07)})                    
 									.attr("r", "5")
 				                    .attr("stroke-width", 1)
 				                    .attr("stroke", "grey")
