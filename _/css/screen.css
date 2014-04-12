@@ -8631,18 +8631,18 @@ path.arrow {
 }
 
 /* line 166, ../sass/_trendkarte.scss */
-#matrix line.emphasis {
+#matrix circle.emphasis {
   stroke: black;
 }
 
 /* line 170, ../sass/_trendkarte.scss */
-#matrix line.deemphasis {
+#matrix circle.deemphasis {
   stroke: lightgrey;
   stroke: rgba(0, 0, 0, 0.1);
 }
 
 /* line 175, ../sass/_trendkarte.scss */
-#matrix line.superemphasis {
+#matrix circle.superemphasis {
   stroke: black;
   stroke-width: 4px;
 }
@@ -8742,9 +8742,9 @@ path.arrow {
 }
 
 /* line 265, ../sass/_trendkarte.scss */
-circle {
+/* circle {
   pointer-events: none;
-}
+} */
 
 /* line 269, ../sass/_trendkarte.scss */
 .wander-buttons .btn, .wander-buttons input[type=submit] {

@@ -362,7 +362,7 @@ jQuery(document).ready( function($) {
 
 					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
 
-					svg.append("defs")
+					/*svg.append("defs")
 						.append("marker")
 							.attr("id", "arrow")
 							.attr("viewBox", "0 0 10 10")
@@ -426,14 +426,14 @@ jQuery(document).ready( function($) {
 								.attr('fill', "lightgrey")
 								.attr('fill', "rgba(0,0,0,.1)")
 								.attr("stroke", "black")
-								.attr("class","arrow");
+								.attr("class","arrow");*/
 
 			   		
 			   		// add the actual trend lines to the cartesian graph
 			   		// set the x and y coordinates using the x() and y() functions 
 			   		// defined earlier when we set up the axes
 
-			   		var trends = svg.selectAll("line.trend-arrow")
+			   		/*var trends = svg.selectAll("line.trend-arrow")
 					  	.data(collection)
 						.enter().append("line")
 									.attr("x1", function(d) { return x(d.Wohn_07)})                 
@@ -443,7 +443,18 @@ jQuery(document).ready( function($) {
 				                    .attr("stroke-width", 3)
 				                    .attr("stroke", "grey")
 				                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
-				                    .attr("marker-end","url(#arrow)");
+				                    .attr("marker-end","url(#arrow)");*/
+				    
+				    var trends = svg.selectAll("circle.trend-arrow")
+					  	.data(collection)
+						.enter().append("circle")
+									.attr("cx", function(d) { return x(d.Wohn_Change)})                 
+									.attr("cy", function(d) { return y(d.SozD_Change)})                    
+									.attr("r", "5")
+				                    .attr("stroke-width", 1)
+				                    .attr("stroke", "grey")
+				                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
+				    
 
 				    
 				    // add the names and IDs of all the city districts to the select drop down menu
@@ -456,8 +467,7 @@ jQuery(document).ready( function($) {
 				    	.enter().append("option")
 				    		.attr("value", function(d) { return d.Stadtteil} ).text(function(d) {return d.Stadtteil} );
 
-
-				    setLineInfo();
+				    setCircleInfo();
 				    setLegendListeners();
 				    setSelectListener();
 
@@ -471,7 +481,7 @@ jQuery(document).ready( function($) {
 				
 				d3.select("#matrix svg").remove();
 				$matrixbox.addClass("invisible");
-				d3.selectAll('line').on('mouseenter',null).on('mouseleave',null);
+				d3.selectAll('circle').on('mouseenter',null).on('mouseleave',null);
 				d3.selectAll('.colours a').on('mouseenter',null).on('mouseleave',null).on('click',null);
 				$('#matrix-info').empty();
 			}
@@ -481,11 +491,15 @@ jQuery(document).ready( function($) {
 		// that should be displayed in the box on the right, like the 
 		// district name and the amount of change
 
-		function setLineInfo() {
-			d3.selectAll('line').on('mouseenter',function(d) {
+		function setCircleInfo() {
+		
+		
+			
+			d3.selectAll('circle').on('mouseenter',function(d) {
+
 				if(d3.select(this).classed('deemphasis')) return;
 
-				d3.select(this).classed('superemphasis', true).attr("marker-end","url(#arrow-hover)");
+				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
 				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
 				infoContent += '<strong>Sozio-Demographisches Index</strong>';
 				if (parseFloat(d.SozD_10) - parseFloat(d.SozD_07) > 0) {
@@ -499,16 +513,18 @@ jQuery(document).ready( function($) {
 					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
 				}
 				
+				
 				$('#matrix-info').html(infoContent);
 
 			}).on('mouseleave', function(d) {
-				var theLine = d3.select(this);
-				if(theLine.classed('deemphasis')) return;
-				if(theLine.classed('emphasis')) {
-					theLine.classed('superemphasis', false).attr("marker-end","url(#arrow-emphasis)");
+				var theCircle = d3.select(this);
+				if(theCircle.classed('deemphasis')) return;
+				if(theCircle.classed('emphasis')) {
+					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow-emphasis)");
 				} else {
-					theLine.classed('superemphasis', false).attr("marker-end","url(#arrow)");
+					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow)");
 				}
+				
 				
 				$('#matrix-info').empty();
 			});
@@ -522,10 +538,10 @@ jQuery(document).ready( function($) {
 				var theSquare = d3.select(this);
 				if(!theSquare.classed("active")) {
 					var theClasses = d3.select(this).attr('class');
-					var relatedAreas = d3.selectAll('line').filter(function() {
+					var relatedAreas = d3.selectAll('circle').filter(function() {
 						return d3.select(this).classed(theClasses);
 					});
-					var nonrelatedAreas = d3.selectAll('line').filter(function() {
+					var nonrelatedAreas = d3.selectAll('circle').filter(function() {
 						return !d3.select(this).classed(theClasses) && !d3.select(this).classed("emphasis");
 					});
 
@@ -535,13 +551,13 @@ jQuery(document).ready( function($) {
 			}).on('mouseleave', function() {
 				var theSquare = d3.select(this);
 				var theClasses = theSquare.attr('class'); 
-				var nonrelatedAreas = d3.selectAll('line').filter(function() {
+				var nonrelatedAreas = d3.selectAll('circle').filter(function() {
 					return !d3.select(this).classed(theClasses) && !d3.select(this).classed("active");
 				});
-				var relatedAreas = d3.selectAll('line').filter(function() {
+				var relatedAreas = d3.selectAll('circle').filter(function() {
 					return d3.select(this).classed(theClasses);
 				});
-				var theAreas = d3.selectAll('line');
+				var theAreas = d3.selectAll('circle');
 				if(!theSquare.classed("active")) {
 					relatedAreas.classed("emphasis", false);
 					if (nonrelatedAreas.size() == theAreas.size() - relatedAreas.size()) {
@@ -559,11 +575,11 @@ jQuery(document).ready( function($) {
 				 $('select.matrix-filter').prop("selectedIndex",0);
 				var theSquare = d3.select(this);
 				var theClasses = d3.select(this).attr('class');
-				var theAreas = d3.selectAll('line');
-				var relatedAreas = d3.selectAll('line').filter(function() {
+				var theAreas = d3.selectAll('circle');
+				var relatedAreas = d3.selectAll('circle').filter(function() {
 					return d3.select(this).classed(theClasses);
 				});
-				var nonrelatedAreas = d3.selectAll('line').filter(function() {
+				var nonrelatedAreas = d3.selectAll('circle').filter(function() {
 					return !d3.select(this).classed(theClasses) && !d3.select(this).classed("active");
 				});
 				
@@ -590,13 +606,13 @@ jQuery(document).ready( function($) {
 			var select = d3.selectAll('select.matrix-filter').on("change",function(d) {
 
 				d3.selectAll('.colours a').classed("active",false);
-				d3.selectAll("line").classed("active",false);
+				d3.selectAll("circle").classed("active",false);
 				var stadtteil = this.options[this.selectedIndex].value;
 				if (stadtteil == "all") {
-					d3.selectAll('line').classed("deemphasis",false).classed("emphasis",false).attr("marker-end", "url(#arrow)");
+					d3.selectAll('circle').classed("deemphasis",false).classed("emphasis",false)//.attr("marker-end", "url(#arrow)");
 				} else {
-					d3.selectAll('line').classed("deemphasis",true).attr("marker-end", "url(#arrow-deemphasis)");
-					d3.selectAll('line.' + stadtteil).classed("emphasis",true).classed("deemphasis",false).attr("marker-end", "url(#arrow-emphasis)");
+					d3.selectAll('circle').classed("deemphasis",true)//.attr("marker-end", "url(#arrow-deemphasis)");
+					d3.selectAll('circle.' + stadtteil).classed("emphasis",true).classed("deemphasis",false)//.attr("marker-end", "url(#arrow-emphasis)");
 				}
 				
 			});
