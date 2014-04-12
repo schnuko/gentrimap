@@ -339,7 +339,7 @@ jQuery(document).ready( function($) {
 			   		// add x and y axes and their labels
 			   		svg.append("g")
 					      .attr("class", "x axis")
-					      .attr("transform", "translate(0," + width/2 + ")")
+					      .attr("transform", "translate(0," + (width * 1/2) + ")")
 					      .call(xAxis)
 					    .append("text")
 					      .attr("class", "label")
@@ -350,7 +350,7 @@ jQuery(document).ready( function($) {
 
 					svg.append("g")
 						  .attr("class", "y axis")
-						  .attr("transform", "translate(" + width/2 + ",0)")
+						  .attr("transform", "translate(" + (width * 1/2) + ",0)")
 						  .call(yAxis)
 						.append("text")
 						  .attr("class", "label")
@@ -359,6 +359,8 @@ jQuery(document).ready( function($) {
 						  .attr("dy", ".71em")
 						  .style("text-anchor", "end")
 						  .text("Sozio-Demographisches Index");
+						  
+					
 
 					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
 
@@ -654,7 +656,368 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-	GentriMap.wanderung = function() {
+		GentriMap.wanderung = function() {
+
+		// find the trend matrix div
+		var $matrixbox = $('#trend-matrix'),
+		$matrix = $('#matrix'),
+		trends;
+
+		return {
+			init : function() {
+				
+				// prepare the div by making it visible, dynamically setting the div height to match the screen
+				GentriMap.active = 'wanderung';
+				$matrixbox.removeClass("invisible");
+				$matrix.height($(window).height()-250 > 500 ? $(window).height()-250 : 500);
+
+
+				var svgWidth = $matrix.height() > $matrix.width() ? $matrix.width() : $matrix.height();
+				var width = svgWidth - 40;
+
+				// Define the x and y axes - linear (i.e. not logarithmic etc), min: -4, max: +4
+				// this lets d3 take care of mapping our data from values to pixels on the screen
+				var x = d3.scale.linear()
+				    .range([0, width]).domain([-4, 4]);
+			    var y = d3.scale.linear()
+				    .range([0, width]).domain([4, -4]);
+
+			    var xAxis = d3.svg.axis()
+				    .scale(x)
+				    .orient("bottom");
+
+				var yAxis = d3.svg.axis()
+				    .scale(y)
+				    .orient("left");
+
+				// Add the svg vector image to the matrix div and set dimensions
+				var svg = d3.select("#matrix").append("svg")
+				    .attr("class", "matrix")
+				    .attr("width", svgWidth)
+				    .attr("height", svgWidth)
+				// add g element ready to insert cartesian graph
+			    .append("g")
+			    	.attr("transform", "translate(" + 20 + "," + 20 + ")");
+
+			    // read in the data from the csv file
+			   	d3.csv("_/data/trends/trends_analysis.csv", function(collection) {
+
+			   		// map data to variable trends
+			   		trends = collection;
+
+			   		// add x and y axes and their labels
+			   		svg.append("g")
+					      .attr("class", "x axis")
+					      .attr("transform", "translate(0," + (width * 1/2) + ")")
+					      .call(xAxis)
+					    .append("text")
+					      .attr("class", "label")
+					      .attr("x", width)
+					      .attr("y", -6)
+					      .style("text-anchor", "end")
+					      .text("Wohnen Index");
+
+					svg.append("g")
+						  .attr("class", "y axis")
+						  .attr("transform", "translate(" + (width * 1/2) + ",0)")
+						  .call(yAxis)
+						.append("text")
+						  .attr("class", "label")
+						  .attr("transform", "translate(-20,0)")
+						  .attr("y", 6)
+						  .attr("dy", ".71em")
+						  .style("text-anchor", "end")
+						  .text("Sozio-Demographisches Index");
+
+					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
+
+					/*svg.append("defs")
+						.append("marker")
+							.attr("id", "arrow")
+							.attr("viewBox", "0 0 10 10")
+							.attr("refX", 0)
+							.attr("refY", 5)
+							.attr("markerUnits", "strokeWidth")
+							.attr("markerWidth", 4)
+							.attr("markerHeight", 4)
+							.attr("orient", "auto")
+							.append("path")
+								.attr("d", "M 0 0 L 10 5 L 0 10 z")
+								.attr('stroke-width',0)
+								.attr('fill', "grey")
+								.attr("stroke", "grey")
+								.attr("class","arrow");
+					d3.select("defs")
+						.append("marker")
+							.attr("id", "arrow-hover")
+							.attr("viewBox", "0 0 10 10")
+							.attr("refX", 0)
+							.attr("refY", 5)
+							.attr("markerUnits", "strokeWidth")
+							.attr("markerWidth", 4)
+							.attr("markerHeight", 4)
+							.attr("orient", "auto")
+							.append("path")
+								.attr("d", "M 0 0 L 10 5 L 0 10 z")
+								.attr('stroke-width',0)
+								.attr('fill', "black")
+								.attr("stroke", "white")
+								.attr("class","arrow");
+					d3.select("defs")
+						.append("marker")
+							.attr("id", "arrow-emphasis")
+							.attr("viewBox", "0 0 10 10")
+							.attr("refX", 0)
+							.attr("refY", 5)
+							.attr("markerUnits", "strokeWidth")
+							.attr("markerWidth", 4)
+							.attr("markerHeight", 4)
+							.attr("orient", "auto")
+							.append("path")
+								.attr("d", "M 0 0 L 10 5 L 0 10 z")
+								.attr('stroke-width',0)
+								.attr('fill', "black")
+								.attr("stroke", "black")
+								.attr("class","arrow");
+					d3.select("defs")
+						.append("marker")
+							.attr("id", "arrow-deemphasis")
+							.attr("viewBox", "0 0 10 10")
+							.attr("refX", 0)
+							.attr("refY", 5)
+							.attr("markerUnits", "strokeWidth")
+							.attr("markerWidth", 4)
+							.attr("markerHeight", 4)
+							.attr("orient", "auto")
+							.append("path")
+								.attr("d", "M 0 0 L 10 5 L 0 10 z")
+								.attr('stroke-width',0)
+								.attr('fill', "lightgrey")
+								.attr('fill', "rgba(0,0,0,.1)")
+								.attr("stroke", "black")
+								.attr("class","arrow");*/
+
+			   		
+			   		// add the actual trend lines to the cartesian graph
+			   		// set the x and y coordinates using the x() and y() functions 
+			   		// defined earlier when we set up the axes
+
+			   		/*var trends = svg.selectAll("line.trend-arrow")
+					  	.data(collection)
+						.enter().append("line")
+									.attr("x1", function(d) { return x(d.Wohn_07)})                 
+									.attr("y1", function(d) { return y(d.SozD_07)})                    
+									.attr("x2", function(d) { return x(d.Wohn_10)})
+				                    .attr("y2", function(d) { return y(d.SozD_10)})
+				                    .attr("stroke-width", 3)
+				                    .attr("stroke", "grey")
+				                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
+				                    .attr("marker-end","url(#arrow)");*/
+				    
+				    var trends = svg.selectAll("circle.trend-arrow")
+					  	.data(collection)
+						.enter().append("circle")
+									.attr("cx", function(d) { return x(d.Wohn_07)})                 
+									.attr("cy", function(d) { return y(d.SozD_07)})                    
+									.attr("r", "5")
+				                    .attr("stroke-width", 1)
+				                    .attr("stroke", "grey")
+				                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
+				    
+
+				    
+				    // add the names and IDs of all the city districts to the select drop down menu
+				    var select = d3.selectAll('select.matrix-filter');
+
+				    select.append("option").attr("value","all").text("Alle Stadtteile");
+
+				    select.selectAll("option.stadtteil")
+				    	.data(collection)
+				    	.enter().append("option")
+				    		.attr("value", function(d) { return d.Stadtteil} ).text(function(d) {return d.Stadtteil} );
+
+				    setCircleInfo();
+				    setLegendListeners();
+				    setSelectListener();
+
+			   	});
+
+				
+			},
+
+			// remove the matrix and all event listeners
+			destroy : function() {
+				
+				d3.select("#matrix svg").remove();
+				$matrixbox.addClass("invisible");
+				d3.selectAll('circle').on('mouseenter',null).on('mouseleave',null);
+				d3.selectAll('.colours a').on('mouseenter',null).on('mouseleave',null).on('click',null);
+				$('#matrix-info').empty();
+			}
+		}
+
+		// Set listener for hovering on the arrows. This selects the info 
+		// that should be displayed in the box on the right, like the 
+		// district name and the amount of change
+
+		function setCircleInfo() {
+		
+		
+			
+			d3.selectAll('circle').on('mouseenter',function(d) {
+
+				if(d3.select(this).classed('deemphasis')) return;
+
+				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
+				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
+				infoContent += '<strong>Sozio-Demographisches Index</strong>';
+				if (parseFloat(d.SozD_10) - parseFloat(d.SozD_07) > 0) {
+					infoContent += '<p class="index-trend positive">+' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+				} else {
+					infoContent += '<p class="index-trend negative">' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+				}
+				if (parseFloat(d.Wohn_Change) > 0) {
+					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+				} else {
+					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+				}
+				
+				
+				$('#matrix-info').html(infoContent);
+
+			}).on('mouseleave', function(d) {
+				var theCircle = d3.select(this);
+				if(theCircle.classed('deemphasis')) return;
+				if(theCircle.classed('emphasis')) {
+					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow-emphasis)");
+				} else {
+					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow)");
+				}
+				
+				
+				$('#matrix-info').empty();
+			});
+		}
+
+		// Set listeners for the colour key/legend - emphasis/highlight the arrows that belong to the matching 9-er class
+
+		function setLegendListeners() {
+
+			d3.selectAll('.colours a').on('mouseenter', function() {
+				var theSquare = d3.select(this);
+				if(!theSquare.classed("active")) {
+					var theClasses = d3.select(this).attr('class');
+					var relatedAreas = d3.selectAll('circle').filter(function() {
+						return d3.select(this).classed(theClasses);
+					});
+					var nonrelatedAreas = d3.selectAll('circle').filter(function() {
+						return !d3.select(this).classed(theClasses) && !d3.select(this).classed("emphasis");
+					});
+
+					relatedAreas.classed("emphasis", true).classed("deemphasis", false).attr("marker-end", "url(#arrow-emphasis)");
+					nonrelatedAreas.classed("deemphasis", true).classed("emphasis", false).attr("marker-end", "url(#arrow-deemphasis)");
+				}
+			}).on('mouseleave', function() {
+				var theSquare = d3.select(this);
+				var theClasses = theSquare.attr('class'); 
+				var nonrelatedAreas = d3.selectAll('circle').filter(function() {
+					return !d3.select(this).classed(theClasses) && !d3.select(this).classed("active");
+				});
+				var relatedAreas = d3.selectAll('circle').filter(function() {
+					return d3.select(this).classed(theClasses);
+				});
+				var theAreas = d3.selectAll('circle');
+				if(!theSquare.classed("active")) {
+					relatedAreas.classed("emphasis", false);
+					if (nonrelatedAreas.size() == theAreas.size() - relatedAreas.size()) {
+						nonrelatedAreas.classed("deemphasis", false).attr("marker-end", "url(#arrow)");
+						relatedAreas.attr("marker-end", "url(#arrow)");
+					} else {
+						relatedAreas.classed("deemphasis", true).attr("marker-end", "url(#arrow-deemphasis)");
+						relatedAreas.attr("marker-end", "url(#arrow-deemphasis)");
+					}
+					
+				}
+					
+			}).on('click',function(e) {
+				d3.event.preventDefault();
+				 $('select.matrix-filter').prop("selectedIndex",0);
+				var theSquare = d3.select(this);
+				var theClasses = d3.select(this).attr('class');
+				var theAreas = d3.selectAll('circle');
+				var relatedAreas = d3.selectAll('circle').filter(function() {
+					return d3.select(this).classed(theClasses);
+				});
+				var nonrelatedAreas = d3.selectAll('circle').filter(function() {
+					return !d3.select(this).classed(theClasses) && !d3.select(this).classed("active");
+				});
+				
+				if (!theSquare.classed("active")) {
+					relatedAreas.classed("emphasis active", true).classed("deemphasis", false).attr("marker-end", "url(#arrow-emphasis)");
+					nonrelatedAreas.classed("deemphasis", true).classed("emphasis", false).attr("marker-end", "url(#arrow-deemphasis)");
+					theSquare.classed("active", true);
+
+				} else {
+					relatedAreas.classed("active", false);
+					theSquare.classed("active", false);	
+					if (nonrelatedAreas.size() != theAreas.size() - relatedAreas.size()) {
+						relatedAreas.classed("deemphasis", true).classed("emphasis",false).attr("marker-end", "url(#arrow-deemphasis)");
+					}				
+				}
+				
+			})
+
+		}
+
+		// Listener for select/drop down menu. Highlight (emphasis) only the selected city district
+
+		function setSelectListener() {
+			var select = d3.selectAll('select.matrix-filter').on("change",function(d) {
+
+				d3.selectAll('.colours a').classed("active",false);
+				d3.selectAll("circle").classed("active",false);
+				var stadtteil = this.options[this.selectedIndex].value;
+				if (stadtteil == "all") {
+					d3.selectAll('circle').classed("deemphasis",false).classed("emphasis",false)//.attr("marker-end", "url(#arrow)");
+				} else {
+					d3.selectAll('circle').classed("deemphasis",true)//.attr("marker-end", "url(#arrow-deemphasis)");
+					d3.selectAll('circle.' + stadtteil).classed("emphasis",true).classed("deemphasis",false)//.attr("marker-end", "url(#arrow-emphasis)");
+				}
+				
+			});
+		}
+
+		// This is the same as the previous setnineclass, but I had problems with scope so had to repeat it. Remember to update both functions
+		// if you use different break points for your data
+
+		function setnineclass(d, i) {
+			
+			var nineclass = "";
+			if(d.Wohn_Change < -0 && d.Wohn_Change > parseFloat(d.Wohn_Boarder)) {
+				nineclass = "downwohn";	
+			}
+			else if (d.Wohn_Change < 1 && d.Wohn_Change > parseFloat(d.Wohn_Boarder)) {
+				nineclass = "midwohn";
+			}
+			else if (d.Wohn_Change >= 1) {
+				nineclass = "upwohn";
+			}
+			if (d.SozD_Change < -0 && d.SozD_Change > parseFloat(d.Soz_Boarder)) {
+				nineclass += " downsd";	
+			}
+			else if (d.SozD_Change < 1 && d.SozD_Change > parseFloat(d.Soz_Boarder)) {
+				nineclass += " midsd";	
+			}
+			else if (d.SozD_Change >= 1) {
+				nineclass += " upsd";	
+			}
+
+			return nineclass + " trend-arrow";
+		
+		}
+	}();	
+
+	/*GentriMap.wanderung = function() {
 		var bezirkDataOut = {},
 		bezirkDataIn = {},
 		bezirkDataSaldo = {},
@@ -1178,7 +1541,7 @@ jQuery(document).ready( function($) {
 			var point = map.latLngToLayerPoint(new L.LatLng(x[1], x[0]));  
 			return [point.x, point.y];
 		}
-	}();
+	}(); */
 
 	/*
 	*
