@@ -554,10 +554,10 @@ jQuery(document).ready( function($) {
 				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
 				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
 				infoContent += '<strong>Sozio-Demographisches Index</strong>';
-				if (parseFloat(d.SozD_10) - parseFloat(d.SozD_07) > 0) {
-					infoContent += '<p class="index-trend positive">+' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+				if (parseFloat(d.SozD_Change) > 0) {
+					infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
 				} else {
-					infoContent += '<p class="index-trend negative">' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+					infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
 				}
 				if (parseFloat(d.Wohn_Change) > 0) {
 					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
@@ -779,6 +779,22 @@ jQuery(document).ready( function($) {
 							    .attr("dy", ".71em")
 							    .style("text-anchor", "end")
 							    .text("Wohnen Index");
+							    
+					/*svg.append("line")
+							.attr("x1", x(1))
+							.attr("y1", y(4))
+							.attr("x2", x(1))
+							.attr("y2", y(-4))
+							.attr("stroke-width", 3)
+							.attr("stroke", "grey")
+							
+					svg.append("line")
+							.attr("x1", x(4))
+							.attr("y1", y(1))
+							.attr("x2", x(-4))
+							.attr("y2", y(1))
+							.attr("stroke-width", 3)
+							.attr("stroke", "grey")*/
 
 					// define the different types of arrow heads (small, medium and large for hover/highlight interaction)
 
@@ -922,15 +938,15 @@ jQuery(document).ready( function($) {
 				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
 				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
 				infoContent += '<strong>Sozio-Demographisches Index</strong>';
-				if (parseFloat(d.SozD_10) - parseFloat(d.SozD_07) > 0) {
-					infoContent += '<p class="index-trend positive">+' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+				if (parseFloat(d.SozD_07) > 0) {
+					infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
 				} else {
-					infoContent += '<p class="index-trend negative">' + (parseFloat(d.SozD_10) - parseFloat(d.SozD_07)).toFixed(2) + '</p>';
+					infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
 				}
-				if (parseFloat(d.Wohn_Change) > 0) {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+				if (parseFloat(d.Wohn_07) > 0) {
+					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
 				} else {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
 				}
 				
 				
