@@ -280,6 +280,9 @@ jQuery(document).ready( function($) {
 		}
 
 	}();
+	
+	
+
 
 	/*
 	*
@@ -506,7 +509,8 @@ jQuery(document).ready( function($) {
 				                    .attr("stroke-width", 1)
 				                    .attr("stroke", "grey")
 				                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
-				    
+				                    
+				    svg.selectAll('select.matrix-filter')
 
 				    
 				    // add the names and IDs of all the city districts to the select drop down menu
@@ -542,40 +546,51 @@ jQuery(document).ready( function($) {
 		// Set listener for hovering on the arrows. This selects the info 
 		// that should be displayed in the box on the right, like the 
 		// district name and the amount of change
+		
+		function createInfoContent(d){
+			var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
+			infoContent += '<strong>Sozio-Demographisches Index</strong>';
+			if (parseFloat(d.SozD_Change) > 0) {
+				infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
+			} else {
+				infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
+			}
+			if (parseFloat(d.Wohn_Change) > 0) {
+				infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+			} else {
+				infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
+			}
+			return infoContent;
+		}		
+			
 
 		function setCircleInfo() {
-		
+
 		
 			
 			d3.selectAll('circle').on('mouseenter',function(d) {
 
-				if(d3.select(this).classed('deemphasis')) return;
+				if(d3.select(this).classed('deemphasis')) {
+					/*this.classed('deemphasis', false);
+					d3.selectAll('.emphasis').classed('emphasis', false);*/
+					return;
+				}
 
-				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
-				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
-				infoContent += '<strong>Sozio-Demographisches Index</strong>';
-				if (parseFloat(d.SozD_Change) > 0) {
-					infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
-				} else {
-					infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_Change).toFixed(2) + '</p>';
-				}
-				if (parseFloat(d.Wohn_Change) > 0) {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
-				} else {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_Change).toFixed(2) + '</p>';
-				}
-				
+				d3.select(this).classed('emphasis', true)//.attr("marker-end","url(#arrow-hover)");
+
+				var infoContent = createInfoContent(d);
 				
 				$('#matrix-info').html(infoContent);
 
 			}).on('mouseleave', function(d) {
 				var theCircle = d3.select(this);
 				if(theCircle.classed('deemphasis')) return;
-				if(theCircle.classed('emphasis')) {
+				/*if(theCircle.classed('emphasis')) {
 					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow-emphasis)");
 				} else {
 					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow)");
-				}
+				}*/
+				theCircle.classed('emphasis', false);
 				
 				
 				$('#matrix-info').empty();
@@ -662,9 +677,15 @@ jQuery(document).ready( function($) {
 				var stadtteil = this.options[this.selectedIndex].value;
 				if (stadtteil == "all") {
 					d3.selectAll('circle').classed("deemphasis",false).classed("emphasis",false)//.attr("marker-end", "url(#arrow)");
+					$('#matrix-info').empty();
 				} else {
 					d3.selectAll('circle').classed("deemphasis",true)//.attr("marker-end", "url(#arrow-deemphasis)");
 					d3.selectAll('circle.' + stadtteil).classed("emphasis",true).classed("deemphasis",false)//.attr("marker-end", "url(#arrow-emphasis)");
+					
+					var d = this.options[this.selectedIndex].__data__;
+					var infoContent = createInfoContent(d);
+					$('#matrix-info').html(infoContent);
+					
 				}
 				
 			});
@@ -926,6 +947,23 @@ jQuery(document).ready( function($) {
 		// Set listener for hovering on the arrows. This selects the info 
 		// that should be displayed in the box on the right, like the 
 		// district name and the amount of change
+		
+		function createInfoContent(d){
+			var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
+			infoContent += '<strong>Sozio-Demographisches Index</strong>';
+			if (parseFloat(d.SozD_07) > 0) {
+				infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
+			} else {
+				infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
+			}
+			if (parseFloat(d.Wohn_07) > 0) {
+				infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
+			} else {
+				infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
+			}
+			return infoContent;
+		}		
+		
 
 		function setCircleInfo() {
 		
@@ -935,19 +973,8 @@ jQuery(document).ready( function($) {
 
 				if(d3.select(this).classed('deemphasis')) return;
 
-				d3.select(this).classed('superemphasis', true)//.attr("marker-end","url(#arrow-hover)");
-				var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
-				infoContent += '<strong>Sozio-Demographisches Index</strong>';
-				if (parseFloat(d.SozD_07) > 0) {
-					infoContent += '<p class="index-trend positive">+' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
-				} else {
-					infoContent += '<p class="index-trend negative">' + parseFloat(d.SozD_07).toFixed(2) + '</p>';
-				}
-				if (parseFloat(d.Wohn_07) > 0) {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
-				} else {
-					infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d.Wohn_07).toFixed(2) + '</p>';
-				}
+				d3.select(this).classed('emphasis', true)//.attr("marker-end","url(#arrow-hover)");
+				var infoContent = createInfoContent(d);
 				
 				
 				$('#matrix-info').html(infoContent);
@@ -955,11 +982,13 @@ jQuery(document).ready( function($) {
 			}).on('mouseleave', function(d) {
 				var theCircle = d3.select(this);
 				if(theCircle.classed('deemphasis')) return;
-				if(theCircle.classed('emphasis')) {
+				/*if(theCircle.classed('emphasis')) {
 					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow-emphasis)");
 				} else {
 					theCircle.classed('superemphasis', false)//.attr("marker-end","url(#arrow)");
-				}
+				}*/
+				
+				theCircle.classed('emphasis', false)
 				
 				
 				$('#matrix-info').empty();
@@ -1046,9 +1075,14 @@ jQuery(document).ready( function($) {
 				var stadtteil = this.options[this.selectedIndex].value;
 				if (stadtteil == "all") {
 					d3.selectAll('circle').classed("deemphasis",false).classed("emphasis",false)//.attr("marker-end", "url(#arrow)");
+					$('#matrix-info').empty();
 				} else {
 					d3.selectAll('circle').classed("deemphasis",true)//.attr("marker-end", "url(#arrow-deemphasis)");
 					d3.selectAll('circle.' + stadtteil).classed("emphasis",true).classed("deemphasis",false)//.attr("marker-end", "url(#arrow-emphasis)");
+					
+					var d = this.options[this.selectedIndex].__data__;
+					var infoContent = createInfoContent(d);
+					$('#matrix-info').html(infoContent);
 				}
 				
 			});
