@@ -8646,7 +8646,7 @@ path.arrow {
 /* line 166, ../sass/_trendkarte.scss */
 #matrix circle.emphasis {
   //stroke: black;
-  stroke-width: 3px;
+  stroke-width: 4px;
 }
 
 /* line 170, ../sass/_trendkarte.scss */
@@ -8658,7 +8658,7 @@ path.arrow {
 /* line 175, ../sass/_trendkarte.scss */
 #matrix circle.superemphasis {
   //stroke: black;
-  stroke-width: 3px;
+  stroke-width: 4px;
 }
 
 /* line 194, ../sass/_trendkarte.scss */
