@@ -8296,7 +8296,7 @@ body > #outer-wrap {
 /* must be same height as the footer plus extra for space*/
 /* line 182, ../sass/screen.scss */
 .home #inner-wrap {
-  padding-bottom: 150px;
+  padding-bottom: 10px;
 }
 
 /* line 184, ../sass/screen.scss */
@@ -8497,14 +8497,14 @@ img.header-img {
 
 /* line 45, ../sass/_trendkarte.scss */
 #trend-karte path {
-  fill-opacity: .7;
+  fill-opacity: .8;
   stroke: #fff;
   stroke-width: 1.5px;
 }
 
 /* line 51, ../sass/_trendkarte.scss */
 #trend-karte .map path.emphasis {
-  fill-opacity: .9;
+  fill-opacity: 1.0;
   stroke-width: 3px;
 }
 
@@ -8659,6 +8659,11 @@ path.arrow {
 #matrix circle.superemphasis {
   //stroke: black;
   stroke-width: 4px;
+}
+
+.trend-area {
+	background-color: #606060;
+	fill: #606060;
 }
 
 /* line 194, ../sass/_trendkarte.scss */
