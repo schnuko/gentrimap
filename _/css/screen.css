@@ -8525,9 +8525,12 @@ img.header-img {
   right: 32px;
   top: 32px;
   width: 154px;
-  height: 153px;
+  height: 154px;
   position: absolute;
   z-index: 999;
+  border: 1px solid;
+  border-color: #DDDDDD;
+  border-radius: 5px;
 }
 /* line 73, ../sass/_trendkarte.scss */
 .legend .colours {
@@ -8541,6 +8544,20 @@ img.header-img {
   width: 100%;
   clear: both;
 }
+
+/* line 73, ../sass/_trendkarte.scss */
+.legend #colours-ext {
+  float: left;
+  position: absolute;
+  left: 1px;
+  top: 115px;
+}
+/* line 78, ../sass/_trendkarte.scss */
+.legend #colours-ext div {
+  width: 100%;
+  clear: both;
+}
+
 /* line 85, ../sass/_trendkarte.scss */
 .legend a {
   opacity: .7;
@@ -8555,6 +8572,41 @@ img.header-img {
   border: 2px solid #333;
 }
 
+/* line 73, ../sass/_trendkarte.scss */
+.legend-ext .colours {
+  float: left;
+  position: relative;
+  //left: 36px;
+  top: 0px;
+}
+
+/* line 85, ../sass/_trendkarte.scss */
+.legend-ext a {
+  opacity: .7;
+  width: 28px;
+  height: 28px;
+  margin: 5px;
+  display: block;
+  float: left;
+}
+
+/* line 78, ../sass/_trendkarte.scss */
+.legend-ext .colours div {
+  width: 100%;
+  clear: both;
+}
+
+
+.legend-ext {
+  background: white;
+  right: 32px;
+  top: 195px;
+  width: 154px;
+  //height: 43px;
+  position: absolute;
+  z-index: 999;
+}
+
 /* line 99, ../sass/_trendkarte.scss */
 #matrix-info {
   background: white;
@@ -8566,12 +8618,14 @@ img.header-img {
 }
 
 /* line 108, ../sass/_trendkarte.scss */
-.x-axis {
+.x-axis{
   text-align: center;
   width: 112px;
-  left: 37px;
-  top: 5px;
-  position: relative;
+  left: 39px;
+  //top: 5px;
+  top: 117px;
+  //height: 100px;
+  position: absolute;
 }
 /* line 114, ../sass/_trendkarte.scss */
 .x-axis span {
@@ -8587,6 +8641,16 @@ img.header-img {
 	padding: 0px 10px 0 12px;
 }
 
+.x-axis-ext{
+  text-align: center;
+  width: 100px;
+  left: 43px;
+  top: 10px;
+  //height: 100px;
+  position: absolute;
+}
+
+
 /* line 123, ../sass/_trendkarte.scss */
 .y-axis {
   transform: rotate(-90deg);
@@ -8598,7 +8662,7 @@ img.header-img {
   -moz-transform: rotate(-90deg);
   position: absolute;
   left: -35px;
-  top: 77px;
+  top: 43px;
   text-align: center;
 }
 /* line 133, ../sass/_trendkarte.scss */
@@ -8645,8 +8709,9 @@ path.arrow {
 
 /* line 166, ../sass/_trendkarte.scss */
 #matrix circle.emphasis {
-  //stroke: black;
-  stroke-width: 4px;
+  //stroke: background-color;
+  stroke-width: 7px;
+  stroke-opacity: 0.6;
 }
 
 /* line 170, ../sass/_trendkarte.scss */
@@ -8658,66 +8723,155 @@ path.arrow {
 /* line 175, ../sass/_trendkarte.scss */
 #matrix circle.superemphasis {
   //stroke: black;
-  stroke-width: 4px;
+  stroke-width: 7px;
+  stroke-opacity: 0.6;
 }
 
 .trend-area {
-	background-color: #606060;
-	fill: #606060;
+	background-color: #707070;
+	fill: #707070;
 }
 
 /* line 194, ../sass/_trendkarte.scss */
 .downsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
+  //stroke: #143ead;
 }
 
 /* line 198, ../sass/_trendkarte.scss */
 .downsd.midwohn {
   background-color: #143ead;
   fill: #143ead;
+  //stroke: #143ead;
 }
 
 /* line 202, ../sass/_trendkarte.scss */
 .downsd.upwohn {
   background-color: #143ead;
   fill: #143ead;
+  //stroke: #143ead;
 }
 
 /* line 206, ../sass/_trendkarte.scss */
 .midsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
+  //stroke: #143ead;
 }
 
 /* line 210, ../sass/_trendkarte.scss */
 .midsd.midwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
+  //stroke: #c36d4b;
 }
 
 /* line 214, ../sass/_trendkarte.scss */
 .midsd.upwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
+  //stroke: #c36d4b;
 }
 
 /* line 218, ../sass/_trendkarte.scss */
 .upsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
+  //stroke: #143ead;
 }
 
 /* line 222, ../sass/_trendkarte.scss */
 .upsd.midwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
+  //stroke: #c36d4b;
 }
 
 /* line 226, ../sass/_trendkarte.scss */
 .upsd.upwohn {
   background-color: #9e131a;
   fill: #9e131a;
+  //stroke: #9e131a;
+}
+
+.notsd.notwohn {
+	background-color: #707070;
+	fill: #707070;
+	//stroke: #707070;
+}
+
+
+/* line 194, ../sass/_trendkarte.scss */
+circle.emphasis.downsd.downwohn {
+  stroke: #143ead;
+}
+
+/* line 198, ../sass/_trendkarte.scss */
+circle.emphasis.downsd.midwohn {
+  background-color: #143ead;
+  fill: #143ead;
+  stroke: #143ead;
+}
+
+/* line 202, ../sass/_trendkarte.scss */
+circle.emphasis.downsd.upwohn {
+  background-color: #143ead;
+  fill: #143ead;
+  stroke: #143ead;
+}
+
+/* line 206, ../sass/_trendkarte.scss */
+circle.emphasis.midsd.downwohn {
+  background-color: #143ead;
+  fill: #143ead;
+  stroke: #143ead;
+}
+
+/* line 210, ../sass/_trendkarte.scss */
+circle.emphasis.midsd.midwohn {
+  background-color: #c36d4b;
+  fill: #c36d4b;
+  stroke: #c36d4b;
+}
+
+/* line 214, ../sass/_trendkarte.scss */
+circle.emphasis.midsd.upwohn {
+  background-color: #c36d4b;
+  fill: #c36d4b;
+  stroke: #c36d4b;
+}
+
+/* line 218, ../sass/_trendkarte.scss */
+circle.emphasis.upsd.downwohn {
+  background-color: #143ead;
+  fill: #143ead;
+  stroke: #143ead;
+}
+
+/* line 222, ../sass/_trendkarte.scss */
+circle.emphasis.upsd.midwohn {
+  background-color: #c36d4b;
+  fill: #c36d4b;
+  stroke: #c36d4b;
+}
+
+/* line 226, ../sass/_trendkarte.scss */
+circle.emphasis.upsd.upwohn {
+  background-color: #9e131a;
+  fill: #9e131a;
+  stroke: #9e131a;
+}
+
+circle.emphasis.notsd.notwohn {
+	background-color: #707070;
+	fill: #707070;
+	stroke: #707070;
+}
+
+circle {
+	stroke-width: 1px;
+	stroke: gray;
 }
 
 /* line 231, ../sass/_trendkarte.scss */

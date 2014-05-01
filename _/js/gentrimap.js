@@ -148,6 +148,9 @@ jQuery(document).ready( function($) {
 				else if (trends[d.id].Wohn_Change >= 1) {
 					nineclass = "upwohn";
 				}
+				else {
+					nineclass += "notwohn notsd"
+				}
 				if (trends[d.id].SozD_Change < 0 && trends[d.id].SozD_Change > parseFloat(trends[d.id].Soz_Boarder)) {
 					nineclass += " downsd";	
 				}
@@ -156,6 +159,9 @@ jQuery(document).ready( function($) {
 				}
 				else if (trends[d.id].SozD_Change >= 1) {
 					nineclass += " upsd";	
+				}
+				else {
+					nineclass += " notsd notwohn"
 				}
 
 				return nineclass + " trend-area";
@@ -532,12 +538,13 @@ function boxplot(value) {
 			    var trends = svg.selectAll("circle.trend-arrow")
 				  	.data(collection)
 					.enter().append("circle")
+								.attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
 								.attr("cx", function(d) { return x(d["SozD_" + value])})                 
 								.attr("cy", function(d) { return y(d["Wohn_" + value])})                    
 								.attr("r", "5")
-			                    .attr("stroke-width", 1)
-			                    .attr("stroke", "grey")
-			                    .attr("class", function(d) { return setnineclass(d) + " " + d.Stadtteil})
+			                    //.attr("stroke-width", 1)
+			                    //.attr("stroke", "grey")
+			                    
 			                    
 			    svg.selectAll('select.matrix-filter')
 
@@ -722,6 +729,9 @@ function boxplot(value) {
 			else if (d.Wohn_Change >= 1) {
 				nineclass = "upwohn";
 			}
+			else {
+				nineclass += "notwohn notsd"
+			}
 			if (d.SozD_Change < -0 && d.SozD_Change > parseFloat(d.Soz_Boarder)) {
 				nineclass += " downsd";	
 			}
@@ -730,6 +740,9 @@ function boxplot(value) {
 			}
 			else if (d.SozD_Change >= 1) {
 				nineclass += " upsd";	
+			}
+			else {
+				nineclass += " notsd notwohn"
 			}
 
 			return nineclass + " trend-arrow";
