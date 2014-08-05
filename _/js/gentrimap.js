@@ -335,7 +335,7 @@ jQuery(document).ready( function($) {
 		//L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 		//L.tileLayer("http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg", {
 			 	//key: "8d3aebdf38f74388bdad35df7e604d4e",
-		    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; CloudMade",
+		    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; Mapbox",
 		    //styleId: 22677
 		}).addTo(map);
 		return map;
@@ -521,7 +521,7 @@ function boxplot(value) {
 							
 						svg.append("line")
 								.attr("x1", x(collection[1].Soz_Boarder))
-								.attr("y1", y(4))
+								.attr("y1", y(3.6))
 								.attr("x2", x(collection[1].Soz_Boarder))
 								.attr("y2", y(collection[1].Wohn_Boarder)-1.5)
 								.attr("stroke-width", 3)
