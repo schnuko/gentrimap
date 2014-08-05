@@ -8728,8 +8728,8 @@ path.arrow {
 }
 
 .trend-area {
-	background-color: #707070;
-	fill: #707070;
+	background-color: #808080;
+	fill: #808080;
 }
 
 /* line 194, ../sass/_trendkarte.scss */
@@ -8796,9 +8796,9 @@ path.arrow {
 }
 
 .notsd.notwohn {
-	background-color: #707070;
-	fill: #707070;
-	//stroke: #707070;
+	background-color: #808080;
+	fill: #808080;
+	//stroke: #808080;
 }
 
 
@@ -8864,9 +8864,9 @@ circle.emphasis.upsd.upwohn {
 }
 
 circle.emphasis.notsd.notwohn {
-	background-color: #707070;
-	fill: #707070;
-	stroke: #707070;
+	background-color: #808080;
+	fill: #808080;
+	stroke: #808080;
 }
 
 circle {
