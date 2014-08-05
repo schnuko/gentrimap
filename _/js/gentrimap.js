@@ -263,13 +263,13 @@ jQuery(document).ready( function($) {
 		function setTooltipListeners() {
 			d3.selectAll("path.trend-area").filter(function(d) {return !d3.select(this).classed("null");}).tooltip(function(d, i) {
 				var content = '<div><p>';
-				content += '<strong>Kinderarmut:</strong> ' +  (trends[d.id].Kind_Arm*100).toFixed(2) + '%<br/>';
-				content += '<strong>Erwachsenen Armut:</strong> ' +  (trends[d.id].Erwa_Arm*100).toFixed(2) + '%<br/>';
-				content += '<strong>Altersarmut:</strong> ' +  (trends[d.id].Alter_Arm*100).toFixed(2) + '%';
+				content += '<strong>Income Poverty:</strong> ' +  (trends[d.id].Einkommen_Arm*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Einkommen_Arm_t2*100).toFixed(2) +'%<br/>';
+				//content += '<strong>Erwachsenen Armut:</strong> ' +  (trends[d.id].Erwa_Arm*100).toFixed(2) + '%<br/>';
+				//content += '<strong>Altersarmut:</strong> ' +  (trends[d.id].Alter_Arm*100).toFixed(2) + '%';
 				content += '<hr/>';
-				content += '<strong>Mietpreise:</strong> ' +  (trends[d.id].Mietpreise*1).toFixed(2) + '€<br/>';
-				content += '<strong>Anteil Eigentumswohnung:</strong> ' +  (trends[d.id].Anteil_ETW*100).toFixed(2) + '%<br/>';
-				content += '<strong>Anteil ALG II Geeignete Wohnungen:</strong> ' +  (trends[d.id].Anteil_KDU*100).toFixed(2) + '%<br/>';
+				content += '<strong>Rent Price:</strong> ' +  (trends[d.id].Mietpreise*1).toFixed(2) + '€ &rarr; ' + (trends[d.id].Mietpreise_t2*1).toFixed(2) +'€<br/>';
+				content += '<strong>Condominiums:</strong> ' +  (trends[d.id].Anteil_ETW*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Anteil_ETW_t2*100).toFixed(2) +'%<br/>';
+				content += '<strong>Affordable Flats:</strong> ' +  (trends[d.id].Anteil_KDU*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Anteil_KDU_t2*100).toFixed(2) +'%<br/>';
 				content += '</p></div>';
 				return {
 					type: "popover",
