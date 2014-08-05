@@ -328,10 +328,15 @@ jQuery(document).ready( function($) {
 
 		var map = new L.map(mapdiv).setView([lat,lng], zoom);
 
-		L.tileLayer('http://{s}.tile.cloudmade.com/8d3aebdf38f74388bdad35df7e604d4e/22677/256/{z}/{x}/{y}.png', {
-		    key: "8d3aebdf38f74388bdad35df7e604d4e",
+		//L.tileLayer('http://{s}.tile.cloudmade.com/8d3aebdf38f74388bdad35df7e604d4e/22677/256/{z}/{x}/{y}.png', {
+		//L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+		//L.tileLayer('http://a.tiles.mapbox.com/v3/examples.map-zr0njcqy/{z}/{x}/{y}.png', {
+		L.tileLayer('http://a.tiles.mapbox.com/v3/examples.map-20v6611k/{z}/{x}/{y}.png', {
+		//L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		//L.tileLayer("http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg", {
+			 	//key: "8d3aebdf38f74388bdad35df7e604d4e",
 		    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; CloudMade",
-		    styleId: 22677
+		    //styleId: 22677
 		}).addTo(map);
 		return map;
 	}
