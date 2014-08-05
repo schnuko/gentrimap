@@ -463,7 +463,7 @@ function boxplot(value) {
 					  			.attr("x", width)
 				      		.attr("y", -6)
 									.style("text-anchor", "end")
-									.text("Sozio-Demographisches Index");
+									.text("Sozio-Demographic Index");
 
 
 					svg.append("g")
@@ -476,7 +476,7 @@ function boxplot(value) {
 							    .attr("y", 6)
 							    .attr("dy", ".71em")
 							    .style("text-anchor", "end")
-							    .text("Wohnen Index");
+							    .text("Residential-Economic Index");
 							    
 							  
 					if(value == "Change") {
@@ -557,7 +557,7 @@ function boxplot(value) {
 			    // add the names and IDs of all the city districts to the select drop down menu
 			    var select = d3.selectAll('select.matrix-filter');
 
-			    select.append("option").attr("value","all").text("Alle Stadtteile");
+			    select.append("option").attr("value","all").text("All Neighbourhoods");
 
 			    select.selectAll("option.stadtteil")
 			    	.data(collection)
@@ -589,16 +589,16 @@ function boxplot(value) {
 		function createInfoContent(d){
 		
 			var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
-			infoContent += '<strong>Sozio-Demographisches Index</strong>';
+			infoContent += '<strong>Sozio-Demographic Index</strong>';
 			if (parseFloat(d["SozD_" + value]) > 0) {
 				infoContent += '<p class="index-trend positive">+' + parseFloat(d["SozD_" + value]).toFixed(2) + '</p>';
 			} else {
 				infoContent += '<p class="index-trend negative">' + parseFloat(d["SozD_" + value]).toFixed(2) + '</p>';
 			}
 			if (parseFloat(d["Wohn_" + value]) > 0) {
-				infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
+				infoContent += '<strong>Residential-Economic Index</strong><p class="index-trend positive">+' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
 			} else {
-				infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
+				infoContent += '<strong>Residential-Economic Index</strong><p class="index-trend negative">' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
 			}
 				
 			return infoContent;
