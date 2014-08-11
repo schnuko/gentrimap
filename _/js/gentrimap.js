@@ -12,7 +12,7 @@
 
 
 var GentriMap = {
-	active : 'trendsMap'
+	active : 'intro'
 };
 
 jQuery(document).ready( function($) {
@@ -303,7 +303,29 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-		GentriMap.wanderung = boxplot("07");
+	GentriMap.wanderung = boxplot("07");
+
+	/*
+	*
+	*	Start fourth visualisation
+	*
+	*/
+
+	GentriMap.intro = {
+		init: function () {
+			var $intro = $('#intro');
+
+			GentriMap.active = 'intro';
+			$intro.removeClass('invisible');
+
+		},
+		destroy : function() {
+			var $intro = $('#intro');
+			
+			$intro.addClass("invisible");			
+		}
+		
+	}
 
 
 	/*
@@ -366,13 +388,22 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-	GentriMap.trendsMap.init();
+	GentriMap.intro.init();
 
 	/* 
 	*
 	* 	Add listeners to the buttons at the top of the screen. These switch between the 3 different types of visualisation.
 	*
 	*/
+
+	$('#introLink').on('click',function(e) {
+		e.preventDefault();
+		if (GentriMap.active==='intro') return;
+		GentriMap[GentriMap.active].destroy();
+		$('.vis-navigation span').removeClass("active");
+		$(this).parent('span').addClass('active');
+		GentriMap.intro.init();
+	});
 
 	$('#trendMapLink').on('click',function(e) {
 		e.preventDefault();
@@ -521,7 +552,7 @@ function boxplot(value) {
 							
 						svg.append("line")
 								.attr("x1", x(collection[1].Soz_Boarder))
-								.attr("y1", y(3.6))
+								.attr("y1", y(3.6)	)
 								.attr("x2", x(collection[1].Soz_Boarder))
 								.attr("y2", y(collection[1].Wohn_Boarder)-1.5)
 								.attr("stroke-width", 3)

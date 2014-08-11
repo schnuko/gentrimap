@@ -57,9 +57,59 @@
 
                   <!-- Add additional buttons here to navigation to different visualisations. The id is used in gentrimap.js to initialise the code for the relevant vis. The href should be the id of the div that contains your new vis. -->
                   <div class="btn-group vis-navigation">
-                    <span type="button" class="btn btn-default active"><a id="trendMapLink" href="#trend-karte">Map</a></span>
+                    <span type="button" class="btn btn-default active"><a id="introLink" href="#intro">Intro</a></span>
+                    <span type="button" class="btn btn-default"><a id="trendMapLink" href="#trend-karte">Map</a></span>
                     <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Typology</a></span>
                     <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Initial Status</a></span>
+                  </div>
+
+                  <div id="intro" class="invisible row">
+                    <div class="col-xs-12">
+                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
+                    </div>
+                    <div class="col-xs-12">
+                      <!-- Visualisation (map) is inserted here. -->
+                      <div ></div>
+                      <!-- The colour key/legend for the 9 trends. -->
+                      <div class="legend">
+                        <div id="matrix-legend">
+                          <div class="y-axis">
+                              <p class="small">Res-Econ Index</p>
+                              <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
+                          </div>
+                          <div class="colours">
+                            <div>
+                                <a href="#" class="upwohn downsd"></a>
+                                <a href="#" class="midsd upwohn"></a>
+                                <a href="#" class="upsd upwohn"></a>
+                            </div>
+                            <div>
+                                <a href="#" class="downsd midwohn"></a>
+                                <a href="#" class="midsd midwohn"></a>
+                                <a href="#" class="upsd midwohn"></a>
+                            </div>
+                            <div>
+                                <a href="#" class="downsd downwohn"></a>
+                                <a href="#" class="midsd downwohn"></a>
+                                <a href="#" class="upsd downwohn"></a>
+                            </div>
+                          </div>
+                          <div class="x-axis">
+                              <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
+                              <p class="small">Socio-Demo Index</p>
+                          </div>
+                          <div class="colours" id="colours-ext">
+                              <div>
+                                <a href="#" class="notsd notwohn"></a>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <!-- BEGIN FIRST VISUALISATION -->
