@@ -12,7 +12,7 @@
 
 
 var GentriMap = {
-	active : 'trendsMap'
+	active : 'intro'
 };
 
 jQuery(document).ready( function($) {
@@ -263,13 +263,13 @@ jQuery(document).ready( function($) {
 		function setTooltipListeners() {
 			d3.selectAll("path.trend-area").filter(function(d) {return !d3.select(this).classed("null");}).tooltip(function(d, i) {
 				var content = '<div><p>';
-				content += '<strong>Kinderarmut:</strong> ' +  (trends[d.id].Kind_Arm*100).toFixed(2) + '%<br/>';
-				content += '<strong>Erwachsenen Armut:</strong> ' +  (trends[d.id].Erwa_Arm*100).toFixed(2) + '%<br/>';
-				content += '<strong>Altersarmut:</strong> ' +  (trends[d.id].Alter_Arm*100).toFixed(2) + '%';
+				content += '<strong>Income Poverty:</strong> ' +  (trends[d.id].Einkommen_Arm*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Einkommen_Arm_t2*100).toFixed(2) +'%<br/>';
+				//content += '<strong>Erwachsenen Armut:</strong> ' +  (trends[d.id].Erwa_Arm*100).toFixed(2) + '%<br/>';
+				//content += '<strong>Altersarmut:</strong> ' +  (trends[d.id].Alter_Arm*100).toFixed(2) + '%';
 				content += '<hr/>';
-				content += '<strong>Mietpreise:</strong> ' +  (trends[d.id].Mietpreise*1).toFixed(2) + '€<br/>';
-				content += '<strong>Anteil Eigentumswohnung:</strong> ' +  (trends[d.id].Anteil_ETW*100).toFixed(2) + '%<br/>';
-				content += '<strong>Anteil ALG II Geeignete Wohnungen:</strong> ' +  (trends[d.id].Anteil_KDU*100).toFixed(2) + '%<br/>';
+				content += '<strong>Rent Price:</strong> ' +  (trends[d.id].Mietpreise*1).toFixed(2) + '€ &rarr; ' + (trends[d.id].Mietpreise_t2*1).toFixed(2) +'€<br/>';
+				content += '<strong>Condominiums:</strong> ' +  (trends[d.id].Anteil_ETW*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Anteil_ETW_t2*100).toFixed(2) +'%<br/>';
+				content += '<strong>Affordable Flats:</strong> ' +  (trends[d.id].Anteil_KDU*100).toFixed(2) + '% &rarr; ' + (trends[d.id].Anteil_KDU_t2*100).toFixed(2) +'%<br/>';
 				content += '</p></div>';
 				return {
 					type: "popover",
@@ -303,7 +303,29 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-		GentriMap.wanderung = boxplot("07");
+	GentriMap.wanderung = boxplot("07");
+
+	/*
+	*
+	*	Start fourth visualisation
+	*
+	*/
+
+	GentriMap.intro = {
+		init: function () {
+			var $intro = $('#intro');
+
+			GentriMap.active = 'intro';
+			$intro.removeClass('invisible');
+
+		},
+		destroy : function() {
+			var $intro = $('#intro');
+			
+			$intro.addClass("invisible");			
+		}
+		
+	}
 
 
 	/*
@@ -328,10 +350,15 @@ jQuery(document).ready( function($) {
 
 		var map = new L.map(mapdiv).setView([lat,lng], zoom);
 
-		L.tileLayer('http://{s}.tile.cloudmade.com/8d3aebdf38f74388bdad35df7e604d4e/22677/256/{z}/{x}/{y}.png', {
-		    key: "8d3aebdf38f74388bdad35df7e604d4e",
-		    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; CloudMade",
-		    styleId: 22677
+		//L.tileLayer('http://{s}.tile.cloudmade.com/8d3aebdf38f74388bdad35df7e604d4e/22677/256/{z}/{x}/{y}.png', {
+		//L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+		//L.tileLayer('http://a.tiles.mapbox.com/v3/examples.map-zr0njcqy/{z}/{x}/{y}.png', {
+		L.tileLayer('http://a.tiles.mapbox.com/v3/examples.map-20v6611k/{z}/{x}/{y}.png', {
+		//L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		//L.tileLayer("http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg", {
+			 	//key: "8d3aebdf38f74388bdad35df7e604d4e",
+		    attribution: "Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery  &copy; Mapbox",
+		    //styleId: 22677
 		}).addTo(map);
 		return map;
 	}
@@ -361,13 +388,22 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-	GentriMap.trendsMap.init();
+	GentriMap.intro.init();
 
 	/* 
 	*
 	* 	Add listeners to the buttons at the top of the screen. These switch between the 3 different types of visualisation.
 	*
 	*/
+
+	$('#introLink').on('click',function(e) {
+		e.preventDefault();
+		if (GentriMap.active==='intro') return;
+		GentriMap[GentriMap.active].destroy();
+		$('.vis-navigation span').removeClass("active");
+		$(this).parent('span').addClass('active');
+		GentriMap.intro.init();
+	});
 
 	$('#trendMapLink').on('click',function(e) {
 		e.preventDefault();
@@ -458,7 +494,7 @@ function boxplot(value) {
 					  			.attr("x", width)
 				      		.attr("y", -6)
 									.style("text-anchor", "end")
-									.text("Sozio-Demographisches Index");
+									.text("Sozio-Demographic Index");
 
 
 					svg.append("g")
@@ -471,7 +507,7 @@ function boxplot(value) {
 							    .attr("y", 6)
 							    .attr("dy", ".71em")
 							    .style("text-anchor", "end")
-							    .text("Wohnen Index");
+							    .text("Residential-Economic Index");
 							    
 							  
 					if(value == "Change") {
@@ -516,7 +552,7 @@ function boxplot(value) {
 							
 						svg.append("line")
 								.attr("x1", x(collection[1].Soz_Boarder))
-								.attr("y1", y(4))
+								.attr("y1", y(3.6)	)
 								.attr("x2", x(collection[1].Soz_Boarder))
 								.attr("y2", y(collection[1].Wohn_Boarder)-1.5)
 								.attr("stroke-width", 3)
@@ -552,7 +588,7 @@ function boxplot(value) {
 			    // add the names and IDs of all the city districts to the select drop down menu
 			    var select = d3.selectAll('select.matrix-filter');
 
-			    select.append("option").attr("value","all").text("Alle Stadtteile");
+			    select.append("option").attr("value","all").text("All Neighbourhoods");
 
 			    select.selectAll("option.stadtteil")
 			    	.data(collection)
@@ -584,16 +620,16 @@ function boxplot(value) {
 		function createInfoContent(d){
 		
 			var infoContent = '<h3>' + d.Stadtteil + '</h3><h4>' + d.Bezirk + '</h4>';
-			infoContent += '<strong>Sozio-Demographisches Index</strong>';
+			infoContent += '<strong>Sozio-Demographic Index</strong>';
 			if (parseFloat(d["SozD_" + value]) > 0) {
 				infoContent += '<p class="index-trend positive">+' + parseFloat(d["SozD_" + value]).toFixed(2) + '</p>';
 			} else {
 				infoContent += '<p class="index-trend negative">' + parseFloat(d["SozD_" + value]).toFixed(2) + '</p>';
 			}
 			if (parseFloat(d["Wohn_" + value]) > 0) {
-				infoContent += '<strong>Wohnen Index</strong><p class="index-trend positive">+' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
+				infoContent += '<strong>Residential-Economic Index</strong><p class="index-trend positive">+' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
 			} else {
-				infoContent += '<strong>Wohnen Index</strong><p class="index-trend negative">' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
+				infoContent += '<strong>Residential-Economic Index</strong><p class="index-trend negative">' + parseFloat(d["Wohn_" + value]).toFixed(2) + '</p>';
 			}
 				
 			return infoContent;

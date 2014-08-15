@@ -8,8 +8,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>GentriMap | Gentrifizierung visualisieren</title>
-    <meta name="description" content="Gentrifizierung visualisieren" />
+    <title>GentriMap Munich</title>
+    <meta name="description" content="Visualising Gentrification" />
 
     <!-- Look nice on mobile -->
     <meta name="viewport" content="width=device-width initial-scale=1">
@@ -52,32 +52,29 @@
                 <div class="page">
                   <div class="main-heading clearfix">
                     <h1 class='page-title entry-title'><a href='http://gentrima.lepus.uberspace.de/'>GentriMap</a></h1>                
-                    <h2 class="description">Gentrifizierung visualisieren</h2>
+                    <h2 class="description">Visualising Gentrification</h2>
                   </div>
 
                   <!-- Add additional buttons here to navigation to different visualisations. The id is used in gentrimap.js to initialise the code for the relevant vis. The href should be the id of the div that contains your new vis. -->
                   <div class="btn-group vis-navigation">
-                    <span type="button" class="btn btn-default active"><a id="trendMapLink" href="#trend-karte">Karte</a></span>
-                    <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Typologie</a></span>
-                    <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Ausgangsstatus</a></span>
+                    <span type="button" class="btn btn-default active"><a id="introLink" href="#intro">Intro</a></span>
+                    <span type="button" class="btn btn-default"><a id="trendMapLink" href="#trend-karte">Map</a></span>
+                    <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Typology</a></span>
+                    <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Initial Status</a></span>
                   </div>
-                  
-                  <!-- BEGIN FIRST VISUALISATION -->
 
-                  <div id="trend-karte" class="invisible row">
+                  <div id="intro" class="invisible row">
                     <div class="col-xs-12">
-                      <!--p>Die Karte zeigt die Veränderungsdynamiken von Berliner Ortsteilen im Zeitraum 2007 bis 2011. Das Farbsprektrum der <a href="http://gentrimap.net/gentritrend-2007-bis-2010-erste-ergebnisse/">Typologie</a> ergibt sich aus der Kombination sozialer und wohnungswirtschaftlicher Trends, die auf der Basis verschiedener <a href="http://gentrimap.net/indikatoren-welche-daten-werden-von-uns-genutzt/">Indikatoren</a> berechnet wurden. Die dunkelroten Felder (überdurchschnittlicher sozialer Trend / überdurchschnittlicher wohnungswirtschaftlicher Trend) kennzeichnen die Gebiete mit der höchsten Veränderungsdynamik. (Mehr zur <a href="http://gentrimap.net/gentrimap-berechnung-der-indices">Indexberechnung</a>).</p> 
-                      <p>Mit dem Cursor können einzelnen Felder der 9er-Typologie ausgewählt werden, um die Ortsteile auf der Karte hervorzuheben. </p-->
-                      <p>Quellen: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
+                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
                     </div>
                     <div class="col-xs-12">
                       <!-- Visualisation (map) is inserted here. -->
-                      <div id='trendmap' class="map"></div>
+                      <div ></div>
                       <!-- The colour key/legend for the 9 trends. -->
                       <div class="legend">
                         <div id="matrix-legend">
                           <div class="y-axis">
-                              <p class="small">Wohnen Index</p>
+                              <p class="small">Res-Econ Index</p>
                               <span>-</span>
                               <span>o</span>
                               <span>+</span>
@@ -103,7 +100,58 @@
                               <span>-</span>
                               <span>o</span>
                               <span>+</span>
-                              <p class="small">Sozio-Demo Index</p>
+                              <p class="small">Socio-Demo Index</p>
+                          </div>
+                          <div class="colours" id="colours-ext">
+                              <div>
+                                <a href="#" class="notsd notwohn"></a>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- BEGIN FIRST VISUALISATION -->
+
+                  <div id="trend-karte" class="invisible row">
+                    <div class="col-xs-12">
+                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
+                    </div>
+                    <div class="col-xs-12">
+                      <!-- Visualisation (map) is inserted here. -->
+                      <div id='trendmap' class="map"></div>
+                      <!-- The colour key/legend for the 9 trends. -->
+                      <div class="legend">
+                        <div id="matrix-legend">
+                          <div class="y-axis">
+                              <p class="small">Res-Econ Index</p>
+                              <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
+                          </div>
+                          <div class="colours">
+                            <div>
+                                <a href="#" class="upwohn downsd"></a>
+                                <a href="#" class="midsd upwohn"></a>
+                                <a href="#" class="upsd upwohn"></a>
+                            </div>
+                            <div>
+                                <a href="#" class="downsd midwohn"></a>
+                                <a href="#" class="midsd midwohn"></a>
+                                <a href="#" class="upsd midwohn"></a>
+                            </div>
+                            <div>
+                                <a href="#" class="downsd downwohn"></a>
+                                <a href="#" class="midsd downwohn"></a>
+                                <a href="#" class="upsd downwohn"></a>
+                            </div>
+                          </div>
+                          <div class="x-axis">
+                              <span>-</span>
+                              <span>o</span>
+                              <span>+</span>
+                              <p class="small">Socio-Demo Index</p>
                           </div>
                           <div class="colours" id="colours-ext">
                             	<div>
@@ -132,75 +180,6 @@
                           	<!--p> No Upgrading </p-->
                          </div>
                      	</div-->
-                      
-                      <!-- These descriptions are shown and hidden when the user clicks on the colour key/legend. -->
-                      <!--div class="typ-description invisible">
-                        <div class="upwohn upsd invisible">
-                          <h4>Typ "Konsolidierte Aufwertung" (W + // SDI +)</h4>
-                          <p>Hervorgehoben sind diejenigen Gebiete, die eine überdurchschnittlich hohe Anstieg der Wohnkosten verzeichnen und eine positive sozialstrukturelle Dynamik aufweisen. Zum einen steigen in diesen Gebieten die wohnungswirtschaftlichen Indikatoren wie z.B. die durchschnittliche Angebotsmiete stark an. Gleichzeitig nimmt der soziale Problemdruck innerhalb der Bewohnerschaft im Vergleich zur Entwicklung Berlins überdurchschnittlich stark ab. </p>
-                          <p>Der räumliche Schwerpunkt in dieser Kategorie liegt in der östlichen Innenstadt in den Gebieten Pankow, Prenzlauer Berg und Friedrichshain, hinzu kommt das innenstadtnahe gelegene Weißensee. Weiterhin fallen die Gebiete Adlershof und Karow in diese Kategorie, hier wurden aber erst im Untersuchungszeitraum zum Teil neue Wohnquartiere errichtet.</p><p>Die Gebiete erfüllen in einer engen Definition die notwendigen Merkmale, um von Gentrification zu sprechen. Es erscheint eher unwahrscheinlich, dass diese Verbesserung der Sozialstruktur aus dem Quartier heraus entsteht, eher sind Zuwanderungsprozesse wahrscheinlich. In den Gebiete diese Typs haben sich die stärksten Austausch- und Verdrängungsprozessen vollzogen, sie zählen zu den Gebieten, in denen Gentrification-Prozesse die stärkste Wirkung bereits entfalten und in denen die Aufwertung bereits konsolidiert ist.
-                          </p>
-                        </div>
-                        <div class="midsd upwohn invisible">
-                          <h4>Typ "Zunehmender Verdrängungsdruck" (WI + // SDI 0)</h4>
-                          <p>Es werden die Gebiete genannt, die einen überdurchschnittlich hohen Anstieg des wohnungswirtschaftlichen Index messen. Die starke Zunahme der Werte der wohnungswirtschaftlichen Indikatoren wird von einer leicht positiven Veränderung der Sozialstruktur begleitet. Die sozialstrukturelle Dynamik vollzieht hier die positive Entwicklung Berlins. </p>
-                          <p>Gebiete dieses Typs finden sich zum einen im innenstadtnahen Bereich, die durch gründerzeitliche Wohnbebauung dominiert sind. Dabei handelt es sich zum einen um die bereits größtenteils aufgewerteten Gebiete Mitte, Wilmersdorf und Charlottenburg, zum anderen um die zum Teil noch nicht vollständig sanierten Gebiete Kreuzberg und Neukölln und Schöneberg. Daneben zeigen die Gebiete Köpenick, Grünau und Altglienicke ähnliche Charakteristiken. </p>
-                          <p>Interpretiert werden können diese Werte in zwei Richtungen. Zum einen kann es sich um Gebiete handeln, die bereits in der Vergangenheit durch eine gute Sozialstruktur gekennzeichnet waren, diese also nicht verbessern können. Indes ist es hier nun zu einer weiteren wohnungswirtschaftlichen Aufwertungswelle gekommen. </p>
-                          <p>Zum zweiten handelt es sich um Verdachtsgebiete der Gentrification. Bei ihnen kam zwar es einem Anstieg der wohnungswirtschaftlichen Daten, die bisherige Struktur Bewohnerschaft hat sich aber noch nicht verändert. Erst wenn der Umzug in eine neue Wohnung erfolgt, wird es für diese unmöglich, im Gebiet zu verbleiben. </p>
-                          <p>Auch wenn die Gebiete einen unterschiedlichen Sanierungsstand aufweisen, handelt es sich in beiden Fällen um Gebiete in denen in der nächsten Zeit der Verdrängungsdruck aufgrund der Wohnungsmarktsituation zunimmt. Ärmere Bevölkerungsgruppen wird hier nicht mehr werden oder noch nicht verdrängt.</p>
-
-                        </div>
-                        <div class="downsd upwohn invisible">
-                          <h4>Typ "Ausplünderung" (WI + // SDI -)</h4>
-                          <p>Die Entwicklung bei diesem Typ verläuft paradox: Es werden die Gebiete angezeigt, die durch überdurchschnittlich hohe Zunahmen der Wohnkosten geprägt sind, d.h. es wird eine sehr positive Entwicklung bei den Indikatoren des wohnungswirtschaftlichen Index gemessen. Gleichzeitig steigen diese Gebiete aber im Vergleich zu den übrigen Gebieten der Stadt sozial ab, da sich die Sozialstruktur verschlechtert. </p>
-                          <p>Zu diesem Entwicklungstyp gehören die Gebiete in der nordwestlichen Innenstadt und den dahinter liegenden Gebieten. Aufgereiht wie auf eine Perlenkette zieht sich der räumliche Schwerpunkt dieses Typs von Tiergarten über Wedding nach Reinickendorf und Wittenau. </p>
-                          <p>Dieser Entwicklungstyp kann mit dem Bild der Bugwelle vor der Gentrification erklärt werden. Dieses geht davon aus, dass einkommensschwache Bevölkerungsteile wie in der „Bugwelle eines Schiffes“ von der Aufwertung vor sich her geschoben werden und jeweils in die nächstgelegenen, Bestände umziehen. Dies bietet den Vermietern in den Gebieten die Chance, auf die vermeintlich höhere Nachfrage ihres Wohnungsbestandes mit hohen Mietsteigerungen zu reagieren. Die am Beginn sehr geringen Ausgangswerte bei den wohnungswirtschaftlichen Indikatoren nähern sich schnell dem städtischen Durchschnitt, was in diesen Gebieten ebenfalls zu einem Ausschluss ärmerer Bevölkerungsgruppen führen kann. Auch ist es nicht unwahrscheinlich, dass die Gentrification diese Gebiete als nächstes erreicht.</p>
-
-                        </div>
-                        <div class="upsd midwohn invisible">
-                          <h4>Typ "Ausweichräume" (WI 0 // SD I+)</h4>
-                          <p>Hervorgehoben sind die Gebiete, die einen Anstieg der Wohnkosten zeigen, der dem Anstieg in der Gesamtberlin in etwa entspricht. D.h. auch in diesen Gebieten steigen z.B. die Wohnkosten, an und es kann für Geringverdiener schwierig werden, geeigneten Wohnraum zu finden. Gleichzeit weisen sie eine positive sozialstrukturelle Dynamik auf, die Entwicklung verläuft positiver also in der Gesamtstadt. In den Gebieten sinkt z.B. der Anteil der ALG2-Empfänger_innen an der Bewohnerschaft in besonders starkem Maße.</p>
-                          <p>Räumlich lassen sich zwei zusammenhängende Stadträume finden, in denen sich die Gebiete dieses Typs vor allem wieder finden. Erstens liegen drei dieser Gebiete nördlich der Innenstadt in Stadtrandlage. Es handelt sich um Französisch-Buchholz, Rosenthal und Niederschönhausen. Zweitens findet man einen räumlichen Cluster am östlichen Stadtrand, der sich von Biesdorf nach Süden bis nach Niederschöneweide zieht. Von den innenstadtnahen Gebieten ist einzig Treptow in diese Kategorie eingeordnet.</p>
-                          <p>Verdrängungen aufgrund des Mietpreises sind in diesem Gebiet eher die Ausnahme. Statt dessen stellen die Gebiete aufgrund ihrer spezifischen Angebotsstruktur Ausweichräume für die aus den konsolidierten Aufwertungsgebieten Verdrängten dar. Das Absinken des Levels sozialer Problem ist hierfür ein Indiz, da die positive Dynamik am wahrscheinlichsten auf Wanderungsprozessen beruht. Die Gefahr besteht aber, dass dies soziale Aufwertung ihrerseits zu indirekte Ausschluss- und Verdrängungseffekte und zu einem Anstieg der Mieten in naher Zukunft führt.</p>
-                        </div>
-                        <div class="midsd midwohn invisible">
-                          <h4>Typ "Berliner Durchschnitt" (WI 0 // SDI 0)</h4>
-                          <p>Angezeigt werden bei diesem Typ Gebiete, bei denen die wohnungswirtschaftlichen Indikatoren in vergleichbarem Maße wie in Berlin ansteigen und auch die sozialstrukturelle Dynamik in etwa der Entwicklung in der Gesamtstadt entspricht. </p>
-                          <p>Auffällig ist die hohe Zahl von Gebieten dieses Typs sowie deren spezifische Lagemerkmal einer Ballung außerhalb der Innenstadt. So gehören viele Gebiete am südwestlichen Stadtrand Berlins in diese Gruppe. Daneben wurde das relativ große Gebiet Spandau in diese Gruppe eingeordnet. Ein großer Teil der genannten Gebiete liegt am Stadtrand. Lediglich Plänterwald, Lichtenberg, Steglitz und Schmargendorf liegen in der Nähe der Innenstadt. Ein großer Teil der Großwohnsiedlungen Berlins liegt innerhalb der Gebiete, die diesem Typ zugeordnet werden. </p>
-
-                          <p>Ein Teil der Gebiete ist durch Bestände des kommunalen und des sozialen Wohnungsbau geprägt. Hier besteht die Besonderheit, dass sich die Entwicklung der Wohnungsmarktindikatoren nach den Festlegungen des Berliner Senats als Eigentümer der kommunalen Wohnungsunternehmen sowie Fördergeber des sozialen Wohnungsbaus richtet. Erkennbar ist aber, dass dies anders als behauptet keinen „preisdämpfenden“ Effekt hat. So scheinen auch diese Gruppe der Wohnungsmarktakteure von Mitnahmeeffekte des attraktiven Berliner Wohnungsmarktes profitieren zu wollen. Sie werden damit immer weniger ihrer Funktion bei der Bereitstellung preiswerten Wohnraums gerecht. </p>
-                          <p>Ferner zeigt die stabile Sozialstruktur auch, dass die in letzter Zeit des Öfteren diskutierte These einer massenhaften Randwanderung in die Großsiedlungen sich nicht bestätigt. Daneben existieren Gebiete, in denen es noch nicht oder nicht mehr zu einer immobilienwirtschaftlichen Aufwertung kommt.</p>
-
-                        </div>
-                        <div class="downsd midwohn invisible">
-                          <h4>Typ "Flughafenräume" (WI 0 // SDI -)</h4>
-                          <p>Es werden diejenigen Gebiete angezeigt, bei denen sich in Bezug auf die wohnungswirtschaftlichen Indikatoren wie den Mietpreis Anstiege ergeben haben, die in ihrem Niveau der stadtweit zu beobachtenden Erhöhung entspricht. Gleichzeitig zeigen aber die sozialdemografischen Indikatoren eine Zunahme des sozialen Problemdruck an, z.B. in Bezug auf die Armut von Kindern.</p>
-                          <p>In Berlin lassen sich im Untersuchungszeitraum zwei Gebiete finden: Tegel und Tempelhof. </p>
-                          <p>Die räumliche Verteilung der Gebiete dieses Typs lässt einen Spezialfall der Stadtentwicklung erkennen. Normalerweise ist zu erwarten, dass die Verschlechterung der Sozialstruktur mit einem günstigeren Wohnungspreis einhergeht. Bei einem Zuzug ärmerer Haushalte verlieren Immobilien an „Wert“. Bei den Gebieten kann aber vermutet werden, dass sie durch die Schließung der an beiden Gebieten angrenzenden Flughäfen zeitnah an Attraktivität gewinnen und sich deshalb die Wohnungsmarktindikatoren entsprechend dem städtischen Durchschnitt ansteigen.</p>
-
-                        </div>
-                        <div class="upsd downwohn invisible">
-                          <h4>Typ "Mietertraum" (WI - // SDI +)</h4>
-                          <p>Angezeigt werden bei diesem Typ die Gebiete, die keinen Anstieg der wohnungswirtschaftlichen Indikatoren aufweisen und eine positive sozialstrukturelle Dynamik aufweisen, die besser verläuft, als die Entwicklung in der Gesamtstadt. </p>
-                          <p>Im Untersuchungszeitraum kann kein Gebiet in diese Kategorie eingeordnet werden.</p>
-                          <p>Dieser Entwicklungstyp zeigt eine Entspannung am Wohnungsmarkt an, bei der ein hohes Überangebot an Wohnungen und ein hoher Leerstand gegeben sein muss. Hierdurch kommt es zu sozialen Entmischungsprozessen, bei denen sich die sozial besser gestellten Gruppen ihren Wohnort frei wählen können und sich in der Folge abgrenzen können. Dieses Entwicklungsszenario ist eher in schrumpfende Städte wie Leipzig denkbar.</p>
-
-                        </div>
-                        <div class="midsd downwohn invisible">
-                          <h4>Typ "Erschwingliches Stadtrandwohnen" (WI - // SDI 0)</h4>
-                          <p>Es werden die Gebiete angezeigt, die eine negative Entwicklung des wohnungswirtschaftlichen Index messen, d.h. es ergaben sich keine Steigerungen z.B. bei den durchschnittlichen Angebotsmieten. Die stabilen wohnungswirtschaftlichen Indikatoren werden von einer leicht positiven Veränderung der Sozialstruktur begleitet, die der in etwa der positiven sozialen Entwicklung in Berlin entspricht. </p>
-                          <p>Die Gebiete dieses Typs verteilen sich gleichmäßig über die Stadtrandlagen Berlins und sind zumeist hinsichtlich der Bebauungsstruktur durch Einfamilienhäuser dominiert. Ein typisches Beispiel hierfür ist das Gebiet Hermsdorf. Insgesamt fallen aber nur wenige Gebiete in diese Kategorie.</p>
-                          <p>Warum die wohnungswirtschaftlichen Indikatoren zurückgehen, kann die Analyse nicht klären. Klar wird aber, dass es zu einer Entkopplung von den Wohnungsmarktdynamiken kommt Vermutet werden kann ein Überangebot in bestimmten Marktsegmenten wie zum Beispiel im Bereich der Eigenheime. Allerdings ist durch die spezifische Bebauung der Gebiete auch nicht erwartbar, dass sie als Ausweichgebiete der Verdrängten in Frage kommen. Durch die Zugangshürden zu Wohneigentum sind sie für ärmere Bevölkerungsgruppe nicht relevant. Indes entsprechen die dortigen Immobilienbestände dem klassischen suburbanen Raumkonzept, welches heute für eine viel geringere Bevölkerungsgruppe interessant ist. Das hat zur Folge, dass sich die Wanderungsdynamiken in diese Gebiete in Teilen von den sonstigen Trends Berlins entkoppeln.</p>
-                          <p>Einschränkend muss allerdings auf das geringe Angebot an Mietwohnungen in den Gebieten hingewiesen werden, die diesem Typ zugeordnet sind. Durch die geringen Fallzahlen und dir ungleiche räumliche Verteilung der Mietwohnungen kann es zu Verzerrungen bei den wohnungswirtschaftlichen Indikatoren kommen.</p>
-                        </div>
-                        <div class="downsd downwohn invisible">
-                          <h4>Typ "Banlieueeffekt" (WI - // SDI -)</h4>
-                          <p>Es werden diejenigen Gebiete angezeigt, bei denen sich in Bezug auf die Wohnungswirtschaftlichen Indikatoren wie den Mietpreis keine Änderungen ergeben haben, bei denen aber die aber die sozial-demographischen Indikatoren einen höheren Problemdruck anzeigen.</p>
-                          <p>In Berlin lassen sich im Untersuchungszeitraum keine Gebiete dieses Typs finden. </p>
-                          <p>Dass keine Gebiete in dieser Kategorie vorhanden sind, zeigt erneut, dass die Marktanspannung in Berlin im Untersuchungszeitraum zugenommen hat. Normalerweise ist zu erwarten, dass die Verschlechterung der Sozialstruktur mit einer Abwertung des Wohnungsbestandes einhergeht, in dessen Folge die Wohnungsmarktindikatoren sich verschlechtern. </p>
-
-                        </div>
-                      </div-->
                     </div>
                   </div>
 
@@ -208,9 +187,7 @@
 
                   <div id="trend-matrix" class="invisible">
                     <div class="col-xs-12 clearfix">
-                      <!--p>Die Vektorgrafik zeigt die Statusveränderungen der Berliner Ortsteile im Zeitraum von 2007 bis 2011. Auf der horizontalen Achse sind die wohnungswirtschaftlichen und auf der vertikalen Achse die sozialen Statuswerte definiert. Der Status basiert auf einer statistischen Abweichung der Indikatorenwerte vom Berliner Durchschnitt (Nullpunkt beider Achsen). Die Länge und Ausrichtung der Vektorpfeile entsprechen der Entwicklungsrichtung und des Ausmaßes der Statusveränderungen. (Mehr zur <a href="http://gentrimap.net/gentrimap-berechnung-der-indices">Indexberechnung</a>).</p>
-                      <p>Mit dem Cursor können einzelnen Felder der 9er-Typologie ausgewählt werden, um die entsprechenden Ortsteile in der Matrix hervorzuheben. Beim Auswählen einzelner Vektorpfeile mit dem Cursor erscheinen Informationen zum Ortsteil und den Statusveränderungen.</p-->
-                      <p>Quellen: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
+                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
                     </div>
                     <div class="col-xs-12">
                       <!-- Drop down menu, populated with the city districts -->
@@ -226,7 +203,7 @@
                               <span>+</span>
                           </div-->
                           <div class="y-axis">
-                              <p class="small">Wohnen Index</p>
+                              <p class="small">Res-Econ Index</p>
                               <span>-</span>
                               <span>o</span>
                               <span>+</span>
@@ -252,7 +229,7 @@
                               <span>-</span>
                               <span>o</span>
                               <span>+</span>
-                              <p class="small">Sozio-Demo Index</p>
+                              <p class="small">Socio-Demo Index</p>
                           </div>
                           <div class="colours" id="colours-ext">
                             	<div>
@@ -266,28 +243,6 @@
                       <div id="matrix-info"></div>
                     </div>
                   </div>
-                  
-                  <!-- BEGIN THIRD VISUALISATION -->
-                  <div id="wanderung" class="invisible">
-                    <div class="wander-buttons">
-                      <span class="btn" id="saldo" ><a href="#" class="direction-control">Wanderungssaldo</a></span>
-                      <span class="btn" id="out"><a href="#" class="direction-control">Fortz&uuml;ge</a></span>
-                      <span class="btn" id="in" ><a href="#" class="direction-control">Zuz&uuml;ge</a></span>
-                    </div>
-                    <div class="col-xs-12 wanderung-description">
-                      <p>Die Karte stellt das Wanderungssaldo aller innerstädtischen Umzug über die Bezirksgrenzen für die Altbezirke im Jahr 2010 dar. Der Umfang der Wanderungsgewinne (blau) und Wanderungsverluste (rot) wird in der Größer der Punkte dargestellt. </p>
-                      <p>Mit dem Cursor können die Wanderungsbilanzen der ausgewählten Bezirke mit anderen Berliner Stadtteilen angezeigt werden. Die Stärke der Linien zeigt den Umfang der Wanderungsgewinne und -verluste.</p>
-                      <p>Quelle: Amt für Statistik Berlin-Brandenburg</p>
-                    </div>
-                    <div id="map-wrap">
-                      <!-- map goes in here -->
-                      <div id="wanderungmap">
-                      </div>
-                      <!-- statistics go in here -->
-                      <div id="info">
-                      </div>
-                    </div>
-                  </div>
                 </div><!--.page-->
               </div> <!--content-->
             </div> <!-- /container -->
@@ -299,7 +254,7 @@
         <div id="sidebar-subsidiary" class="sidebar">
           <section id="text-2" class="widget widget-1 widget-first widget_text widget-widget_text">
             <h3 class="widget-title">Kontakt</h3>
-            <div class="textwidget">Andrej Holm | 
+            <div class="textwidget"> Oliver Schnuck | Andrej Holm | 
               Humboldt-Universität zu Berlin | 
               Institut für Sozialwissenschaften | 
               Stadt- und Regionalsoziologie | 
@@ -309,7 +264,6 @@
             </div>
 		      </section>
         <br/>
-        <p style="opacity:.7;">Datenvisualisierung von <a target ="_blank" href="http://littlewebgiants.com">Little Web Giants</a>.</p>
       </div>
     </footer-->   
     <!-- All the scripts. Program logic is in gentrimap.js. This could be done better with angular.js or similar  -->
