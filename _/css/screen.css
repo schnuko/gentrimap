@@ -8450,6 +8450,10 @@ img.header-img {
   height: 100%;
 }
 
+#desc-container {
+  margin-right: 200px;
+}
+
 /* line 9, ../sass/_trendkarte.scss */
 .wander-buttons {
   margin-bottom: 1em;
@@ -8800,6 +8804,24 @@ path.arrow {
 	fill: #808080;
 	//stroke: #808080;
 }
+
+.type1 {
+  color: #9e131a;
+}
+
+.type2 {
+  color: #c36d4b;
+}
+
+.type3 {
+  color: #143ead;
+}
+
+.type4 {
+  color: #808080;
+}
+
+
 
 
 /* line 194, ../sass/_trendkarte.scss */
