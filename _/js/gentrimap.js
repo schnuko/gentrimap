@@ -12,7 +12,7 @@
 
 
 var GentriMap = {
-	active : 'intro'
+	active : 'trendsMap'
 };
 
 jQuery(document).ready( function($) {
@@ -388,7 +388,7 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-	GentriMap.intro.init();
+	GentriMap.trendsMap.init();
 
 	/* 
 	*
