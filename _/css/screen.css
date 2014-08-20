@@ -8973,6 +8973,10 @@ circle {
   font-size: 22px;
 }
 
+.sources {
+  margin-top: 10px;
+}
+
 /* line 295, ../sass/_trendkarte.scss */
 .right {
   text-align: right;
