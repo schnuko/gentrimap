@@ -8441,7 +8441,7 @@ img.header-img {
 
 ===========================================*/
 /* line 1, ../sass/_trendkarte.scss */
-#matrix, #trendmap, #wanderung, #map-anim {
+#matrix, #trendmap, #initialStatus, #map-anim {
   height: 1000px;
 }
 
@@ -8967,7 +8967,7 @@ circle {
 }
 
 /* line 289, ../sass/_trendkarte.scss */
-#wanderung #info h2 {
+#initialStatus #info h2 {
   margin-top: 0;
   word-break: break-all;
   font-size: 22px;

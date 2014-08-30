@@ -3,23 +3,24 @@
 * 	Our Program: GentriMap
 *	
 *	GentriMap.active records which vis we are looking at right now
-*	Gentrimap.trendsMap, GentriMap.trendsMatrix and GentriMap.wanderung are the three parts of the program that control
+*	Gentrimap.intro, Gentrimap.trendsMap, GentriMap.trendsMatrix and GentriMap.inital are the three parts of the program that control
 *	the data visualisations.
 *	Each has an init() function to get it started, a destroy() function, 
 *	some draw methods and methods to set different event listeners for interaction
 *
 */
 
-
 var GentriMap = {
 	active : 'trendsMap'
 };
+
+
 
 jQuery(document).ready( function($) {
 
 	/*
 	*
-	*	Start first visualisation
+	*	Start map visualisation
 	*
 	*/
 
@@ -30,29 +31,34 @@ jQuery(document).ready( function($) {
 		$map = $('#trendmap'),
 		initComplete = false,
 		trends = {},
+		features,
 		map,
 		bounds,
 		path,
 		svg,
-		g,
-		features;
+		g;
 
 		return {
+
 			init : function init() {
 
 				GentriMap.active = 'trendsMap';
 
-				// set up the map by making it visible, dynamically setting the size and calling drawMap to draw the leaflet base tiles (shows streets etc as background layer)
+				// set up the map by making it visible, dynamically setting the size 
 				$mapbox.removeClass("invisible");
 				$map.height($(window).height()-250 > 500 ? $(window).height()-250 : 500);
+
+				// call drawMap to draw the leaflet base tiles (shows streets etc as background layer)
 				map = drawMap('trendmap');
 
-				// import the geodata and trend data files. Info on creating topojson files here: http://bost.ocks.org/mike/map/
+				// Import the geodata and trend data files. 
+				// Info on creating topojson files here: http://bost.ocks.org/mike/map/
 				// to use this code virtually unchanged, set the start of your topojson file to {"type":"Topology","objects":{"immoscout":
 				// queue function waits until files are fully loaded then calls ready()
 				queue()
-				    .defer(d3.json, "_/data/trends/immoscout.topojson")
-				    // on import of trends_analysis, add each row of data (d) to the trends array. d.StadtID is the key that links the data to the immoscout geo "features" (polygons)
+				    .defer(d3.json, "_/data/geo/immoscout.topojson")
+				    // on import of trends_analysis, add each row of data (d) to the trends array. 
+				    // d.StadtID is the key that links the data to the immoscout geo "features" (polygons)
 				    .defer(d3.csv, "_/data/trends/trends_analysis.csv", function(d) { trends[d.StadtTID] = d; })
 				    .await(ready);
 
@@ -303,7 +309,7 @@ jQuery(document).ready( function($) {
 	*
 	*/
 
-	GentriMap.wanderung = boxplot("07");
+	GentriMap.initial = boxplot("07");
 
 	/*
 	*
@@ -363,17 +369,6 @@ jQuery(document).ready( function($) {
 		return map;
 	}
 
-	// Helper functions to animate the wanderung lines 
-	function dashOffset() { return this.getTotalLength(); }
-
-	function dashArray() { return 0 + " "  + this.getTotalLength(); }
-
-	function dashArrayNull() { return this.getTotalLength() + " "  + this.getTotalLength() }
-
-	// number formatting
-	function numberWithCommas(x) {
-	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
 
 	/* Helper function to return length/size of d3 selection, similar to jQuery .length() */
 	d3.selection.prototype.size = function() {
@@ -423,13 +418,13 @@ jQuery(document).ready( function($) {
 		GentriMap.trendsMatrix.init();
 	});
 
-	$('#wanderungLink').on('click',function(e) {
+	$('#initialLink').on('click',function(e) {
 		e.preventDefault();
-		if (GentriMap.active==='wanderung') return;
+		if (GentriMap.active==='initial') return;
 		GentriMap[GentriMap.active].destroy();
 		$('.vis-navigation span').removeClass("active");
 		$(this).parent('span').addClass('active');
-		GentriMap.wanderung.init();
+		GentriMap.initial.init();
 	});
 
 });
@@ -445,7 +440,7 @@ function boxplot(value) {
 			init : function() {
 				
 				// prepare the div by making it visible, dynamically setting the div height to match the screen
-				var activeTab = (value == "Change") ? 'trendsMatrix' : 'wanderung';
+				var activeTab = (value == "Change") ? 'trendsMatrix' : 'initial';
 				GentriMap.active = activeTab;
 				$matrixbox.removeClass("invisible");
 				$matrix.height($(window).height()-250 > 500 ? $(window).height()-250 : 500);

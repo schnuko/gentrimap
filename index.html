@@ -1,41 +1,34 @@
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!> <html class="no-js" lang="en-US"> <!--<![endif]-->
+
+<html lang="en-US"> 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>GentriMap Munich</title>
+
+    <meta charset="utf-8">
     <meta name="description" content="Visualising Gentrification" />
+
+    <!-- Tell IE to apply highest mode and run chrome frame if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
 
     <!-- Look nice on mobile -->
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <!-- All the styles  -->
-    <link rel="stylesheet" href="_/css/screen.css">
 
     <!-- Basic script libraries, rest in footer  -->
     <script type='text/javascript' src='_/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js'></script>
     <script type='text/javascript' src='_/js/vendor/jquery-1.9.1.min.js'></script>
 
-    <!-- Share me!  -->
-    <meta property="og:title" content="GentriMap" />
-    <meta property="og:type" content="article" />
-    <meta property="og:image" content="http://gentrima.lepus.uberspace.de/wp-content/uploads/2013/11/gentrimap-preview.png" />
-    <meta property="og:url" content="http://gentrima.lepus.uberspace.de/" />
-    <meta property="og:site_name" content="GentriMap" />
-    <meta property="og:description" content="Gentrifizierung visualisieren" />
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="GentriMap | Gentrifizierung visualisieren">
-    <meta name="twitter:description" content="Gentrifizierung visualisieren">
-    <meta name="twitter:image" content="http://gentrima.lepus.uberspace.de/wp-content/uploads/2013/11/gentrimap-preview.png">
-
+    <!-- All the styles  -->
+    <link rel="stylesheet" href="_/css/screen.css">
  
   </head>
   <body class="wordpress ltr en_US parent-theme y2014 m03 d11 h18 tuesday logged-out home singular singular-page singular-page-233">
+
     <div id="outer-wrap">
         <div id="inner-wrap" class="clearfix">
           <div class="full-width-wrap">
@@ -49,8 +42,9 @@
                 <![endif]-->
                 
                 <div class="page">
+
                   <div class="main-heading clearfix">
-                    <h1 class='page-title entry-title'><a href='http://gentrima.lepus.uberspace.de/'>GentriMap</a></h1>                
+                    <h1 class='page-title entry-title'>GentriMap</h1>                
                     <h2 class="description">Visualising Gentrification</h2>
                   </div>
 
@@ -59,55 +53,52 @@
                     <span type="button" class="btn btn-default"><a id="introLink" href="#intro">Info</a></span>
                     <span type="button" class="btn btn-default active"><a id="trendMapLink" href="#trend-karte">Map</a></span>
                     <span type="button" class="btn btn-default"><a id="trendMatrixLink" href="#trend-matrix">Development</a></span>
-                    <span type="button" class="btn btn-default"><a id="wanderungLink" href="#wanderung">Initial Status</a></span>
+                    <span type="button" class="btn btn-default"><a id="initialLink" href="#initial">Initial Status</a></span>
                   </div>
 
+                  <!-- BEGIN INTRO -->
+
                   <div id="intro" class="invisible row">
-                    <!--div class="col-xs-12">
-                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
-                    </div-->
                     <div class="col-xs-12">
-                      <!-- Visualisation (map) is inserted here. -->
-                      <div>
-                        <div id="desc-container">
-                          <p> There is no comprehensive approach for measuring gentrification tendencies
-                            in different neighbourhoods spread over a city, especially in the context of
-                            Germany. This work develops a framework that quantifies change in the
-                            relevant dimensions and sets up a gentrification typology. It is demonstrated here for <strong>Munich</strong> and the development in the <strong>period between 2008 and 2012</strong>.
-                          </p>
-                          <p>
-                            The socio-demographic dimension represents change in the social status of
-                            the local population, the residential-economic dimension reflects change in type and affordability
-                            of the local housing supply that is offered on the website of ImmobilienScout24. 
-                            They represent the driving forces behind gentrification. The proposed gentrification typology assigns each neighbourhood one of the following types:
-                          </p>
-                          <ol>
-                            <li>  <div class="type1"> <strong> Above-average gentrification area: </strong> </div>
-Neighbourhoods that experience actual upgrading and above-average,
-relational upgrading in both dimensions.
-                            </li>
-                            <li> <div class="type2"> <strong>Below-average gentrification area: </strong> </div>
-Neighbourhoods that experience actual upgrading and below-average,
-relational upgrading in both dimensions
-                            </li>
-                            <li>  <div class="type3"> <strong>Actually upgrading, not gentrifying area: </strong> </div>
-Neighbourhoods that experience actual upgrading in both dimensions,
-though relational upgrading at most in one dimension
-                            </li>
-                            <li>  <div class="type4"> <strong>Not upgrading, not gentrifying area: </strong></div>
-Neighbourhoods that do not experience actual upgrading in both dimensions, independent from their relational development
-                            </li>
-                          </ol>
-                          <p>
-                            The legend on the right side has a horizontal direction that indicates the development in the socio-demographic
-                            dimension and a vertical one that indicates the development in the residential-economic dimension. Strong gentrification tendencies are indicated by approaching the top-right corner, while the category in the bottom-left corner represents neighbourhoods that exhibit no signs of gentrification. Hovering the different categories in the legend highlights the respective neighbourhoods in the map and the scatter plots. 
-                          </p> 
-                          <p>
-                            For more details on the difference between actual and relational upgrading and the applied algorithms that result in the two indices for each neighbourhood, have a look at the <a href="http://www.schnuko.rlvtn.de/gentrimap/thesis.pdf" target="blank">thesis</a>.
-                          </p>
-                        </div>
+                      <div id="desc-container">
+
+                        <p> 
+                          There is no comprehensive approach for measuring gentrification tendencies in different neighbourhoods spread over a city, especially in the context of Germany. This work develops a framework that quantifies change in the relevant dimensions and sets up a gentrification typology. It is demonstrated here for <strong>Munich</strong> and the development in the <strong>period between 2008 and 2012</strong>.
+                        </p>
+
+                        <p>
+                          The socio-demographic dimension represents change in the social status of the local population, the residential-economic dimension reflects change in type and affordability of the local housing supply that is offered on the website of ImmobilienScout24. They represent the driving forces behind gentrification. The proposed gentrification typology assigns each neighbourhood one of the following types:
+                        </p>
+
+                        <ol>
+                          <li>  
+                            <div class="type1"> <strong> Above-average gentrification area: </strong> </div>
+                            Neighbourhoods that experience actual upgrading and above-average, relational upgrading in both dimensions.
+                          </li>
+                          <li> 
+                            <div class="type2"> <strong>Below-average gentrification area: </strong> </div>
+                            Neighbourhoods that experience actual upgrading and below-average, relational upgrading in both dimensions
+                          </li>
+                          <li>  
+                            <div class="type3"> <strong>Actually upgrading, not gentrifying area: </strong> </div>
+                            Neighbourhoods that experience actual upgrading in both dimensions, though relational upgrading at most in one dimension
+                          </li>
+                          <li>  
+                            <div class="type4"> <strong>Not upgrading, not gentrifying area: </strong></div>
+                            Neighbourhoods that do not experience actual upgrading in both dimensions, independent from their relational development
+                          </li>
+                        </ol>
+
+                        <p>
+                          The legend on the right side has a horizontal direction that indicates the development in the socio-demographic dimension and a vertical one that indicates the development in the residential-economic dimension. Strong gentrification tendencies are indicated by approaching the top-right corner, while the category in the bottom-left corner represents neighbourhoods that exhibit no signs of gentrification. Hovering the different categories in the legend highlights the respective neighbourhoods in the map and the scatter plots. 
+                        </p> 
+
+                        <p>
+                          For more details on the difference between actual and relational upgrading and the applied algorithms that result in the two indices for each neighbourhood, have a look at the <a href="http://www.schnuko.rlvtn.de/gentrimap/thesis.pdf" target="blank">thesis</a>.
+                        </p>
+
                       </div>
-                      <!-- The colour key/legend for the 9 trends. -->
+
                       <div class="legend">
                         <div id="matrix-legend">
                           <div class="y-axis">
@@ -146,16 +137,19 @@ Neighbourhoods that do not experience actual upgrading in both dimensions, indep
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                   
-                  <!-- BEGIN FIRST VISUALISATION -->
+                  <!-- BEGIN MAP -->
 
                   <div id="trend-karte" class="invisible row">
                     
                     <div class="col-xs-12">
+
                       <!-- Visualisation (map) is inserted here. -->
                       <div id='trendmap' class="map"></div>
+
                       <!-- The colour key/legend for the 9 trends. -->
                       <div class="legend">
                         <div id="matrix-legend">
@@ -195,23 +189,26 @@ Neighbourhoods that do not experience actual upgrading in both dimensions, indep
                          	</div>
                         </div>
                       </div>
+
                       <div>
                         <p class="sources">Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
                       </div>
+
                     </div>
                   </div>
                   
-                  <!-- BEGIN SECOND VISUALISATION -->
+                  <!-- BEGIN GRAPH -->
 
                   <div id="trend-matrix" class="invisible">
-                    <!--div class="col-xs-12 clearfix">
-                      <p>Sources: Amt für Statistik Landeshauptstadt München, ImmobilienScout 24</p>
-                    </div-->
+
                     <div class="col-xs-12">
+
                       <!-- Drop down menu, populated with the city districts -->
                       <select class="matrix-filter"></select>
+
                       <!-- matrix is shown inside this div -->
                       <div id='matrix' class=""></div>
+
                       <div class="legend">
                         <div id="matrix-legend">
                           <!--div class="x-axis">
@@ -259,6 +256,7 @@ Neighbourhoods that do not experience actual upgrading in both dimensions, indep
                       
                       <!-- Populated with data about a city district on hover/select menu -->
                       <div id="matrix-info"></div>
+
                     </div>
                   </div>
                 </div><!--.page-->
@@ -267,23 +265,7 @@ Neighbourhoods that do not experience actual upgrading in both dimensions, indep
           </div><!-- /full width wrap -->
         </div> <!--#innerwrap-->
       </div> <!--#outerwrap-->
-    <!--footer>
-      <div class="container">
-        <div id="sidebar-subsidiary" class="sidebar">
-          <section id="text-2" class="widget widget-1 widget-first widget_text widget-widget_text">
-            <h3 class="widget-title">Kontakt</h3>
-            <div class="textwidget"> Oliver Schnuck | Andrej Holm | 
-              Humboldt-Universität zu Berlin | 
-              Institut für Sozialwissenschaften | 
-              Stadt- und Regionalsoziologie | 
-              Unter den Linden 6 | 
-              10099 Berlin | 
-              a.holm --at-- sowi.hu-berlin.de
-            </div>
-		      </section>
-        <br/>
-      </div>
-    </footer-->   
+  
     <!-- All the scripts. Program logic is in gentrimap.js. This could be done better with angular.js or similar  -->
     <script type='text/javascript' src='_/js/vendor/bootstrap.min.js'></script>
     <script type='text/javascript' src='_/js/vendor/underscore.min.js'></script>
