@@ -220,7 +220,7 @@ define(["typology", "vendor/d3.v3.min"],
 			}	
 				
 								
-			// Set listener for hovering on the arrows. This selects the info 
+			// Set listener for hovering (=emphasis) on the arrows. This selects the info 
 			// that should be displayed in the box on the right, like the 
 			// district name and the amount of change
 
@@ -235,6 +235,7 @@ define(["typology", "vendor/d3.v3.min"],
 								.classed("superemphasis", false);
 						}
 
+					// Synchronize with select-box
 					$('select.matrix-filter').prop("value", d3.select(this).attr('hood'));
 
 					if(!d3.select(this).classed('active')) {
@@ -252,13 +253,16 @@ define(["typology", "vendor/d3.v3.min"],
 				.on('mouseleave', function(d) {
 					var theCircle = d3.select(this);
 					theCircle.classed('emphasis', false);
+
+					// Synchronize with select-box
 					$('select.matrix-filter').prop("value", "all");
+
 					$('#matrix-info').empty();
 				});
 				
 			}
 
-			// Set listeners for the colour key/legend - emphasis/highlight the arrows that belong to the matching 9-er class
+			// Set listeners for hovering (=emphasis) and clicking (=emphasis+superemphasis) the colour key/legend
 
 			function setLegendListeners() {
 
@@ -321,7 +325,7 @@ define(["typology", "vendor/d3.v3.min"],
 
 			}
 
-			// Listener for select/drop down menu. Highlight (emphasis) only the selected city district
+			// Listener for select/drop down menu. Highlight only the selected city district
 
 			function setSelectListener() {
 				var select = d3.selectAll('select.matrix-filter').on("change",function(d) {
