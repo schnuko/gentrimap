@@ -8825,67 +8825,67 @@ path.arrow {
 
 
 /* line 194, ../sass/_trendkarte.scss */
-circle.emphasis.downsd.downwohn {
+circle.emphasis.downsd.downwohn, circle.superemphasis.downsd.downwohn {
   stroke: #143ead;
 }
 
 /* line 198, ../sass/_trendkarte.scss */
-circle.emphasis.downsd.midwohn {
+circle.emphasis.downsd.midwohn, circle.superemphasis.downsd.midwohn {
   background-color: #143ead;
   fill: #143ead;
   stroke: #143ead;
 }
 
 /* line 202, ../sass/_trendkarte.scss */
-circle.emphasis.downsd.upwohn {
+circle.emphasis.downsd.upwohn, circle.superemphasis.downsd.upwohn {
   background-color: #143ead;
   fill: #143ead;
   stroke: #143ead;
 }
 
 /* line 206, ../sass/_trendkarte.scss */
-circle.emphasis.midsd.downwohn {
+circle.emphasis.midsd.downwohn, circle.superemphasis.midsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
   stroke: #143ead;
 }
 
 /* line 210, ../sass/_trendkarte.scss */
-circle.emphasis.midsd.midwohn {
+circle.emphasis.midsd.midwohn, circle.superemphasis.midsd.midwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
   stroke: #c36d4b;
 }
 
 /* line 214, ../sass/_trendkarte.scss */
-circle.emphasis.midsd.upwohn {
+circle.emphasis.midsd.upwohn, circle.superemphasis.midsd.upwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
   stroke: #c36d4b;
 }
 
 /* line 218, ../sass/_trendkarte.scss */
-circle.emphasis.upsd.downwohn {
+circle.emphasis.upsd.downwohn, circle.superemphasis.upsd.downwohn {
   background-color: #143ead;
   fill: #143ead;
   stroke: #143ead;
 }
 
 /* line 222, ../sass/_trendkarte.scss */
-circle.emphasis.upsd.midwohn {
+circle.emphasis.upsd.midwohn, circle.superemphasis.upsd.midwohn {
   background-color: #c36d4b;
   fill: #c36d4b;
   stroke: #c36d4b;
 }
 
 /* line 226, ../sass/_trendkarte.scss */
-circle.emphasis.upsd.upwohn {
+circle.emphasis.upsd.upwohn, circle.superemphasis.upsd.upwohn {
   background-color: #9e131a;
   fill: #9e131a;
   stroke: #9e131a;
 }
 
-circle.emphasis.notsd.notwohn {
+circle.emphasis.notsd.notwohn, circle.superemphasis.notsd.notwohn {
 	background-color: #808080;
 	fill: #808080;
 	stroke: #808080;

@@ -149,6 +149,7 @@ define(["typology", "vendor/d3.v3.min"],
 							.enter()
 							.append("circle")
 								.attr("class", function(d) { return setnineclass(d, value) + " " + d.Stadtteil})
+								.attr("hood", function(d) { return d.Stadtteil})
 								.attr("cx", function(d) { return x(d["SozD_" + value])})                 
 								.attr("cy", function(d) { return y(d["Wohn_" + value])})                    
 								.attr("r", "5")
@@ -227,7 +228,16 @@ define(["typology", "vendor/d3.v3.min"],
 				
 				d3.selectAll('circle').on('mouseenter',function(d) {
 
-					if(d3.select(this).classed('deemphasis')) {
+					var other = d3.select("circle.emphasis.superemphasis");
+						if (!other.empty() && !other.classed("active")) {
+							other
+								.classed("emphasis", false)
+								.classed("superemphasis", false);
+						}
+
+					$('select.matrix-filter').prop("value", d3.select(this).attr('hood'));
+
+					if(!d3.select(this).classed('active')) {
 						// deemphasis is no longer used
 					}
 
@@ -242,6 +252,7 @@ define(["typology", "vendor/d3.v3.min"],
 				.on('mouseleave', function(d) {
 					var theCircle = d3.select(this);
 					theCircle.classed('emphasis', false);
+					$('select.matrix-filter').prop("value", "all");
 					$('#matrix-info').empty();
 				});
 				
@@ -295,7 +306,9 @@ define(["typology", "vendor/d3.v3.min"],
 					
 					if (!theSquare.classed("active")) {
 						relatedAreas.classed("superemphasis active", true);
-						nonrelatedAreas.classed("superemphasis", false);
+						nonrelatedAreas
+							.classed("emphasis", false)
+							.classed("superemphasis", false);
 						theSquare.classed("active", true);
 
 					} else {
@@ -313,15 +326,23 @@ define(["typology", "vendor/d3.v3.min"],
 			function setSelectListener() {
 				var select = d3.selectAll('select.matrix-filter').on("change",function(d) {
 				
-					d3.selectAll('.colours a').classed("active",false);
-					d3.selectAll("circle").classed("active",false).classed("superemphasis",false);
+					d3.selectAll('.colours a')
+						.classed("active",false);
+					d3.selectAll("circle")
+						.classed("active",false)
+						.classed("superemphasis",false);
+
 					var stadtteil = this.options[this.selectedIndex].value;
+
 					if (stadtteil == "all") {
 						d3.selectAll('circle').classed("superemphasis",false);
+						d3.selectAll('circle').classed("emphasis",false);
 						$('#matrix-info').empty();
 					} else {
 						d3.selectAll('circle').classed("superemphasis",false);
+						d3.selectAll('circle').classed("emphasis",false);
 						d3.selectAll('circle.' + stadtteil).classed("superemphasis",true);
+						d3.selectAll('circle.' + stadtteil).classed("emphasis",true);
 						
 						var d = this.options[this.selectedIndex].__data__;
 						var infoContent = createInfoContent(d);
